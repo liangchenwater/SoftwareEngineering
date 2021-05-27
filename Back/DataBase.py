@@ -69,10 +69,10 @@ class DataBase():
         row = self.cursor.fetchone()
         if row:
             return -1,row['U_ID']
-        sql = 'SELECT TOP 1 * FROM Users'
+        sql = 'SELECT max(U_ID) AS U_ID FROM Users'
         self.cursor.execute(sql)
         row = self.cursor.fetchone()
-        if row['U_ID']!='0000000000':
+        if row:
             U_ID = str(int(row['U_ID'])+1)
         else:
             U_ID = '0000000001'
@@ -119,7 +119,7 @@ class DataBase():
         Advice,
         FU_Time=''
     ):
-        sql = "SELECT TOP 1* FROM MR_Records"
+        sql = "SELECT max(MR_ID) AS MR_ID FROM MR_Records"
         self.cursor.execute(sql)
         row = self.cursor.fetchone()
         if row:
@@ -139,7 +139,7 @@ class DataBase():
         Frequency,
         Dose=''
     ):
-        sql = "SELECT * FROM Prescriptions WHERE MR_ID=\'%s\' ORDER BY Pres_ID DESC" % (MR_ID)
+        sql = "SELECT max(Pres_ID) AS Pres_ID FROM Prescriptions WHERE MR_ID=\'%s\'" % (MR_ID)
         self.cursor.execute(sql)
         row = self.cursor.fetchone()
         if row:

@@ -11,6 +11,6 @@
 | 接口地址     | Method | 需要提供的字段 | 返回                                                         | 完成 |
 | ------------ | ------ | -------------- | ------------------------------------------------------------ | ---- |
 | /patientinfo | GET    | char(10) UID   | U_Name：用户名<br />Gender：性别（M，F，O）<br />Age：年龄<br />Phone：电话 | Y    |
-|              |        |                |                                                              |      |
+| /doctorinfo  | GET    | char(10) UID   | U_Name<br />Gender<br />Age<br />Phone<br />Title<br />Work_Time: <span style='color:red'>这里最好后边改成统一格式化字符串</span> | Y    |
 |              |        |                |                                                              |      |
 

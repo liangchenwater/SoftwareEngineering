@@ -46,7 +46,7 @@ class DataBase():
         return row
     
     def GetDoctorInformation(self,uid):
-        sql = 'SELECT U_Name,Gender,U_Profile,Age,Phone,Title,Department,Work_Time FROM Users AND Doctors WHERE Users.U_ID=Doctors.U_ID AND Users.U_ID=\'%s\'' % (uid)
+        sql = 'SELECT U_Name,Gender,Age,Phone,Title,Department,Work_Time FROM Users,Doctors WHERE Users.U_ID=Doctors.U_ID AND Users.U_ID=\'%s\'' % (uid)
         self.cursor.execute(sql)
         row = self.cursor.fetchone()
         return row

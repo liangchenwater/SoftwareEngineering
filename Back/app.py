@@ -16,9 +16,8 @@ def Login():
     phone = request.args.get('phone')
     password = request.args.get('password')
 
-    code,data = DB.Login('123456789','123456')
-    #return json.dumps({'valid': code, 'identity': data['U_ID']}, indent=2, ensure_ascii=False)
-    #code,data = DB.Login(phone,password)
+    #code,data = DB.Login('123456789','123456')
+    code,data = DB.Login(phone,password)
     if code == 0:
         return json.dumps({'valid': code, 'U_ID': data['U_ID']}, indent=2, ensure_ascii=False)
     else:
@@ -29,9 +28,17 @@ def Login():
 def GetPatientInfo():
     uid = request.args.get('UID')
 
-    data = DB.GetPatientInformation('0000000001')
+    data = DB.GetPatientInformation(uid)
 
-    return json.dumps(data,indent=2,ensure_ascii=False)
+    return json.dumps(data,indent=2,ensure_ascii=False).encode('latin1').decode('gbk')
 
+@app.route('/doctorinfo',methods=['GET'])
+def GetDoctorInfo():
+    uid = request.args.get('UID')
+
+    data = DB.GetDoctorInformation(uid)
+
+    return json.dumps(data,indent=2,ensure_ascii=False).encode('latin1').decode('gbk')
+    
 if __name__ == '__main__':
     app.run(debug=True)

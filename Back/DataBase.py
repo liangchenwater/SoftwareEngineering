@@ -40,7 +40,7 @@ class DataBase():
         return row
     
     def GetPatientInformation(self,uid):
-        sql = 'SELECT U_Name,Gender,U_Profile,Age,Phone FROM Users WHERE U_ID=\'%s\'' % (uid)
+        sql = 'SELECT U_Name,Gender,Age,Phone FROM Users WHERE U_ID=\'%s\'' % (uid)
         self.cursor.execute(sql)
         row = self.cursor.fetchone()
         return row

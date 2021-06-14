@@ -25,7 +25,13 @@ def Login():
         return json.dumps({'valid': code, 'U_ID': 'None'}, indent=2, ensure_ascii=False)
 
 
+@app.route('/patientinfo',methods=['GET'])
+def GetPatientInfo():
+    uid = request.args.get('UID')
 
+    data = DB.GetPatientInformation('0000000001')
+
+    return json.dumps(data,indent=2,ensure_ascii=False)
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -39,6 +39,30 @@ def GetDoctorInfo():
     data = DB.GetDoctorInformation(uid)
 
     return json.dumps(data,indent=2,ensure_ascii=False).encode('latin1').decode('gbk')
+
+
+@app.route('/signup',methods=['POST'])
+def SignUp():
+    phone = request.form['phone']
+    password = request.form['password']
+    name = request.form['name']
+    identity = request.form['identity']
+    gender = request.form['gender']
+    if request.form['age'] == '':
+        age = -1
+    else:
+        age = request.form['age']
+     
+    if identity=='D':
+        certificate = request.form['certificate']
+        title = request.form['title']
+        department = request.form['department']
+        worktime = request.form['worktime']
+    else:
+        certificate = title = department = worktime = ''
+    
+    code,uid = DB.AddUser(phone,password,name,identity,gender,age,certificate,title,department,worktime)
+    return json.dumps({'state':code,'U_ID':uid},indent=2,ensure_ascii=False)
     
 if __name__ == '__main__':
     app.run(debug=True)

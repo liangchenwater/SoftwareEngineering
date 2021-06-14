@@ -1,6 +1,6 @@
 CREATE TABLE Users(
 	U_ID char(10) primary key,
-	Phone char(15) not null,
+	Phone varchar(11) not null,
 	Pass varchar(8) not null,		/* password length between 5 and 15 */
 	U_Name varchar(15) not null,
 	Gender char(1) not null,		/* Male Female and Other */

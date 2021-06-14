@@ -19,8 +19,8 @@ class DataBase():
     def __del__(self):
         self.conn.close()
     
-    def Login(self,phone,pass):
-        sql = 'SELECT * FROM Users WHERE Phone=\'%s\' AND Pass=\'%s\'' % (phone,pass)
+    def Login(self,phone,password):
+        sql = 'SELECT U_ID FROM Users WHERE Phone=\'%s\' AND Pass=\'%s\'' % (phone,password)
         self.cursor.execute(sql)
         row = self.cursor.fetchone()
         if row:

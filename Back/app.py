@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 from flask import request,Flask
 import DataBase
@@ -11,11 +12,10 @@ def test():
     return 'Hello,world'
 '''
 
-@app.route('/login',methods=['GET'])
+@app.route('/login',methods=['GET','POST'])
 def Login():
-    phone = request.args.get('phone')
-    password = request.args.get('password')
-
+    phone = request.values['phone']
+    password = request.values['password']
     #code,data = DB.Login('123456789','123456')
     code,data = DB.Login(phone,password)
     if code == 0:
@@ -24,17 +24,16 @@ def Login():
         return json.dumps({'valid': code, 'U_ID': 'None'}, indent=2, ensure_ascii=False)
 
 
-@app.route('/patientinfo',methods=['GET'])
+@app.route('/patientinfo',methods=['GET','POST'])
 def GetPatientInfo():
-    uid = request.args.get('UID')
-
+    uid = request.values['UID']
     data = DB.GetPatientInformation(uid)
 
     return json.dumps(data,indent=2,ensure_ascii=False).encode('latin1').decode('gbk')
 
-@app.route('/doctorinfo',methods=['GET'])
+@app.route('/doctorinfo',methods=['GET','POST'])
 def GetDoctorInfo():
-    uid = request.args.get('UID')
+    uid = request.values['UID']
 
     data = DB.GetDoctorInformation(uid)
 
@@ -43,26 +42,46 @@ def GetDoctorInfo():
 
 @app.route('/signup',methods=['POST'])
 def SignUp():
-    phone = request.form['phone']
-    password = request.form['password']
-    name = request.form['name']
-    identity = request.form['identity']
-    gender = request.form['gender']
-    if request.form['age'] == '':
+    phone = request.values['phone']
+    password = request.values['password']
+    name = request.values['name']
+    identity = request.values['identity']
+    gender = request.values['gender']
+    if request.values['age'] == '':
         age = -1
     else:
-        age = request.form['age']
+        age = request.values['age']
      
     if identity=='D':
-        certificate = request.form['certificate']
-        title = request.form['title']
-        department = request.form['department']
-        worktime = request.form['worktime']
+        certificate = request.values['certificate']
+        title = request.values['title']
+        department = request.values['department']
+        worktime = request.values['worktime']
     else:
         certificate = title = department = worktime = ''
     
     code,uid = DB.AddUser(phone,password,name,identity,gender,age,certificate,title,department,worktime)
     return json.dumps({'state':code,'U_ID':uid},indent=2,ensure_ascii=False)
     
+@app.route('/addrecord',methods=['POST'])
+def AddRecord():
+    patient_id = request.values['patient_id']
+    doctor_id = request.values['doctor_id']
+    mr_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    advice = request.values['advice']
+    description = request.values['description']
+    fu_time = request.values['fu_time']
+
+    mr_id = DB.AddRecord(patient_id,doctor_id,mr_time,description,advice,fu_time)
+
+    pres_num = int(request.values['pres_num'])
+
+    for i in range(pres_num):
+        medicine = request.values['medicine'+str(i)]
+        frequency = request.values['frequency'+str(i)]
+        dose = request.values['dose'+str(i)]
+        notes = request.values['notes'+str(i)]
+        DB.AddPrescription(mr_id,medicine,frequency,dose,notes)
+
 if __name__ == '__main__':
     app.run(debug=True)

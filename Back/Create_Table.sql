@@ -50,6 +50,7 @@ CREATE TABLE Prescriptions(
 	Medicine varchar(20) not null,
 	Frequency varchar(10) not null,		/* Use Formatted Strings Like 3pD 5pW ect. */
 	Dose varchar(10),
+	Notes varchar(20),
 	primary key(MR_ID,Pres_ID),			/* One Medical Record May Contain Several Prescriptions */
 	foreign key(MR_ID) references M_Records)
 

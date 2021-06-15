@@ -131,13 +131,15 @@ class DataBase():
         sql = "INSERT INTO MR_Records VALUES(\'%s\',\'%s\',\'%s\',CONVERT(smalldatetime,\'%s\',20),\'%s\',\'%s\',CONVERT(smalldatetime,\'%s\',20)" % (MR_ID,Patient_ID,Doctor_ID,MR_Time,Description,Advice,FU_Time)
         self.cursor.execute(sql)
         self.conn.commit()
+        return MR_ID
 
     def AddPrescription(
         self,
         MR_ID,
         Medicine,
         Frequency,
-        Dose=''
+        Dose='',
+        Notes=''
     ):
         sql = "SELECT max(Pres_ID) AS Pres_ID FROM Prescriptions WHERE MR_ID=\'%s\'" % (MR_ID)
         self.cursor.execute(sql)
@@ -146,7 +148,7 @@ class DataBase():
             Pres_ID = row['Pres_ID'] + 1
         else:
             Pres_ID = 1
-        sql = "INSERT INTO Prescriptions VALUES (\'%s\',%d,\'%s\',\'%s\',\'%s\'" % (MR_ID,Pres_ID,Medicine,Frequency,Dose)
+        sql = "INSERT INTO Prescriptions VALUES (\'%s\',%d,\'%s\',\'%s\',\'%s\',\'%s\'" % (MR_ID,Pres_ID,Medicine,Frequency,Dose,Notes)
         self.cursor.execute(sql)
         self.conn.commit()
 

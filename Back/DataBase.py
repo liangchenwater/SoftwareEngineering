@@ -59,12 +59,13 @@ class DataBase():
         U_Identity,
         Gender='O',
         Age=-1,
+        U_Profile='',
         Certificate_ID='',
         Title='',
         Department='',
         WorkTime=''
     ):
-        sql = "SELECT U_ID FROM Users WHERE Phone='\%s\'" % (Phone)
+        sql = "SELECT U_ID FROM Users WHERE Phone=\'%s\'" % (Phone)
         self.cursor.execute(sql)
         row = self.cursor.fetchone()
         if row:
@@ -74,11 +75,16 @@ class DataBase():
         row = self.cursor.fetchone()
         if row:
             U_ID = str(int(row['U_ID'])+1)
+            U_ID = U_ID.zfill(10)
+            #print(U_ID)
+            #return
         else:
             U_ID = '0000000001'
         if Age==-1:
-            sql = "INSERT INTO Users VALUES(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',NULL,\'%s\'" % (U_ID,Phone,Pass,U_Name,Gender,U_Identity)
-        sql = "INSERT INTO Users VALUES(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',%d,\'%s\'" % (U_ID,Phone,Pass,U_Name,Gender,Age,U_Identity)
+            sql = "INSERT INTO Users VALUES(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',NULL,\'%s\',\'%s\')" % (U_ID,Phone,Pass,U_Name,Gender,U_Identity,U_Profile)
+        sql = "INSERT INTO Users VALUES(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',%d,\'%s\',\'%s\')" % (U_ID,Phone,Pass,U_Name,Gender,Age,U_Identity,U_Profile)
+        #print(U_ID)
+        #print(sql)
         self.cursor.execute(sql)
         if U_Identity=='D':
             sql = "INSERT INTO Doctors VALUES(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\'" % (U_ID,Certificate_ID,Title,Department,WorkTime)
@@ -124,6 +130,7 @@ class DataBase():
         row = self.cursor.fetchone()
         if row:
             MR_ID = str(int(row['MR_ID']+1))
+            MR_ID = MR_ID.zfill(15)
         else:
             MR_ID = '000000000000001'
         if FU_Time=='':

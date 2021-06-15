@@ -60,7 +60,18 @@ def SignUp():
     else:
         certificate = title = department = worktime = ''
     
-    code,uid = DB.AddUser(phone,password,name,identity,gender,age,certificate,title,department,worktime)
+    code,uid = DB.AddUser(
+        Phone=phone,
+        Pass=password,
+        U_Name=name,
+        U_Identity=identity,
+        Gender=gender,
+        Age=age,
+        Certificate=certificate,
+        Title=title,
+        Department=department,
+        Worktime=worktime
+    )
     return json.dumps({'state':code,'U_ID':uid},indent=2,ensure_ascii=False)
     
 @app.route('/addrecord',methods=['POST'])

@@ -82,7 +82,8 @@ class DataBase():
             U_ID = '0000000001'
         if Age==-1:
             sql = "INSERT INTO Users VALUES(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',NULL,\'%s\',\'%s\')" % (U_ID,Phone,Pass,U_Name,Gender,U_Identity,U_Profile)
-        sql = "INSERT INTO Users VALUES(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',%d,\'%s\',\'%s\')" % (U_ID,Phone,Pass,U_Name,Gender,Age,U_Identity,U_Profile)
+        else:
+            sql = "INSERT INTO Users VALUES(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',%d,\'%s\',\'%s\')" % (U_ID,Phone,Pass,U_Name,Gender,Age,U_Identity,U_Profile)
         #print(U_ID)
         #print(sql)
         self.cursor.execute(sql)
@@ -125,17 +126,18 @@ class DataBase():
         Advice,
         FU_Time=''
     ):
-        sql = "SELECT max(MR_ID) AS MR_ID FROM MR_Records"
+        sql = "SELECT max(MR_ID) AS MR_ID FROM M_Records"
         self.cursor.execute(sql)
         row = self.cursor.fetchone()
-        if row:
-            MR_ID = str(int(row['MR_ID']+1))
+        if row['MR_ID'] != None:
+            MR_ID = str(int(row['MR_ID'])+1)
             MR_ID = MR_ID.zfill(15)
         else:
             MR_ID = '000000000000001'
         if FU_Time=='':
-            sql = "INSERT INTO MR_Records VALUES(\'%s\',\'%s\',\'%s\',CONVERT(smalldatetime,\'%s\',20),\'%s\',\'%s\',NULL" % (MR_ID,Patient_ID,Doctor_ID,MR_Time,Description,Advice)
-        sql = "INSERT INTO MR_Records VALUES(\'%s\',\'%s\',\'%s\',CONVERT(smalldatetime,\'%s\',20),\'%s\',\'%s\',CONVERT(smalldatetime,\'%s\',20)" % (MR_ID,Patient_ID,Doctor_ID,MR_Time,Description,Advice,FU_Time)
+            sql = "INSERT INTO M_Records VALUES(\'%s\',\'%s\',\'%s\',CONVERT(smalldatetime,\'%s\',20),\'%s\',\'%s\',NULL)" % (MR_ID,Patient_ID,Doctor_ID,MR_Time,Description,Advice)
+        else:
+            sql = "INSERT INTO M_Records VALUES(\'%s\',\'%s\',\'%s\',CONVERT(smalldatetime,\'%s\',20),\'%s\',\'%s\',CONVERT(smalldatetime,\'%s\',20))" % (MR_ID,Patient_ID,Doctor_ID,MR_Time,Description,Advice,FU_Time)
         self.cursor.execute(sql)
         self.conn.commit()
         return MR_ID
@@ -151,11 +153,11 @@ class DataBase():
         sql = "SELECT max(Pres_ID) AS Pres_ID FROM Prescriptions WHERE MR_ID=\'%s\'" % (MR_ID)
         self.cursor.execute(sql)
         row = self.cursor.fetchone()
-        if row:
+        if row['Pres_ID']!=None:
             Pres_ID = row['Pres_ID'] + 1
         else:
             Pres_ID = 1
-        sql = "INSERT INTO Prescriptions VALUES (\'%s\',%d,\'%s\',\'%s\',\'%s\',\'%s\'" % (MR_ID,Pres_ID,Medicine,Frequency,Dose,Notes)
+        sql = "INSERT INTO Prescriptions VALUES (\'%s\',%d,\'%s\',\'%s\',\'%s\',\'%s\')" % (MR_ID,Pres_ID,Medicine,Frequency,Dose,Notes)
         self.cursor.execute(sql)
         self.conn.commit()
 

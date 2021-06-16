@@ -1,0 +1,199 @@
+page{
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: rgba(245,245,245,1);
+}
+
+#title_text {
+  position: absolute;
+  width: 103px;
+  height: 160rpx;
+  left: 40rpx;
+  top: 12.4%;
+  overflow: visible;
+}
+
+#login_text{
+  opacity: 1;
+  position: absolute;
+  left: 0rpx;
+  top: 0%;
+  overflow: visible;
+  text-align: left;
+  font-family: Symbol;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 35px;
+  color: rgba(59,62,81,1);
+}
+
+#welcome_text {
+  opacity: 0.8;
+  position: absolute;
+  left: 3rpx;
+  bottom: 0%;
+  overflow: visible;
+  width: 104px;
+  text-align: left;
+  font-family: Bio Sans;
+  font-style: normal;
+  font-weight: lighter;
+  font-size: 18px;
+  color: rgba(47,54,61,1);
+}
+
+.fill{
+  position: absolute;
+  left: 0px;
+  top: 30%;
+  width: 100%;
+  height: 400rpx;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#phone-number {
+  position: absolute;
+  width: 100%;
+  height: 171rpx;
+  overflow: visible;
+}
+
+#password {
+  position: relative;
+  width: 100%;
+  height: 171rpx;
+  top: 183rpx;
+  overflow: visible;
+}
+
+#password_text {
+  left: 30px;
+  top: 93rpx;
+  position: absolute;
+  overflow: visible;
+  width: 97px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Bio Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: rgba(47,54,61,1);
+  letter-spacing: 1.2px;
+}
+
+
+#number_text {
+  left: 30px;
+  top: 93rpx;
+  position: absolute;
+  overflow: visible;
+  width: 115px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Bio Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: rgba(47,54,61,1);
+}
+
+#forget_password {
+  left: 0px;
+  top: 63%;
+  position: absolute;
+  overflow: visible;
+  width: 750rpx;
+  white-space: nowrap;
+  line-height: 67px;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-style: normal;
+  font-weight: 250;
+  font-size: 15px;
+  color: rgba(47,54,61,1);
+}
+
+.register_text{
+  left: 0px;
+  bottom: 30rpx;
+  position: absolute;
+  display:flex;
+  justify-content:center;
+  overflow: visible;
+  width: 750rpx;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-style: normal;
+  font-weight: 250;
+  font-size: 15px;
+  color: rgba(47,54,61,1);
+}
+
+.box{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: center;
+  margin-top: 200rpx;
+
+}
+.box .login_button{
+  display: flex;
+  background-color: rgba(59,62,81,1);
+  stroke: rgba(59,62,81,1);
+  stroke-width: 1px;
+  stroke-linejoin: miter;
+  stroke-linecap: butt;
+  stroke-miterlimit: 4;
+  shape-rendering: auto;
+  flex-direction: column;
+  border-radius: 32rpx;
+  position: absolute;
+  width: 90%;
+  height: 90rpx;
+  left: 5%;
+  top: 71%;
+  overflow: visible;
+  cursor: pointer;
+}
+#login_button_text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 90rpx;
+  flex-direction: column;
+  align-items: center;
+
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: rgba(255,255,255,1);
+}
+
+.rect_set{
+  overflow: visible;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: matrix(1,0,0,1,0,0);
+}
+
+.phone_rect{background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='375' height='85' viewBox='0 0 375 85'%3E %3Cg id='矩形_56' data-name='矩形 56' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='375' height='85' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='374' height='84' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='手机号码' transform='translate(30 34)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E手机号码%3C/tspan%3E%3C/text%3E %3Ctext id='_' data-name='*' transform='translate(90 31)' fill='%23ff2424' font-size='14' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3C/svg%3E ");
+}
+
+.password_rect{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='375' height='85' viewBox='0 0 375 85'%3E %3Cg id='矩形_56' data-name='矩形 56' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='375' height='85' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='374' height='84' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='密码' transform='translate(30 34)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E密码%3C/tspan%3E%3C/text%3E %3Ctext id='_' data-name='*' transform='translate(61 31)' fill='%23ff2424' font-size='14' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3C/svg%3E ");
+}
+

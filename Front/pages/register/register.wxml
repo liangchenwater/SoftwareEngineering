@@ -1,0 +1,62 @@
+<!--pages/register/register.wxml-->
+
+<view>
+		<view id="title_text">
+			<view id="welcome_text">
+				<text>欢迎使用医患通平台！</text>
+			</view>
+			<view id="register_text" space="ensp">
+				<text>注  册</text>
+			</view>
+		</view>
+
+		<view class="fill">
+			<view id="name">
+				<text class="rect_set name_rect"></text>
+				<view id="input_text">
+          <input bindinput="set_name"/> 
+				</view>
+			</view>
+
+			<view id="phone-number">
+				<text class="rect_set phone_rect"></text>
+				<view id="input_text">
+          <input bindinput="set_number"/> 
+				</view>
+			</view>
+
+			<view id="password">
+				<text class="rect_set password_rect"></text>
+				<view id="password1_text">
+          <input bindinput="set_password"/> 
+				</view>
+        <view id="password2_text">
+          <input bindinput="verify_password"/> 
+				</view>
+			</view>
+
+      <radio-group class="radio-group" bindchange="radioChange">
+        <label display="inline-block" class="radio" wx:for-items="{{items}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+          <view space="emsp">
+            <radio>
+              <text>{{item.value}}      </text>
+            </radio>
+          </view>
+        </label>
+      </radio-group>
+		</view>
+
+	<view class="box">
+		<button bindtap="click_register" class="register_button" plain>
+			<view id="register_button_text">
+				<text>注　　册</text>
+			</view>
+		</button>
+	</view>
+
+
+	<view class="login_text">
+		<text space="ensp">已有账号? </text><navigator url="../login/login"><view style="text-decoration:underline;">登录</view>	</navigator>
+	</view>
+
+</view>

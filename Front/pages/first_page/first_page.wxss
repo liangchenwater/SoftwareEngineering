@@ -1,0 +1,31 @@
+page{
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 10pt;
+  width: 750rpx;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: rgba(245,245,245,1);
+}
+.first_page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display:flex;
+  justify-content: center;
+  align-items:center;
+}
+
+.logo_z{
+  overflow: visible;
+  position: fixed;
+  width: 192.785px;
+  height: 280.793px;
+  transform: matrix(1,0,0,1,0,0);
+}
+.icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192.785' height='280.016' viewBox='0 0 192.785 280.016'%3E %3Cg id='logo' transform='translate(-111.5 -236.984)'%3E %3Cpath id='logo-2' data-name='logo' d='M43.309,73.288v6.5c0,31.832,27.213,57.745,60.632,57.745s60.632-25.913,60.632-57.745V43.8a28.873,28.873,0,1,0-17.324,0V79.784c0,22.3-19.417,40.422-43.309,40.422S60.632,102.088,60.632,79.784v-6.5a52.081,52.081,0,0,0,43.309-51.249V-37.33a4.324,4.324,0,0,0-3.393-4.223L75.394-47.147a4.313,4.313,0,0,0-5.161,3.284l-1.876,8.445a4.312,4.312,0,0,0,3.284,5.161l14.978,3.32V21.57c0,19.092-15.23,34.9-34.322,35.08A34.627,34.627,0,0,1,17.324,22.039V-26.9L32.3-30.22a4.312,4.312,0,0,0,3.284-5.161l-1.876-8.481a4.33,4.33,0,0,0-5.161-3.284L3.393-41.553A4.324,4.324,0,0,0,0-37.33V22.039A52.081,52.081,0,0,0,43.309,73.288Zm112.6-68.572a11.549,11.549,0,1,1-11.549,11.549A11.583,11.583,0,0,1,155.912,4.715Z' transform='translate(115.5 288.248)' fill='%236ac27e' stroke='%23f5f5f5' stroke-width='8'/%3E %3Ctext id='医_患_通_您的私人医生管家' data-name='医 患 通 您的私人医生管家' transform='translate(147 483)' fill='%2324292e' font-size='35' font-family='PingFangSC-Semibold, PingFang SC' font-weight='600'%3E%3Ctspan x='0' y='0'%3E医%3C/tspan%3E%3Ctspan y='0' font-family='AdobeClean-Bold, Adobe Clean' font-weight='700'%3E %3C/tspan%3E%3Ctspan y='0'%3E患%3C/tspan%3E%3Ctspan y='0' font-family='AdobeClean-Bold, Adobe Clean' font-weight='700'%3E %3C/tspan%3E%3Ctspan y='0'%3E通%3C/tspan%3E%3Ctspan y='0' font-family='AdobeClean-Bold, Adobe Clean' font-weight='700'%3E%3C/tspan%3E%3Ctspan font-size='16' font-family='PingFangSC-Light, PingFang SC' font-weight='300'%3E%3Ctspan x='0' y='29'%3E您的私人医生管家%3C/tspan%3E%3C/tspan%3E%3C/text%3E %3C/g%3E %3C/svg%3E ");
+}

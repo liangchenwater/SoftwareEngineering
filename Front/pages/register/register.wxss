@@ -1,0 +1,232 @@
+/* pages/login.wxss */
+page{
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: rgba(245,245,245,1);
+}
+
+#title_text {
+  position: absolute;
+  width: 103px;
+  height: 150rpx;
+  left: 40rpx;
+  top: 6%;
+  overflow: visible;
+}
+
+#register_text{
+  opacity: 1;
+  position: absolute;
+  left: 0rpx;
+  top: 0%;
+  overflow: visible;
+  text-align: left;
+  font-family: Symbol;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 35px;
+  color: rgba(59,62,81,1);
+}
+
+#welcome_text {
+  opacity: 0.8;
+  position: absolute;
+  left: 3rpx;
+  bottom: 0%;
+  overflow: visible;
+  width: 300px;
+  text-align: left;
+  font-family: Bio Sans;
+  font-style: normal;
+  font-weight: lighter;
+  font-size: 18px;
+  color: rgba(47,54,61,1);
+}
+
+.fill{
+  position: absolute;
+  left: 0px;
+  top: 22%;
+  width: 100%;
+  height: 700rpx;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#phone-number {
+  position: relative;
+  width: 100%;
+  height: 171rpx;
+  top: 183rpx;
+  overflow: visible;
+}
+
+#password {
+  position: relative;
+  width: 100%;
+  height: 267rpx;
+  top: 194rpx;
+  overflow: visible;
+}
+
+#name {
+  position: absolute;
+  width: 100%;
+  height: 171rpx;
+  overflow: visible;
+}
+
+#password1_text {
+  left: 30px;
+  top: 86rpx;
+  position: absolute;
+  overflow: visible;
+  width: 97px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Bio Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: rgba(47,54,61,1);
+  letter-spacing: 1.2px;
+}
+
+#password2_text {
+  left: 30px;
+  bottom: 19rpx;
+  position: absolute;
+  overflow: visible;
+  width: 97px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Bio Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: rgba(47,54,61,1);
+  letter-spacing: 1.2px;
+}
+
+#input_text {
+  left: 30px;
+  top: 93rpx;
+  position: absolute;
+  overflow: visible;
+  width: 115px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Bio Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: rgba(47,54,61,1);
+}
+
+.login_text{
+  left: 0px;
+  bottom: 30rpx;
+  position: absolute;
+  display:flex;
+  justify-content:center;
+  overflow: visible;
+  width: 750rpx;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-style: normal;
+  font-weight: 250;
+  font-size: 15px;
+  color: rgba(47,54,61,1);
+}
+
+.radio-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 90%;
+  top:210rpx;
+  left:8%;
+}
+.radio {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  opacity: 0.8;
+  display: block;
+  padding: 5px;
+  font-family: Bio Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: rgba(47,54,61,1);
+}
+
+.box{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: center;
+  margin-top: 200rpx;
+
+}
+
+.box .register_button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(106,194,126,1);
+  border:none;
+  shape-rendering: auto;
+  flex-direction: column;
+  border-radius: 32rpx;
+  position: absolute;
+  width: 90%;
+  height: 90rpx;
+  left: 5%;
+  top: 83%;
+  overflow: visible;
+  cursor: pointer;
+}
+
+#register_button_text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  line-height: 75rpx;
+  top:-2%;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: rgba(255,255,255,1);
+}
+
+.rect_set{
+  overflow: visible;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: matrix(1,0,0,1,0,0);
+}
+
+.phone_rect{background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='375' height='85' viewBox='0 0 375 85'%3E %3Cg id='矩形_56' data-name='矩形 56' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='375' height='85' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='374' height='84' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='手机号码' transform='translate(30 34)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E手机号码%3C/tspan%3E%3C/text%3E %3Ctext id='_' data-name='*' transform='translate(90 31)' fill='%23ff2424' font-size='14' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3C/svg%3E ");
+}
+
+.name_rect{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='375' height='85' viewBox='0 0 375 85'%3E %3Cg id='矩形_56' data-name='矩形 56' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='375' height='85' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='374' height='84' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='姓_名' data-name='姓 名' transform='translate(30 34)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E姓%3C/tspan%3E%3Ctspan y='0' xml:space='preserve' font-family='AdobeClean-Regular, Adobe Clean'%3E %3C/tspan%3E%3Ctspan y='0'%3E名%3C/tspan%3E%3C/text%3E %3Ctext id='_' data-name='*' transform='translate(69 31)' fill='%23ff2424' font-size='14' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3C/svg%3E ");
+}
+
+.password_rect{
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='375' height='133.105' viewBox='0 0 375 133.105'%3E %3Cg id='路径_5697' data-name='路径 5697' fill='%23fff'%3E %3Cpath d='M 345 132.6049957275391 L 30 132.6049957275391 C 26.01779937744141 132.6049957275391 22.15500068664551 131.8186340332031 18.51880073547363 130.2677917480469 C 15.0061502456665 128.7696380615234 11.85124969482422 126.6246871948242 9.141799926757812 123.8925399780273 C 6.43209981918335 121.1601409912109 4.304649829864502 117.9783401489258 2.818650007247925 114.4355392456055 C 1.280099987983704 110.7675933837891 0.5 106.8709411621094 0.5 102.8538436889648 L 0.5 30.25114059448242 C 0.5 26.23403930664062 1.280099987983704 22.3373908996582 2.818650007247925 18.6694393157959 C 4.304649829864502 15.12664031982422 6.43209981918335 11.94484043121338 9.141799926757812 9.212440490722656 C 11.85124969482422 6.480290412902832 15.0061502456665 4.335340023040771 18.51880073547363 2.8371901512146 C 22.15500068664551 1.286340236663818 26.01779937744141 0.4999902248382568 30 0.4999902248382568 L 345 0.4999902248382568 C 348.9822082519531 0.4999902248382568 352.8450012207031 1.286340236663818 356.481201171875 2.8371901512146 C 359.9938354492188 4.335340023040771 363.1487426757812 6.480290412902832 365.8581848144531 9.212440490722656 C 368.5679016113281 11.94484043121338 370.6953430175781 15.12664031982422 372.1813354492188 18.6694393157959 C 373.7199096679688 22.3373908996582 374.5 26.23403930664062 374.5 30.25114059448242 L 374.5 102.8538436889648 C 374.5 106.8709411621094 373.7199096679688 110.7675933837891 372.1813354492188 114.4355392456055 C 370.6953430175781 117.9783401489258 368.5679016113281 121.1601409912109 365.8581848144531 123.8925399780273 C 363.1487426757812 126.6246871948242 359.9938354492188 128.7696380615234 356.481201171875 130.2677917480469 C 352.8450012207031 131.8186340332031 348.9822082519531 132.6049957275391 345 132.6049957275391 Z' stroke='none'/%3E %3Cpath d='M 30 0.9999847412109375 C 26.08560180664062 0.9999847412109375 22.28878784179688 1.772842407226562 18.71493530273438 3.297088623046875 C 15.26199340820312 4.769790649414062 12.16055297851562 6.878486633300781 9.496856689453125 9.564491271972656 C 6.832550048828125 12.25109100341797 4.740814208984375 15.37953948974609 3.279693603515625 18.86283874511719 C 1.766998291015625 22.46919250488281 1 26.30078887939453 1 30.25113677978516 L 1 102.8538360595703 C 1 106.8041915893555 1.766998291015625 110.6357879638672 3.279693603515625 114.2421417236328 C 4.740814208984375 117.7254409790039 6.832550048828125 120.853889465332 9.496856689453125 123.5404891967773 C 12.16055297851562 126.2264862060547 15.26199340820312 128.3351898193359 18.71493530273438 129.8078918457031 C 22.28878784179688 131.3321380615234 26.08560180664062 132.1049957275391 30 132.1049957275391 L 345 132.1049957275391 C 348.9143981933594 132.1049957275391 352.7112121582031 131.3321380615234 356.2850341796875 129.8078918457031 C 359.7380065917969 128.3351898193359 362.8394470214844 126.2264862060547 365.5031433105469 123.5404891967773 C 368.1674499511719 120.853889465332 370.2591857910156 117.7254409790039 371.7203063964844 114.2421417236328 C 373.2330017089844 110.6357879638672 374 106.8041915893555 374 102.8538360595703 L 374 30.25113677978516 C 374 26.30078887939453 373.2330017089844 22.46919250488281 371.7203063964844 18.86283874511719 C 370.2591857910156 15.37953948974609 368.1674499511719 12.25109100341797 365.5031433105469 9.564491271972656 C 362.8394470214844 6.878486633300781 359.7380065917969 4.769790649414062 356.2850341796875 3.297088623046875 C 352.7112121582031 1.772842407226562 348.9143981933594 0.9999847412109375 345 0.9999847412109375 L 30 0.9999847412109375 M 30 -1.52587890625e-05 L 345 -1.52587890625e-05 C 361.5685424804688 -1.52587890625e-05 375 13.54389190673828 375 30.25113677978516 L 375 102.8538360595703 C 375 119.5610885620117 361.5685424804688 133.1049957275391 345 133.1049957275391 L 30 133.1049957275391 C 13.43145751953125 133.1049957275391 0 119.5610885620117 0 102.8538360595703 L 0 30.25113677978516 C 0 13.54389190673828 13.43145751953125 -1.52587890625e-05 30 -1.52587890625e-05 Z' stroke='none' fill='%23ededed'/%3E %3C/g%3E %3Ctext id='设置密码' transform='translate(30 34)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E设置密码%3C/tspan%3E%3C/text%3E %3Ctext id='_' data-name='*' transform='translate(90 30)' fill='%23ff2424' font-size='16' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3Ctext id='再次输入' transform='translate(30 89)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E再次输入%3C/tspan%3E%3C/text%3E %3Ctext id='_2' data-name='*' transform='translate(90 86)' fill='%23ff2424' font-size='16' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3C/svg%3E ");
+}

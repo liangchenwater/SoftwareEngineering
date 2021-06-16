@@ -1,0 +1,27 @@
+<view class="logo">
+	<text class="logo_l icon"></text>
+</view>
+<image id="ID3" src="ID3.png" srcset="ID3.png 1x, ID3@2x.png 2x"></image>
+<image id="ID2" src="ID2.png" srcset="ID2.png 1x, ID2@2x.png 2x"></image>
+<image id="ID1" src="ID1.png" srcset="ID1.png 1x, ID1@2x.png 2x"></image>
+
+<view id="small_text">
+	<view class="for_text">避免前往人群密集场所，在公共场所要戴口罩。勤洗手、多饮水、避免疲劳、保证睡眠，家庭和工作环境保持多通风。如果出现发热、咳嗽症状，请及时就医。</view>
+</view>
+<view id="main_text">
+	<text>新冠疫情小贴士</text>
+</view>
+
+<view class="box">
+	<button bindtap="go_login" class="login_button" plain>
+		<view id="login_text">
+			<text>登　　录</text>
+		</view>
+	</button>
+
+	<button bindtap="go_register" class="register_button" plain>
+		<view id="register_text">
+			<text>注　　册</text>
+		</view>
+	</button>
+</view>

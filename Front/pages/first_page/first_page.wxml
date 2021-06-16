@@ -1,0 +1,4 @@
+<!--index.wxml-->
+	<view class="first_page">
+			<text class="logo_z icon"></text>
+	</view>

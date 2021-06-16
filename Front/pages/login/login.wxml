@@ -1,0 +1,45 @@
+<!--pages/login.wxml-->
+
+<view>
+		<view id="title_text">
+			<view id="welcome_text">
+				<text>欢迎回来！</text>
+			</view>
+			<view id="login_text" space="ensp">
+				<text>登  录</text>
+			</view>
+		</view>
+
+		<view class="fill">
+			<view id="phone-number">
+				<text class="rect_set phone_rect"></text>
+				<view id="number_text">
+					<input bindinput="set_number"/> 
+				</view>
+			</view>
+
+			<view id="password">
+				<text class="rect_set password_rect"></text>
+				<view id="password_text">
+					<input bindinput="set_password"/> 
+				</view>
+			</view>
+		</view>
+
+		 
+	<view id="forget_password">
+		<text>忘记密码？请联系管理员修改</text>
+	</view>
+	<view class="box">
+		<button bindtap="click_login" class="login_button" plain>
+			<view id="login_button_text">
+				<text>登　　录</text>
+			</view>
+		</button>
+	</view>
+
+	<view class="register_text">
+		<text space="ensp">还没有账号? </text><navigator url="../register/register"><view style="text-decoration:underline;">注册</view>	</navigator>
+	</view>
+
+</view>

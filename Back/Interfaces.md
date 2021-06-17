@@ -23,7 +23,7 @@
 
 | 接口地址   | Method | 需要提供的字段                                               | 返回                | 完成 |
 | ---------- | ------ | ------------------------------------------------------------ | ------------------- | ---- |
-| /addrecord | POST   | patient_id<br />doctor_id<br />advice<br />description<br />(fu_time):<span style='color:red'>yyyy-mm-dd HH:MM:SS</span><br />pres_num: number of prescriptions<br />medicine0,medicine1,...<br />frequency0,frequency1,...<br />endtime0,endtime1:<span style='color:red'>yyyy-mm-dd HH:MM:SS</span><br />dose0,dose1,...<br />notes0,notes1,... | code:200<br />MR_ID | Y    |
+| /addrecord | POST   | patient_id<br />doctor_id<br />advice<br />description<br />(fu_time):<span style='color:red'>yyyy-mm-dd HH:MM:SS</span><br />pres_num: number of prescriptions<br />medicine0,medicine1,...<br />frequency_d0,frequency_d1,...<br />frequency_t0,frequency_t1,...<br />endtime0,endtime1:<span style='color:red'>yyyy-mm-dd HH:MM:SS</span><br />dose0,dose1,...<br />notes0,notes1,... | code:200<br />MR_ID | Y    |
 |            |        |                                                              |                     |      |
 |            |        |                                                              |                     |      |
 |            |        |                                                              |                     |      |

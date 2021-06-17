@@ -1,3 +1,4 @@
+from io import SEEK_SET
 from time import time
 import DataBase
 from typing import List 
@@ -132,7 +133,7 @@ class M_Record:
             FU_Time=self.FU_Time
         )
         delta = timedelta(days=1)
-        starttime = datetime.now().date()+delta
+        starttime = datetime.now()+delta
         starttime = datetime.replace(starttime,hour=8,minute=0,second=0)
         for i in range(len(self.Prescriptions)):
             DB.AddPrescription(
@@ -143,10 +144,17 @@ class M_Record:
                 Dose=self.Prescriptions[i].Dose,
                 Notes=self.Prescriptions[i].Notes
             )
+            Notes = str(self.Prescriptions[i].Frequency_D)+'天'+str(self.Prescriptions[i].Frequency_T)+'次'
             endtime = datetime.strptime(self.Prescriptions[i].Endtime,"%Y-%m-%d")
-            for day in range((endtime-starttime).days):
-
-
+            for day in range((endtime.date()-starttime.date()).days+1):
+                if day % self.Prescriptions[i].Frequency_D == 0:
+                    Event_Time = (starttime+timedelta(days=day)).strftime("%Y-%m-%d %H:%M:%S")
+                    DB.AddEvent(
+                        U_ID=self.Patient_ID,
+                        Event_Type='M',
+                        Event_Time=Event_Time,
+                        Note=Notes
+                    )
         DB.close()
 
     def addPres(self,pres:Prescription):

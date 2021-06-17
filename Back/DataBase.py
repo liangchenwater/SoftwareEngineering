@@ -178,7 +178,7 @@ class DataBase():
         '''
         Event_Time format: yyyy-mm-dd hh:mm:ss
         '''
-        Event_ID = str(int(time.time()))
+        Event_ID = str(int(time.time()*100000))
         sql = "INSERT INTO Calender_Events VALUES (\'%s\',\'%s\',\'%s\',\'%s\',CONVERT(smalldatetime,\'%s\',20),\'%s\')" % (U_ID,Event_ID,Event_Type,Note,Event_Time,Notice)
         self.cursor.execute(sql)
         self.conn.commit()

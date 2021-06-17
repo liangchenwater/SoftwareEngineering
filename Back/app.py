@@ -136,6 +136,7 @@ def AddRecord():
         #DB.AddPrescription(mr_id,medicine,frequency,dose,notes)
 
     record.addRecord()
+    return json.dumps({'code':200,'MR_ID':record.MR_ID},indent=2,ensure_ascii=False)
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')

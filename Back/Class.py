@@ -94,7 +94,7 @@ class M_Record:
     ):
         self.Patient_ID = Patient_ID
         self.Doctor_ID = Doctor_ID
-        self.MR_Time = MR_Time,
+        self.MR_Time = MR_Time
         self.Description = Description
         self.Advice = Advice
         self.MR_ID = MR_ID

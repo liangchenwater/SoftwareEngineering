@@ -138,7 +138,9 @@ class DataBase():
         else:
             MR_ID = '000000000000001'
         if FU_Time=='':
+            #print(MR_Time)
             sql = "INSERT INTO M_Records VALUES(\'%s\',\'%s\',\'%s\',CONVERT(smalldatetime,\'%s\',20),\'%s\',\'%s\',NULL)" % (MR_ID,Patient_ID,Doctor_ID,MR_Time,Description,Advice)
+            print(sql)
         else:
             sql = "INSERT INTO M_Records VALUES(\'%s\',\'%s\',\'%s\',CONVERT(smalldatetime,\'%s\',20),\'%s\',\'%s\',CONVERT(smalldatetime,\'%s\',20))" % (MR_ID,Patient_ID,Doctor_ID,MR_Time,Description,Advice,FU_Time)
         self.cursor.execute(sql)

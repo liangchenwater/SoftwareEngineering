@@ -12,12 +12,12 @@
 
 ## 用户信息模块
 
-| 接口地址     | Method   | 需要提供的字段                 | 返回                                                         | 完成 |
-| ------------ | -------- | ------------------------------ | ------------------------------------------------------------ | ---- |
-| /patientinfo | GET/POST | char(10) UID                   | U_Name：用户名<br />Gender：性别（M，F，O）<br />Age：年龄<br />Phone：电话 | 废弃 |
-| /doctorinfo  | GET/POST | char(10) UID                   | U_Name<br />Gender<br />Age<br />Phone<br />Title<br />Work_Time: <span style='color:red'>这里最好后边改成统一格式化字符串</span> | 废弃 |
-| /modinfo     | POST     |                                |                                                              |      |
-| /userinfo    | POST     | U_ID<br />identity: 'P' or 'D' | U_Name<br />Gender<br />Age<br />Phone<br />(Title)<br />(Work_Time) | Y    |
+| 接口地址     | Method   | 需要提供的字段                 | 返回                                                         | 完成                                |
+| ------------ | -------- | ------------------------------ | ------------------------------------------------------------ | ----------------------------------- |
+| /patientinfo | GET/POST | char(10) UID                   | U_Name：用户名<br />Gender：性别（M，F，O）<br />Age：年龄<br />Phone：电话 | <span style='color:red'>废弃</span> |
+| /doctorinfo  | GET/POST | char(10) UID                   | U_Name<br />Gender<br />Age<br />Phone<br />Title<br />Work_Time: <span style='color:red'>这里最好后边改成统一格式化字符串</span> | <span style='color:red'>废弃</span> |
+| /modinfo     | POST     |                                |                                                              |                                     |
+| /userinfo    | POST     | U_ID<br />identity: 'P' or 'D' | U_Name<br />Gender<br />Age<br />Phone<br />(Title)<br />(Work_Time) | Y                                   |
 
 ## 就诊模块
 

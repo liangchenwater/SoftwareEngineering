@@ -1,5 +1,7 @@
+from time import time
 import DataBase
 from typing import List 
+from datetime import date, datetime, timedelta
 
 class Users:
     def __init__(self,msg='',Password='',msgid=False):
@@ -71,15 +73,33 @@ class Prescription:
     def __init__(
         self,
         Medicine,
-        Frequency,
+        Frequency_D,
+        Frequency_T,
+        endtime,
         Dose='',
         Notes=''
     ):
         self.Medicine = Medicine
-        self.Frequency = Frequency
+        self.Frequency_D = Frequency_D
+        self.Frequency_T = Frequency_T
+        self.Endtime = endtime
         self.Dose = Dose
         self.Notes = Notes
     
+class Event:
+    def __init__(
+        self,
+        U_ID,
+        Event_Type,
+        Event_Time,
+        Notice='Y',
+        Note=''
+        ):
+            self.U_ID = U_ID
+            self.Type = Event_Type
+            self.Time = Event_Time
+            self.Notice = Notice
+            self.Note = Note
 
 class M_Record:
     def __init__(
@@ -111,14 +131,22 @@ class M_Record:
             Advice=self.Advice,
             FU_Time=self.FU_Time
         )
+        delta = timedelta(days=1)
+        starttime = datetime.now().date()+delta
+        starttime = datetime.replace(starttime,hour=8,minute=0,second=0)
         for i in range(len(self.Prescriptions)):
             DB.AddPrescription(
                 MR_ID=self.MR_ID,
                 Medicine=self.Prescriptions[i].Medicine,
-                Frequency=self.Prescriptions[i].Frequency,
+                Frequency_D=self.Prescriptions[i].Frequency_D,
+                Frequency_T=self.Prescriptions[i].Frequency_T,
                 Dose=self.Prescriptions[i].Dose,
                 Notes=self.Prescriptions[i].Notes
             )
+            endtime = datetime.strptime(self.Prescriptions[i].Endtime,"%Y-%m-%d")
+            for day in range((endtime-starttime).days):
+
+
         DB.close()
 
     def addPres(self,pres:Prescription):

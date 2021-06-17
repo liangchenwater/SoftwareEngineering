@@ -151,7 +151,8 @@ class DataBase():
         self,
         MR_ID,
         Medicine,
-        Frequency,
+        Frequency_D,
+        Frequency_T,
         Dose='',
         Notes=''
     ):
@@ -162,7 +163,7 @@ class DataBase():
             Pres_ID = row['Pres_ID'] + 1
         else:
             Pres_ID = 1
-        sql = "INSERT INTO Prescriptions VALUES (\'%s\',%d,\'%s\',\'%s\',\'%s\',\'%s\')" % (MR_ID,Pres_ID,Medicine,Frequency,Dose,Notes)
+        sql = "INSERT INTO Prescriptions VALUES (\'%s\',%d,\'%s\',%d,%d,\'%s\',\'%s\')" % (MR_ID,Pres_ID,Medicine,Frequency_D,Frequency_T,Dose,Notes)
         self.cursor.execute(sql)
         self.conn.commit()
 
@@ -178,7 +179,7 @@ class DataBase():
         Event_Time format: yyyy-mm-dd hh:mm:ss
         '''
         Event_ID = str(int(time.time()))
-        sql = "INSERT INTO Calender_Events VALUES (\'%s\',\'%s\',\'%s\',\'%s\',CONVERT(smalldatetime,\'%s\',20),\'%s\'" % (U_ID,Event_ID,Event_Type,Note,Event_Time,Notice)
+        sql = "INSERT INTO Calender_Events VALUES (\'%s\',\'%s\',\'%s\',\'%s\',CONVERT(smalldatetime,\'%s\',20),\'%s\')" % (U_ID,Event_ID,Event_Type,Note,Event_Time,Notice)
         self.cursor.execute(sql)
         self.conn.commit()
     

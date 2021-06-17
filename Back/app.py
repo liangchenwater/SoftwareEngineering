@@ -128,10 +128,12 @@ def AddRecord():
 
     for i in range(pres_num):
         medicine = request.values['medicine'+str(i)]
-        frequency = request.values['frequency'+str(i)]
+        frequency_d = int(request.values['frequency_d'+str(i)])
+        frequency_t = int(request.values['frequency_t'+str(i)])
+        endtime = request.values['endtime'+str(i)]
         dose = request.values['dose'+str(i)]
         notes = request.values['notes'+str(i)]
-        pres = Prescription(medicine,frequency,dose,notes)
+        pres = Prescription(medicine,frequency_d,frequency_t,endtime,dose,notes)
         record.addPres(pres)
         #DB.AddPrescription(mr_id,medicine,frequency,dose,notes)
 

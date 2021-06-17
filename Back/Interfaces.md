@@ -5,7 +5,7 @@
 | 接口地址 | Method   | 需要提供的字段                                               | 返回                                                         | 完成 |
 | -------- | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
 | /login   | GET/POST | varchar(11) phone <br />varchar(8) password                  | "valid": 0表示登陆成功，-1表示登陆失败，未查询到用户<br />“U_ID": char(10)，如果登陆成功则返回用户UID，如果登陆失败则返回”None“ | Y    |
-| /signup  | POST     | phone<br />password<br />name<br />identity<br />gender<br />age<br />(certificate)<br />(title)<br />(department)<br />(worktime) | "state"：-1表示用户已经存在，0表示注册新用户成功<br />"U_ID"：已存在的用户ID或者新的用户ID | Y    |
+| /signup  | POST     | phone<br />password<br />name<br />identity<br />gender<br />(age):可以为空，但是必须提供空串<br />(certificate)<br />(title)<br />(department)<br />(worktime) | "state"：-1表示用户已经存在，0表示注册新用户成功<br />"U_ID"：已存在的用户ID或者新的用户ID | Y    |
 |          |          |                                                              |                                                              |      |
 
 <span style='color:red'>有个疑问：如果我们登陆的时候分患者和医生的话那医生自己如果有就医要求怎么办？是否需要两个账号？</span>

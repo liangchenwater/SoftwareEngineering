@@ -91,7 +91,7 @@ class DataBase():
         #print(sql)
         self.cursor.execute(sql)
         if U_Identity=='D':
-            sql = "INSERT INTO Doctors VALUES(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\'" % (U_ID,Certificate_ID,Title,Department,WorkTime)
+            sql = "INSERT INTO Doctors VALUES(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')" % (U_ID,Certificate_ID,Title,Department,WorkTime)
             self.cursor.execute(sql)
         #else:
             #sql = "INSERT INTO MR_Records VALUES(\'%s\',\'%s\',\'0000000000\',CONVERT(smalldatetime,\'0000-00-00 00:00:00\',20),\'\',\'\',NULL" % (U_ID+'00000',U_ID)

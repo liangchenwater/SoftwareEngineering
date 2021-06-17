@@ -103,7 +103,7 @@ class M_Record:
     
     def addRecord(self):
         DB = DataBase.DataBase()
-        DB.AddRecord(
+        self.MR_ID = DB.AddRecord(
             Patient_ID=self.Patient_ID,
             Doctor_ID=self.Doctor_ID,
             MR_Time=self.MR_Time,

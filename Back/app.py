@@ -64,7 +64,7 @@ def SignUp():
     if request.values['age'] == '':
         age = -1
     else:
-        age = request.values['age']
+        age = int(request.values['age'])
      
     if identity=='D':
         certificate = request.values['certificate']
@@ -83,10 +83,10 @@ def SignUp():
         U_Identity=identity,
         Gender=gender,
         Age=age,
-        Certificate=certificate,
+        Certificate_ID=certificate,
         Title=title,
         Department=department,
-        Worktime=worktime
+        WorkTime=worktime
     )
     code,uid = user.signUp()
     '''
@@ -136,6 +136,6 @@ def AddRecord():
         #DB.AddPrescription(mr_id,medicine,frequency,dose,notes)
 
     record.addRecord()
-    
+
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')

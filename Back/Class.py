@@ -1,9 +1,6 @@
-from io import SEEK_SET
-from logging import StreamHandler
-from time import time
 import DataBase
-from typing import List 
-from datetime import date, datetime, timedelta
+from typing import List,Tuple,Dict
+from datetime import datetime, timedelta
 
 class Users:
     def __init__(self,msg='',Password='',msgid=False):
@@ -39,13 +36,13 @@ class Users:
         self.Department = Department
         self.WorkTime = WorkTime
     
-    def logIn(self):
+    def logIn(self)->Tuple[int,Dict]:
         DB = DataBase.DataBase()
         code,data = DB.Login(self.Phone,self.Password)
         DB.close()
         return code,data
     
-    def getInfo(self,doctor=False):
+    def getInfo(self,doctor=False)->Dict:
         DB = DataBase.DataBase()
         if doctor==False:
             data = DB.GetPatientInformation(self.U_ID)
@@ -54,7 +51,7 @@ class Users:
         DB.close()
         return data
     
-    def signUp(self):
+    def signUp(self)->Tuple[int,str]:
         DB = DataBase.DataBase()
         code,uid = DB.AddUser(
             Phone=self.Phone,
@@ -176,7 +173,7 @@ class Appointment:
         self.Description = Description
         self.Location = Location
 
-    def addAppointment(self):
+    def addAppointment(self)->int:
         DB = DataBase.DataBase()
         code = DB.AddApointment(
             Patient_ID=self.Patient_id,

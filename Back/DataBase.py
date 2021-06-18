@@ -1,6 +1,7 @@
-from datetime import date, time,datetime, timedelta
+from datetime import time,datetime, timedelta
 import pymssql
 import time
+from typing import Tuple,Dict
 
 class DataBase():
     def __init__(self):
@@ -22,7 +23,7 @@ class DataBase():
     def close(self):
         self.conn.close()
         
-    def Login(self,phone:str,password:str):
+    def Login(self,phone:str,password:str)->Tuple[int,Dict]:
         sql = 'SELECT U_ID FROM Users WHERE Phone=\'%s\' AND Pass=\'%s\'' % (phone,password)
         self.cursor.execute(sql)
         row = self.cursor.fetchone()
@@ -31,10 +32,9 @@ class DataBase():
         else:
             return -1,row
     
-    def GetCalender(self,uid,begin,end):
+    def GetCalender(self,uid:str,begin:str,end:str):
         '''
-        parameter: begin/end: str 
-                        format: yyyy-mm-dd
+        parameter: begin/end: yyyy-mm-dd
         '''
         
         sql = 'SELECT * FROM Calender_Events WHERE U_ID=\'%s\' AND (Event_Time BETWEEN CONVERT(smalldatetime,\'%s\',23) AND CONVERT(smalldatetime,\'%s\',23))' % (uid,begin,end)
@@ -42,13 +42,13 @@ class DataBase():
         row = self.cursor.fetchall()
         return row
     
-    def GetPatientInformation(self,uid):
+    def GetPatientInformation(self,uid:str)->Dict:
         sql = 'SELECT U_Name,Gender,Age,Phone FROM Users WHERE U_ID=\'%s\'' % (uid)
         self.cursor.execute(sql)
         row = self.cursor.fetchone()
         return row
     
-    def GetDoctorInformation(self,uid):
+    def GetDoctorInformation(self,uid)->Dict:
         sql = 'SELECT U_Name,Gender,Age,Phone,Title,Department,Work_Time FROM Users,Doctors WHERE Users.U_ID=Doctors.U_ID AND Users.U_ID=\'%s\'' % (uid)
         self.cursor.execute(sql)
         row = self.cursor.fetchone()
@@ -56,18 +56,18 @@ class DataBase():
     
     def AddUser(
         self,
-        Phone,
-        Pass,
-        U_Name,
-        U_Identity,
-        Gender='O',
-        Age=-1,
-        U_Profile='',
-        Certificate_ID='',
-        Title='',
-        Department='',
-        WorkTime=''
-    ):
+        Phone:str,
+        Pass:str,
+        U_Name:str,
+        U_Identity:str,
+        Gender:str='O',
+        Age:int=-1,
+        U_Profile:str='',
+        Certificate_ID:str='',
+        Title:str='',
+        Department:str='',
+        WorkTime:str=''
+    )->Tuple[int,str]:
         sql = "SELECT U_ID FROM Users WHERE Phone=\'%s\'" % (Phone)
         self.cursor.execute(sql)
         row = self.cursor.fetchone()
@@ -106,12 +106,12 @@ class DataBase():
 
     def AddApointment(
         self,
-        Patient_ID,
-        Doctor_ID,
+        Patient_ID:str,
+        Doctor_ID:str,
         Ap_Time:str,
-        Description,
-        Location=''
-    ):
+        Description:str,
+        Location:str=''
+    )->int:
         '''
         Ap_Time format: yyyy-mm-dd hh:mm:ss
         '''
@@ -133,13 +133,13 @@ class DataBase():
 
     def AddRecord(
         self,
-        Patient_ID,
-        Doctor_ID,
-        MR_Time,
-        Description,
-        Advice,
-        FU_Time=''
-    ):
+        Patient_ID:str,
+        Doctor_ID:str,
+        MR_Time:str,
+        Description:str,
+        Advice:str,
+        FU_Time:str=''
+    )->str:
         sql = "SELECT max(MR_ID) AS MR_ID FROM M_Records"
         self.cursor.execute(sql)
         row = self.cursor.fetchone()
@@ -165,12 +165,12 @@ class DataBase():
 
     def AddPrescription(
         self,
-        MR_ID,
-        Medicine,
-        Frequency_D,
-        Frequency_T,
-        Dose='',
-        Notes=''
+        MR_ID:str,
+        Medicine:str,
+        Frequency_D:int,
+        Frequency_T:int,
+        Dose:str='',
+        Notes:str=''
     ):
         sql = "SELECT max(Pres_ID) AS Pres_ID FROM Prescriptions WHERE MR_ID=\'%s\'" % (MR_ID)
         self.cursor.execute(sql)

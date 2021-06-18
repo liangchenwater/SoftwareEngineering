@@ -1,8 +1,12 @@
 /* pages/login.wxss */
+
 page{
+  background-color: rgba(245,245,245,1);
+}
+.mypage{
   font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
   width: 100%;
-  height: 100%;
+  height:100%;
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -15,7 +19,7 @@ page{
   width: 103px;
   height: 150rpx;
   left: 40rpx;
-  top: 6%;
+  top: 70rpx;
   overflow: visible;
 }
 
@@ -51,20 +55,28 @@ page{
 .fill{
   position: absolute;
   left: 0px;
-  top: 22%;
+  top: 250rpx;
   width: 100%;
-  height: 700rpx;
+  height: 120%;
   overflow: visible;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+#name {
+  position: relative;
+  width: 100%;
+  height: 171rpx;
+  top: 40rpx;
+  overflow: visible;
+}
+
 #phone-number {
   position: relative;
   width: 100%;
   height: 171rpx;
-  top: 183rpx;
+  top: 150rpx;
   overflow: visible;
 }
 
@@ -72,14 +84,31 @@ page{
   position: relative;
   width: 100%;
   height: 267rpx;
-  top: 194rpx;
+  top: 260rpx;
   overflow: visible;
 }
 
-#name {
-  position: absolute;
+#age {
+  position: relative;
   width: 100%;
   height: 171rpx;
+  top: 415rpx;
+  overflow: visible;
+}
+
+#cert_ID{
+  position: relative;
+  width: 100%;
+  height: 171rpx;
+  top: 515rpx;
+  overflow: visible;
+}
+
+#office {
+  position: relative;
+  width: 100%;
+  height: 171rpx;
+  top: 625rpx;
   overflow: visible;
 }
 
@@ -88,7 +117,7 @@ page{
   top: 86rpx;
   position: absolute;
   overflow: visible;
-  width: 97px;
+  width: 250px;
   white-space: nowrap;
   text-align: left;
   font-family: Bio Sans;
@@ -101,10 +130,10 @@ page{
 
 #password2_text {
   left: 30px;
-  bottom: 19rpx;
+  top: 193rpx;
   position: absolute;
   overflow: visible;
-  width: 97px;
+  width: 250px;
   white-space: nowrap;
   text-align: left;
   font-family: Bio Sans;
@@ -120,7 +149,22 @@ page{
   top: 93rpx;
   position: absolute;
   overflow: visible;
-  width: 115px;
+  width: 250px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Bio Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: rgba(47,54,61,1);
+}
+
+#input_text2 {
+  left: 440rpx;
+  top: 93rpx;
+  position: absolute;
+  overflow: visible;
+  width: 250px;
   white-space: nowrap;
   text-align: left;
   font-family: Bio Sans;
@@ -151,8 +195,8 @@ page{
   display: flex;
   align-items: center;
   width: 90%;
-  top:210rpx;
   left:8%;
+  top:10rpx;
 }
 .radio {
   position: relative;
@@ -193,7 +237,7 @@ page{
   width: 90%;
   height: 90rpx;
   left: 5%;
-  top: 83%;
+  bottom:8%;
   overflow: visible;
   cursor: pointer;
 }
@@ -216,7 +260,15 @@ page{
   overflow: visible;
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 171rpx;
+  transform: matrix(1,0,0,1,0,0);
+}
+
+.rect_set2{
+  overflow: visible;
+  position: absolute;
+  width: 100%;
+  height: 267rpx;
   transform: matrix(1,0,0,1,0,0);
 }
 
@@ -230,3 +282,64 @@ page{
 .password_rect{
 background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='375' height='133.105' viewBox='0 0 375 133.105'%3E %3Cg id='路径_5697' data-name='路径 5697' fill='%23fff'%3E %3Cpath d='M 345 132.6049957275391 L 30 132.6049957275391 C 26.01779937744141 132.6049957275391 22.15500068664551 131.8186340332031 18.51880073547363 130.2677917480469 C 15.0061502456665 128.7696380615234 11.85124969482422 126.6246871948242 9.141799926757812 123.8925399780273 C 6.43209981918335 121.1601409912109 4.304649829864502 117.9783401489258 2.818650007247925 114.4355392456055 C 1.280099987983704 110.7675933837891 0.5 106.8709411621094 0.5 102.8538436889648 L 0.5 30.25114059448242 C 0.5 26.23403930664062 1.280099987983704 22.3373908996582 2.818650007247925 18.6694393157959 C 4.304649829864502 15.12664031982422 6.43209981918335 11.94484043121338 9.141799926757812 9.212440490722656 C 11.85124969482422 6.480290412902832 15.0061502456665 4.335340023040771 18.51880073547363 2.8371901512146 C 22.15500068664551 1.286340236663818 26.01779937744141 0.4999902248382568 30 0.4999902248382568 L 345 0.4999902248382568 C 348.9822082519531 0.4999902248382568 352.8450012207031 1.286340236663818 356.481201171875 2.8371901512146 C 359.9938354492188 4.335340023040771 363.1487426757812 6.480290412902832 365.8581848144531 9.212440490722656 C 368.5679016113281 11.94484043121338 370.6953430175781 15.12664031982422 372.1813354492188 18.6694393157959 C 373.7199096679688 22.3373908996582 374.5 26.23403930664062 374.5 30.25114059448242 L 374.5 102.8538436889648 C 374.5 106.8709411621094 373.7199096679688 110.7675933837891 372.1813354492188 114.4355392456055 C 370.6953430175781 117.9783401489258 368.5679016113281 121.1601409912109 365.8581848144531 123.8925399780273 C 363.1487426757812 126.6246871948242 359.9938354492188 128.7696380615234 356.481201171875 130.2677917480469 C 352.8450012207031 131.8186340332031 348.9822082519531 132.6049957275391 345 132.6049957275391 Z' stroke='none'/%3E %3Cpath d='M 30 0.9999847412109375 C 26.08560180664062 0.9999847412109375 22.28878784179688 1.772842407226562 18.71493530273438 3.297088623046875 C 15.26199340820312 4.769790649414062 12.16055297851562 6.878486633300781 9.496856689453125 9.564491271972656 C 6.832550048828125 12.25109100341797 4.740814208984375 15.37953948974609 3.279693603515625 18.86283874511719 C 1.766998291015625 22.46919250488281 1 26.30078887939453 1 30.25113677978516 L 1 102.8538360595703 C 1 106.8041915893555 1.766998291015625 110.6357879638672 3.279693603515625 114.2421417236328 C 4.740814208984375 117.7254409790039 6.832550048828125 120.853889465332 9.496856689453125 123.5404891967773 C 12.16055297851562 126.2264862060547 15.26199340820312 128.3351898193359 18.71493530273438 129.8078918457031 C 22.28878784179688 131.3321380615234 26.08560180664062 132.1049957275391 30 132.1049957275391 L 345 132.1049957275391 C 348.9143981933594 132.1049957275391 352.7112121582031 131.3321380615234 356.2850341796875 129.8078918457031 C 359.7380065917969 128.3351898193359 362.8394470214844 126.2264862060547 365.5031433105469 123.5404891967773 C 368.1674499511719 120.853889465332 370.2591857910156 117.7254409790039 371.7203063964844 114.2421417236328 C 373.2330017089844 110.6357879638672 374 106.8041915893555 374 102.8538360595703 L 374 30.25113677978516 C 374 26.30078887939453 373.2330017089844 22.46919250488281 371.7203063964844 18.86283874511719 C 370.2591857910156 15.37953948974609 368.1674499511719 12.25109100341797 365.5031433105469 9.564491271972656 C 362.8394470214844 6.878486633300781 359.7380065917969 4.769790649414062 356.2850341796875 3.297088623046875 C 352.7112121582031 1.772842407226562 348.9143981933594 0.9999847412109375 345 0.9999847412109375 L 30 0.9999847412109375 M 30 -1.52587890625e-05 L 345 -1.52587890625e-05 C 361.5685424804688 -1.52587890625e-05 375 13.54389190673828 375 30.25113677978516 L 375 102.8538360595703 C 375 119.5610885620117 361.5685424804688 133.1049957275391 345 133.1049957275391 L 30 133.1049957275391 C 13.43145751953125 133.1049957275391 0 119.5610885620117 0 102.8538360595703 L 0 30.25113677978516 C 0 13.54389190673828 13.43145751953125 -1.52587890625e-05 30 -1.52587890625e-05 Z' stroke='none' fill='%23ededed'/%3E %3C/g%3E %3Ctext id='设置密码' transform='translate(30 34)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E设置密码%3C/tspan%3E%3C/text%3E %3Ctext id='_' data-name='*' transform='translate(90 30)' fill='%23ff2424' font-size='16' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3Ctext id='再次输入' transform='translate(30 89)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E再次输入%3C/tspan%3E%3C/text%3E %3Ctext id='_2' data-name='*' transform='translate(90 86)' fill='%23ff2424' font-size='16' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3C/svg%3E ");
 }
+
+.age_rect{
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='376' height='85' viewBox='0 0 376 85'%3E %3Cg id='矩形_56' data-name='矩形 56' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='188' height='85' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='187' height='84' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='性_别' data-name='性 别' transform='translate(30 34)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E性%3C/tspan%3E%3Ctspan y='0' xml:space='preserve' font-family='AdobeClean-Regular, Adobe Clean'%3E %3C/tspan%3E%3Ctspan y='0'%3E别%3C/tspan%3E%3C/text%3E %3Ctext id='_' data-name='*' transform='translate(69 31)' fill='%23ff2424' font-size='14' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3Cg id='矩形_150' data-name='矩形 150' transform='translate(188)' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='188' height='85' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='187' height='84' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='年_龄' data-name='年 龄' transform='translate(218 34)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E年%3C/tspan%3E%3Ctspan y='0' xml:space='preserve' font-family='AdobeClean-Regular, Adobe Clean'%3E %3C/tspan%3E%3Ctspan y='0'%3E龄%3C/tspan%3E%3C/text%3E %3Ctext id='_2' data-name='*' transform='translate(257 29)' fill='%23ff2424' font-size='14' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3C/svg%3E ");
+}
+
+.cert_ID_rect{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='375' height='85' viewBox='0 0 375 85'%3E %3Cg id='矩形_153' data-name='矩形 153' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='375' height='85' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='374' height='84' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='医师执业证书编号' transform='translate(30 35)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E医师执业证书编号%3C/tspan%3E%3C/text%3E %3Ctext id='_' data-name='*' transform='translate(145 33)' fill='%23ff2424' font-size='16' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3C/svg%3E ");
+}
+
+.office_rect{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='376' height='85' viewBox='0 0 376 85'%3E %3Cg id='矩形_151' data-name='矩形 151' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='188' height='85' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='187' height='84' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='科_室' data-name='科 室' transform='translate(30 34)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E科%3C/tspan%3E%3Ctspan y='0' xml:space='preserve' font-family='AdobeClean-Regular, Adobe Clean'%3E %3C/tspan%3E%3Ctspan y='0'%3E室%3C/tspan%3E%3C/text%3E %3Ctext id='_' data-name='*' transform='translate(69 31)' fill='%23ff2424' font-size='14' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3Cg id='矩形_152' data-name='矩形 152' transform='translate(188)' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='188' height='85' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='187' height='84' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='职_称' data-name='职 称' transform='translate(218 34)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E职%3C/tspan%3E%3Ctspan y='0' xml:space='preserve' font-family='AdobeClean-Regular, Adobe Clean'%3E %3C/tspan%3E%3Ctspan y='0'%3E称%3C/tspan%3E%3C/text%3E %3Ctext id='_2' data-name='*' transform='translate(257 29)' fill='%23ff2424' font-size='14' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3C/svg%3E ");
+}
+
+.view_hide{
+  display: none;
+}
+
+.view_show{
+  display: block;
+}
+
+.my-view{
+  width: 100%;
+  height: var(--hgt);
+}
+
+.seePass1{
+  position: absolute;
+  top: 0rpx;
+  left:530rpx;
+ }
+
+ .seePass2{
+  position: absolute;
+  top: 0rpx;
+  left:530rpx;
+ }
+
+.iconfont1{
+  overflow: visible;
+  width: 31.195px;
+  height: 14.693px;
+  transform: matrix(1,0,0,1,0,0);
+}
+
+.iconfont2{
+  overflow: visible;
+  width: 31.195px;
+  height: 23.4px;
+  transform: matrix(1,0,0,1,0,0);
+}
+
+.can_see{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='31.195' height='23.396' viewBox='0 0 31.195 23.396'%3E %3Cpath id='_1' data-name='1' d='M15.6,128a13.408,13.408,0,0,1,4.128.645,13.6,13.6,0,0,1,3.519,1.675,23.653,23.653,0,0,1,2.848,2.28,17.843,17.843,0,0,1,2.245,2.5q.91,1.249,1.574,2.28a17.966,17.966,0,0,1,.98,1.67l.3.65-.192.411q-.121.259-.573,1.057t-.964,1.574q-.512.776-1.35,1.828a25.235,25.235,0,0,1-1.731,1.96,19.1,19.1,0,0,1-2.117,1.833,16.323,16.323,0,0,1-2.509,1.569,14.415,14.415,0,0,1-2.889,1.057,13.064,13.064,0,0,1-3.27.411,13.407,13.407,0,0,1-4.128-.645,13.711,13.711,0,0,1-3.519-1.67A23.869,23.869,0,0,1,5.1,146.817a17.581,17.581,0,0,1-2.245-2.483q-.91-1.244-1.574-2.269A16.688,16.688,0,0,1,.3,140.39L0,139.75l.192-.411q.121-.259.573-1.061T1.73,136.7q.512-.777,1.35-1.838a24.509,24.509,0,0,1,1.731-1.97,19.287,19.287,0,0,1,2.117-1.838,16.541,16.541,0,0,1,2.509-1.579,14.053,14.053,0,0,1,2.889-1.061A13.224,13.224,0,0,1,15.6,128Zm0,2.6a10.511,10.511,0,0,0-2.792.376,11.738,11.738,0,0,0-2.472.97,14.252,14.252,0,0,0-2.152,1.436,17.5,17.5,0,0,0-1.817,1.66q-.767.818-1.488,1.757t-1.148,1.609q-.426.669-.8,1.34.376.66.8,1.326t1.148,1.595q.721.929,1.488,1.737a17.538,17.538,0,0,0,1.817,1.64,14.345,14.345,0,0,0,2.152,1.422,11.72,11.72,0,0,0,2.472.959,10.656,10.656,0,0,0,2.792.37,10.506,10.506,0,0,0,2.792-.376,11.931,11.931,0,0,0,2.472-.964,14.106,14.106,0,0,0,2.152-1.427,17.589,17.589,0,0,0,1.817-1.651q.767-.812,1.488-1.747t1.148-1.6q.426-.669.8-1.33-.376-.66-.8-1.33t-1.148-1.6q-.721-.935-1.488-1.747a17.567,17.567,0,0,0-1.817-1.651,14.12,14.12,0,0,0-2.152-1.427,11.919,11.919,0,0,0-2.472-.964A10.513,10.513,0,0,0,15.6,130.6Zm0,3.9a5.2,5.2,0,1,1-3.676,8.875A5.2,5.2,0,0,1,15.6,134.5Zm0,2.6a2.6,2.6,0,1,0,1.838.762A2.5,2.5,0,0,0,15.6,137.1Z' transform='translate(0 -128)' fill='%236ac27e'/%3E %3C/svg%3E ");
+}
+
+.not_see{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='31.195' height='14.693' viewBox='0 0 31.195 14.693'%3E %3Cpath id='_1' data-name='1' d='M31.131,1.911A1.225,1.225,0,0,0,30.908.329a1.083,1.083,0,0,0-1.562.226C29.29.612,23.1,8.009,15.734,8.009,8.593,8.009,2.121.555,2.066.5A1.122,1.122,0,0,0,.5.386,1.155,1.155,0,0,0,.392,1.967a25.03,25.03,0,0,0,3.57,3.388L1.117,8.348a1.1,1.1,0,0,0,.056,1.581.729.729,0,0,0,.67.339,1.094,1.094,0,0,0,.781-.339L5.692,6.71a21.642,21.642,0,0,0,5.077,2.654L9.6,13.373a1.131,1.131,0,0,0,.781,1.412h.335a1.078,1.078,0,0,0,1.06-.847l1.172-4.009a15.074,15.074,0,0,0,2.789.282,15.056,15.056,0,0,0,2.789-.282l1.171,3.953a1.126,1.126,0,0,0,1.06.847.414.414,0,0,0,.279-.057,1.131,1.131,0,0,0,.781-1.412L20.643,9.308A21.651,21.651,0,0,0,25.72,6.654l3.013,3.162a1.07,1.07,0,0,0,1.562,0,1.154,1.154,0,0,0,.056-1.581L27.5,5.242a22.023,22.023,0,0,0,3.626-3.332Z' transform='translate(-0.131 -0.092)' fill='%236ac27e'/%3E %3C/svg%3E ");
+}
+
+

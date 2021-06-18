@@ -1,4 +1,5 @@
 from io import SEEK_SET
+from logging import StreamHandler
 from time import time
 import DataBase
 from typing import List 
@@ -159,3 +160,32 @@ class M_Record:
 
     def addPres(self,pres:Prescription):
         self.Prescriptions.append(pres)
+
+class Appointment:
+    def __init__(
+        self,
+        Patient_id,
+        Doctor_id,
+        Ap_Time,
+        Description,
+        Location=''
+    ):
+        self.Patient_id = Patient_id
+        self.Doctor_id = Doctor_id
+        self.Ap_Time = Ap_Time
+        self.Description = Description
+        self.Location = Location
+
+    def addAppointment(self):
+        DB = DataBase.DataBase()
+        code = DB.AddApointment(
+            Patient_ID=self.Patient_id,
+            Doctor_ID=self.Doctor_id,
+            Ap_Time=self.Ap_Time,
+            Description=self.Description,
+            Location=self.Location
+        )
+        DB.close()
+        return code
+    
+        

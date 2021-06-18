@@ -1,8 +1,8 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
 from flask import request,Flask
 import DataBase
-from Class import Users,M_Record,Prescription
+from Class import Users,M_Record,Prescription,Appointment
 
 app = Flask(__name__)
 DB = DataBase.DataBase()
@@ -173,6 +173,34 @@ def addRecord():
 
     record.addRecord()
     return json.dumps({'code':200,'MR_ID':record.MR_ID},indent=2,ensure_ascii=False)    
+
+app.route('/addappointment',methods=['POST'])
+def AddAppointment():
+    '''
+    date:yyyy-mm-dd
+    '''
+    data = request.get_json()
+    patient_id = data['patient_id']
+    doctor_id = data['doctor_id']
+    date = datetime.strptime(data['date'],"%Y-%m-%d").replace(hour=8,minute=0,second=0)
+    time:int = data['time']
+    description = data['description']
+
+    if time<=8:
+        date += timedelta(minutes=30*time)
+    else:
+        date += timedelta(hours=6,minutes=30*(time-9))
+    
+    ap_time = date.strftime("%Y-%m-%d %H:%M:%S")
+
+    appointment = Appointment(patient_id,doctor_id,ap_time,description)
+
+    code = appointment.addAppointment()
+    if code == -1:
+        return json.dumps({'code':-1,'msg':"人数已满"},indent=2,ensure_ascii=False)
+    else:
+        return json.dumps({'code':0,'msg':'预约成功'},indent=2,ensure_ascii=False)
+
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')

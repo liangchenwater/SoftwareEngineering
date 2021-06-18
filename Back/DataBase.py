@@ -1,4 +1,4 @@
-from datetime import time
+from datetime import date, time,datetime, timedelta
 import pymssql
 import time
 
@@ -16,8 +16,8 @@ class DataBase():
             self.cursor = self.conn.cursor()
         except Exception as ex:
             raise ex
-    def __del__(self):
-        self.conn.close()
+    #def __del__(self):
+    #    self.conn.close()
     
     def close(self):
         self.conn.close()
@@ -108,13 +108,20 @@ class DataBase():
         self,
         Patient_ID,
         Doctor_ID,
-        Ap_Time,
+        Ap_Time:str,
         Description,
-        Location
+        Location=''
     ):
         '''
         Ap_Time format: yyyy-mm-dd hh:mm:ss
         '''
+        time_next = (datetime.strptime(Ap_Time,"%Y-%m-%d %H:%M:%S")+timedelta(minutes=30)).strftime("%Y-%m-%d %H:%M:%S")
+        
+        sql = "SELECT * FROM Appointments WHERE Doctor_ID=\'%s\' AND (AP_Time BETWEEN CONVERT(smalldatetime,\'%s\',20) AND CONVERT(smalldatetime,\'%s\',20)" % (Doctor_ID,Ap_Time,time_next)
+        self.cursor.execute(sql)
+        row = self.cursor.fetchall()
+        if len(row)>=5:
+            return -1
         sql = "INSERT INTO Appointments VALUES(\'%s\',\'%s\',CONVERT(smalldatetime,\'%s\',20),\'%s\',\'%s\')" % (Patient_ID,Doctor_ID,Ap_Time,Description,Location)
         try:
             self.cursor.execute(sql)
@@ -144,7 +151,7 @@ class DataBase():
         if FU_Time=='':
             #print(MR_Time)
             sql = "INSERT INTO M_Records VALUES(\'%s\',\'%s\',\'%s\',CONVERT(smalldatetime,\'%s\',20),\'%s\',\'%s\',NULL)" % (MR_ID,Patient_ID,Doctor_ID,MR_Time,Description,Advice)
-            print(sql)
+            #print(sql)
         else:
             sql = "INSERT INTO M_Records VALUES(\'%s\',\'%s\',\'%s\',CONVERT(smalldatetime,\'%s\',20),\'%s\',\'%s\',CONVERT(smalldatetime,\'%s\',20))" % (MR_ID,Patient_ID,Doctor_ID,MR_Time,Description,Advice,FU_Time)
         try:

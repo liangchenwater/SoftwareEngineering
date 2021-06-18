@@ -22,7 +22,7 @@ class DataBase():
     def close(self):
         self.conn.close()
         
-    def Login(self,phone,password):
+    def Login(self,phone:str,password:str):
         sql = 'SELECT U_ID FROM Users WHERE Phone=\'%s\' AND Pass=\'%s\'' % (phone,password)
         self.cursor.execute(sql)
         row = self.cursor.fetchone()
@@ -37,7 +37,7 @@ class DataBase():
                         format: yyyy-mm-dd
         '''
         
-        sql = 'SELECT * FROM Calender_Events WHERE U_ID=\'%s\' AND (Event_Time BETWEEN CONVERT(smalldatetime,\'%s\',23) AND CONVERT(smalldatetime,\'%s\',23))' % (begin,end)
+        sql = 'SELECT * FROM Calender_Events WHERE U_ID=\'%s\' AND (Event_Time BETWEEN CONVERT(smalldatetime,\'%s\',23) AND CONVERT(smalldatetime,\'%s\',23))' % (uid,begin,end)
         self.cursor.execute(sql)
         row = self.cursor.fetchall()
         return row

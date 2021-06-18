@@ -117,7 +117,7 @@ class DataBase():
         '''
         time_next = (datetime.strptime(Ap_Time,"%Y-%m-%d %H:%M:%S")+timedelta(minutes=30)).strftime("%Y-%m-%d %H:%M:%S")
         
-        sql = "SELECT * FROM Appointments WHERE Doctor_ID=\'%s\' AND (AP_Time BETWEEN CONVERT(smalldatetime,\'%s\',20) AND CONVERT(smalldatetime,\'%s\',20)" % (Doctor_ID,Ap_Time,time_next)
+        sql = "SELECT * FROM Appointments WHERE Doctor_ID=\'%s\' AND (AP_Time BETWEEN CONVERT(smalldatetime,\'%s\',20) AND CONVERT(smalldatetime,\'%s\',20))" % (Doctor_ID,Ap_Time,time_next)
         self.cursor.execute(sql)
         row = self.cursor.fetchall()
         if len(row)>=5:

@@ -174,7 +174,7 @@ def addRecord():
     record.addRecord()
     return json.dumps({'code':200,'MR_ID':record.MR_ID},indent=2,ensure_ascii=False)    
 
-app.route('/addappointment',methods=['POST'])
+@app.route('/addappointment',methods=['POST'])
 def AddAppointment():
     '''
     date:yyyy-mm-dd

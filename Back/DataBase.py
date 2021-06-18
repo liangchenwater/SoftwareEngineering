@@ -147,9 +147,14 @@ class DataBase():
             print(sql)
         else:
             sql = "INSERT INTO M_Records VALUES(\'%s\',\'%s\',\'%s\',CONVERT(smalldatetime,\'%s\',20),\'%s\',\'%s\',CONVERT(smalldatetime,\'%s\',20))" % (MR_ID,Patient_ID,Doctor_ID,MR_Time,Description,Advice,FU_Time)
-        self.cursor.execute(sql)
-        self.conn.commit()
-        return MR_ID
+        try:
+            self.cursor.execute(sql)
+            self.conn.commit()
+            return MR_ID
+        except Exception as e:
+            self.conn.rollback()
+            raise e
+
 
     def AddPrescription(
         self,

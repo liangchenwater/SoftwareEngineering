@@ -104,7 +104,7 @@ def SignUp():
     )
     '''
     return json.dumps({'state':code,'U_ID':uid},indent=2,ensure_ascii=False)
-    
+'''    
 @app.route('/addrecord',methods=['POST'])
 def AddRecord():
     patient_id = request.values['patient_id']
@@ -139,6 +139,40 @@ def AddRecord():
 
     record.addRecord()
     return json.dumps({'code':200,'MR_ID':record.MR_ID},indent=2,ensure_ascii=False)
+'''
+@app.route('/addrecord',methods=['POST'])
+def addRecord():
+    data = request.get_json()
+    patient_id = data['patient_id']
+    doctor_id = data['doctor_id']
+    mr_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    advice = data['advice']
+    description = data['description']
+    fu_time = data['fu_time']
+
+    record = M_Record(
+        Patient_ID=patient_id,
+        Doctor_ID=doctor_id,
+        MR_Time=mr_time,
+        Description=description,
+        Advice=advice,
+        FU_Time=fu_time
+    )
+    #mr_id = DB.AddRecord(patient_id,doctor_id,mr_time,description,advice,fu_time)
+    pres_list = data['pres_list']
+    for i in range(len(pres_list)):
+        medicine = pres_list[i]['medicine']
+        frequency_d = int(pres_list[i]['frequency_d'])
+        frequency_t = int(pres_list[i]['frequency_t'])
+        endtime = pres_list[i]['endtime']
+        dose = pres_list[i]['dose']
+        notes = pres_list[i]['notes']
+        pres = Prescription(medicine,frequency_d,frequency_t,endtime,dose,notes)
+        record.addPres(pres)
+        #DB.AddPrescription(mr_id,medicine,frequency,dose,notes)
+
+    record.addRecord()
+    return json.dumps({'code':200,'MR_ID':record.MR_ID},indent=2,ensure_ascii=False)    
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')

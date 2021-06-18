@@ -44,6 +44,21 @@ def GetDoctorInfo():
 
     return json.dumps(data,indent=2,ensure_ascii=False).encode('latin1').decode('gbk')
 '''
+@app.route('/modinfo',methods=['POST'])
+def ModInfo():
+    data = request.get_json()
+    phone=data['phone']
+    identity=data['identity']
+    new_name=data['new_name']
+    new_gender=data['new_gender']
+    new_age=data['new_age']
+    if identity=='D'
+        new_title=data['new_title']
+        new_department=data['new_department']
+        new_work_time=data['new_work_time']
+        DB.ModUser(phone,identity,new_name,new_gender,new_age,new_title,new_department,new_work_time)
+    else DB.ModUser(phone,identity,new_name,new_gender,new_age)
+
 @app.route('/userinfo',methods=['GET','POST'])
 def GetInfo():
     uid = request.values['U_ID']

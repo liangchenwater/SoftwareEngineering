@@ -1,11 +1,12 @@
 from datetime import datetime, timedelta
 import json
 from flask import request,Flask
+from werkzeug.datastructures import is_immutable
 import DataBase
 from Class import Users,M_Record,Prescription,Appointment
 
 app = Flask(__name__)
-DB = DataBase.DataBase()
+#DB = DataBase.DataBase()
 
 
 @app.route('/')
@@ -47,17 +48,31 @@ def GetDoctorInfo():
 @app.route('/modinfo',methods=['POST'])
 def ModInfo():
     data = request.get_json()
-    phone=data['phone']
+    uid=data['uid']
+    user = Users(msg=uid,msgid=True)
     identity=data['identity']
     new_name=data['new_name']
     new_gender=data['new_gender']
     new_age=data['new_age']
-    if identity=='D'
+    if identity=='D':
         new_title=data['new_title']
         new_department=data['new_department']
         new_work_time=data['new_work_time']
-        DB.ModUser(phone,identity,new_name,new_gender,new_age,new_title,new_department,new_work_time)
-    else DB.ModUser(phone,identity,new_name,new_gender,new_age)
+    else:
+        new_title = new_department = new_work_time = ''
+    user.setInfo(
+        Phone='',
+        Pass='',
+        U_Name=new_name,
+        U_Identity=identity,
+        Gender=new_gender,
+        Age=new_age,
+        Title=new_title,
+        Department=new_department,
+        WorkTime=new_work_time
+    )
+    user.modInfo()
+    return json.dumps({'code':200,},indent=2,ensure_ascii=False)
 
 @app.route('/userinfo',methods=['GET','POST'])
 def GetInfo():

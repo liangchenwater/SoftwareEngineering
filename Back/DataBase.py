@@ -57,7 +57,7 @@ class DataBase():
     def ModUser(
         self,
         #used to specify a user
-        Phone,
+        U_ID,
         U_Identity,
         #These 3 keys of both patients and doctors can be modified
         U_Name='',
@@ -67,40 +67,44 @@ class DataBase():
         Title='',
         Department='',
         WorkTime=''):
-        sql = "SELECT U_ID FROM Users WHERE Phone=\'%s\'"%(Phone)
-        self.cursor.execute(sql)
-        row=self.cursor.fetchone()
+        #sql = "SELECT U_ID FROM Users WHERE Phone=\'%s\'"%(Phone)
+        #self.cursor.execute(sql)
+        #row=self.cursor.fetchone()
         #account does not exist
-        if !row:
-            return -1
-        U_ID = str(row['U_ID'])
-        orig_name=str(row['U_Name'])
-        orig_gender=str(row['Gender'])
-        orig_age=int(row['Age'])
-        if U_Name==''
-            U_Name=orig_name
-        if Gender==''
-            Gender=orig_gender
-        if Age==-1
-            Age=orig_age
+        #if row == None:
+        #    return -1
+        #U_ID = str(row['U_ID'])
+        #orig_name=str(row['U_Name'])
+        #orig_gender=str(row['Gender'])
+        #orig_age=int(row['Age'])
+        #if U_Name=='':
+        #    U_Name=orig_name
+        #if Gender=='':
+        #    Gender=orig_gender
+        #if Age==-1:
+        #    Age=orig_age
         sql = "UPDATE Users SET U_Name=\'%s\', Gender=\'%s\', Age=\'%s\' WHERE U_ID=\'%s\'"%(U_Name,Gender,Age,U_ID)
         try:
-        self.cursor.execute(sql)
-        if U_Identity=='D'
-            sql= "SELECT Title U_ID Doctors WHERE U_ID=\'%s\'"%(U_ID)
             self.cursor.execute(sql)
-            row=self.cursor.fetchone()
-            orig_title=str(row['Title'])
-            orig_department=str(row['Department'])
-            orig_work_time=str(row['Work_Time'])
-            if Title==''
-                Title=orig_title
-            if Department==''
-                Department=orig_department
-            if WorkTime==''
-                WorkTime=orig_work_time
-            sql = "UPDATE Doctors SET Title=\'%s\', Department=\'%s\', WorkTime=\'%s\' WHERE U_ID=\'%s\'"%(Title,Department,WorkTime,U_ID)
-            self.cursor.execute(sql)
+            if U_Identity=='D':
+                #sql= "SELECT Title U_ID Doctors WHERE U_ID=\'%s\'"%(U_ID)
+                #elf.cursor.execute(sql)
+                #ow=self.cursor.fetchone()
+                #orig_title=str(row['Title'])
+                #orig_department=str(row['Department'])
+                #orig_work_time=str(row['Work_Time'])
+                #if Title=='':
+                #    Title=orig_title
+                #if Department=='':
+                #    Department=orig_department
+                #if WorkTime=='':
+                #    WorkTime=orig_work_time
+                sql = "UPDATE Doctors SET Title=\'%s\', Department=\'%s\', Work_Time=\'%s\' WHERE U_ID=\'%s\'"%(Title,Department,WorkTime,U_ID)
+                self.cursor.execute(sql)
+            self.conn.commit()
+        except Exception as e:
+            self.conn.rollback()
+            raise e
         return U_ID
 
     def AddUser(

@@ -67,7 +67,21 @@ class Users:
         )
         DB.close()
         return code,uid
-        
+    
+    def modInfo(self):
+        DB = DataBase.DataBase()
+        DB.ModUser(
+            U_ID=self.U_ID,
+            U_Identity=self.U_Identity,
+            Gender=self.Gender,
+            Age=self.Age,
+            U_Name=self.U_Name,
+            Title=self.Title,
+            Department=self.Department,
+            WorkTime=self.WorkTime
+        )
+        DB.close()
+
 class Prescription:
     def __init__(
         self,

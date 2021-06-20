@@ -1,4 +1,5 @@
 // pages/register/register.js
+const app=getApp().globalData;
 Page({
 
   /**
@@ -208,7 +209,7 @@ Page({
         }
       }
     wx.request({
-      url:'http://10.181.221.63:5000/signup', 
+      url:app.IP_address+'/signup', 
       header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
       data: send_data,
       method: 'post',

@@ -1,4 +1,5 @@
 // pages/login.js
+const app=getApp().globalData;
 Page({
 
   /**
@@ -10,6 +11,8 @@ Page({
       typeName: 'password',
       passFlag: 1,
       storePass: '',  // 暂存密码,用于显示密码
+      width:"",
+      height:""
   },
 
   /**
@@ -30,7 +33,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({width:app.windowWidth})
   },
 
   /**
@@ -81,19 +84,7 @@ Page({
 
   click_login:function(e){
    wx.request({
-    url: 'http://10.181.221.63:5000/',
-    method:'GET',
-    header: { 'Content-Type': 'application/json' },
-    success: function (res) {
-      console.log("success");
-      console.log(res.data);
-      },
-    fail:function(res){
-      console.log("fail")
-    }
-    });
-   wx.request({
-    url:'http://10.181.221.63:5000/login', 
+    url: app.IP_address+'/login', 
     header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
     data: {
         phone: this.data.number,

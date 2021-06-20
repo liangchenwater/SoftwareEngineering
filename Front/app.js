@@ -12,8 +12,21 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
-  },
+
+    wx.getSystemInfo({
+      success: function(res) {
+        windowWidth=res.windowWidth;
+        windowHeight=res.windowHeight;
+      }
+    })
+},
+
+  
   globalData: {
-    userInfo: null
+    userInfo: null,
+    IP_address:"http://10.192.110.195",
+    windowWidth:"",
+    windowHeight:""
+
   }
 })

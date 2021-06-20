@@ -19,7 +19,7 @@
 			</view>
 
 			<view id="password">
-				<text class="rect_set password_rect"></text>
+				<text class="rect_set password_rect"  scale="({{width}},1)"></text>
 				<view id="password_text">
 					<input bindinput="set_password" type="{{typeName}}"/> 
 						<view class='seePass' bindtap='showPass'>

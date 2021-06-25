@@ -5,6 +5,7 @@
     "pages/login/login",
     "pages/register/register",
     "pages/main_patient/main",
+    "pages/main_doctor/main",
     "components/calendarWeek/index"
   ],
   "window": {

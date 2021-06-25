@@ -6,21 +6,21 @@
   </canvas>
 -->
 <view class="temp {{open ? 'slidown' : 'slidup'}} {{open ? 'disappear':''}} menu" >
-  <view class="wc" bindtap="">
+  <view class="wc" bindtap="tap_info">
       <text>个人资料</text>
   </view>
-  <view class="wc">
+  <view class="wc" bindtap="tap_friend">
       <text>通讯录</text>
   </view>
-  <view class="wc">
+  <view class="wc" bindtap="tap_record">
       <text>病历记录</text>
   </view>
-  <view class="wc">
+  <view class="wc" bindtap="">
       <text>退出登录</text>
   </view>
 </view>
 
-<view bindtouchmove="tap_drag" bindtouchend="tap_end" bindtouchstart="tap_start" class="page {{open ? ['c-state'] : ''}} ">
+<view class="page {{open ? ['c-state'] : ''}} ">
   <view space="ensp">
     <text class="pull {{open?'close_button':'pull_button'}}" bindtap="tap_ch"></text>
     <view id="title_text">
@@ -31,13 +31,25 @@
         <text >{{Gender}}  |  {{Age}} 岁</text>
       </view>
     </view>
-    <calendar bindmydata="mydata" class="calendar"></calendar>
-    <view class="inform_text" >提醒</view>
+    <calendar  bindmydata="mydata" class="calendar"></calendar>
+    <text class="inform_text" space="ensp">  提醒</text>
   </view>
 
   <view>
-  
+    <view class="listMain">
+    <view class="list" wx:for="{{remind}}" wx:key="index">
+      <view class=" {{item.show? 'remind_open':'remind_close'}} {{item.show? 'open_rect':'close_rect'}}">
+        <view class="title">{{item.name}}</view>
+        <view class="time">{{item.time}}</view>
+        <view class="other_info">{{item.other_info}}</view>
+        <view class="finish {{item.finish?'finish_icon':'unfinish_icon'}}" bindtap="finishBtn" data-index="{{index}}"></view>
+        <view class="desc {{item.show ? 'show' : 'hide'}}">{{item.desc}}</view>
+        <view class="open_close unshow_button" bindtap="listBtn" wx:if="{{!item.show}}" data-index="{{index}}"></view>
+        <view class="open_close show_button" bindtap="listBtn" wx:if="{{item.show}}" data-index="{{index}}"></view>
+      </view>
+    </view>
+    </view>
   </view>
+  
 
 </view>
-

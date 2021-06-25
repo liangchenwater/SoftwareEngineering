@@ -95,6 +95,8 @@ Page({
           console.log("发送成功");
           console.log(res);
           if(res.data.valid=='0'){
+            app.globalData.U_ID=res.U_ID;
+            app.globalData.identity=res.identity;
             if(res.identity=='P'){
               wx.navigateTo({
                 url: '/pages/main_patient/main?U_ID=' + res.U_ID + '&identity=' + res.identity

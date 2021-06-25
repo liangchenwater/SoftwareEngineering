@@ -7,15 +7,10 @@ Page({
    */
   data: {
       Name:'王小明',
-      Age:'0',
-      Gender:'其他',
-      remind:[
-        {type:"", name:"阿司匹林",other_info:"1片",time:"08:00",desctription:"",finish:false,show:false},
-        {type:"", name:"",other_info:"",time:"",desctription:"",finish:false,show:false},
-        {type:"", name:"",other_info:"",time:"",desctription:"",finish:false,show:false},
-        {type:"", name:"",other_info:"",time:"",desctription:"",finish:false,show:false}
-      ],
+      Department:'',
+      Title:'',
 
+      
       open: false,
       // mark 是指原点x轴坐标
       mark: 0,
@@ -44,8 +39,8 @@ Page({
         url: app.globalData.IP_address+'/userinfo', 
         header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
         data: {
-            U_ID: this.data.U_ID,
-            identity: this.data.identity,
+            U_ID: app.globalData.U_ID,
+            identity: app.globalData.identity,
          },
          method: 'POST',
          success: function (res) {
@@ -53,14 +48,9 @@ Page({
               console.log(res);
               this.setData({ 
                 Name: res.data.U_Name, 
-                Age:res.data.Age
+                Department:res.data.Department,
+                Title:res.data.Title
               });
-              if(res.data.Gender='M')
-              this.setData({Gender : '男'})
-              else if(res.data.Gender='F')
-              this.setData({Gender : '女'})
-              else
-              this.setData({Gender : '其他'})
          },
          fail:function(res){
           console.log("发送失败");
@@ -137,40 +127,6 @@ Page({
    pull_menu:function(){
      console.log("pull")
    },
-
-   listBtn:function (e) {
-    var that = this
-    let index = e.currentTarget.dataset.index
-    console.log(index)
-    let currect = "remind["+index+"].show"
-    if (that.data.remind[index].show === true) {
-      console.log("隐藏")
-      that.setData({
-        [currect]: false
-      })
-    } else{
-      console.log("显示")
-      that.setData({
-        [currect]: true
-      })
-    }
-  },
-
-  finishBtn:function (e) {
-    var that = this
-    let index = e.currentTarget.dataset.index
-    console.log(index)
-    let currect = "remind["+index+"].finish"
-    if (that.data.remind[index].finish === true) {
-      that.setData({
-        [currect]: false
-      })
-    } else{
-      that.setData({
-        [currect]: true
-      })
-    }
-  },
 
 
 

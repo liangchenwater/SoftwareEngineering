@@ -22,11 +22,13 @@ App({
 },
 
   globalData: {
-    userInfo: null,
+    U_ID:"",
+    identity:"",
     IP_address:"http://10.192.110.195",
+
+
     windowWidth:"",
-    windowHeight:"",
-    menu_open:false
+    windowHeight:""
 
   }
 })

@@ -1,5 +1,5 @@
 // pages/register/register.js
-const app=getApp().globalData;
+const app=getApp();
 Page({
 
   /**
@@ -209,7 +209,7 @@ Page({
         }
       }
     wx.request({
-      url:app.IP_address+'/signup', 
+      url:app.globalData.IP_address+'/signup', 
       header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
       data: send_data,
       method: 'post',
@@ -222,7 +222,7 @@ Page({
                 duration: 1500
               })
               wx.navigateTo({
-                url: '/pages/main/main'
+                url: '/pages/login/login'
               })
             } 
             else{

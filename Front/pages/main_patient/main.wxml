@@ -1,0 +1,43 @@
+  <!--
+  <canvas
+  type="2d"
+  id="canvas"
+  style="width: 100%; height: 30%;">
+  </canvas>
+-->
+<view class="temp {{open ? 'slidown' : 'slidup'}} {{open ? 'disappear':''}} menu" >
+  <view class="wc" bindtap="">
+      <text>个人资料</text>
+  </view>
+  <view class="wc">
+      <text>通讯录</text>
+  </view>
+  <view class="wc">
+      <text>病历记录</text>
+  </view>
+  <view class="wc">
+      <text>退出登录</text>
+  </view>
+</view>
+
+<view bindtouchmove="tap_drag" bindtouchend="tap_end" bindtouchstart="tap_start" class="page {{open ? ['c-state'] : ''}} ">
+  <view space="ensp">
+    <text class="pull {{open?'close_button':'pull_button'}}" bindtap="tap_ch"></text>
+    <view id="title_text">
+      <view id="name_text">
+        <text>{{Name}}</text>
+      </view>
+      <view id="gender_text">
+        <text >{{Gender}}  |  {{Age}} 岁</text>
+      </view>
+    </view>
+    <calendar bindmydata="mydata" class="calendar"></calendar>
+    <view class="inform_text" >提醒</view>
+  </view>
+
+  <view>
+  
+  </view>
+
+</view>
+

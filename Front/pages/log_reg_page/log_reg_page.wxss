@@ -108,6 +108,8 @@ page{
 }
 .box .login_button{
   display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: rgba(59,62,81,1);
   stroke: rgba(59,62,81,1);
   stroke-width: 1px;

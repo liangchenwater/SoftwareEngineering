@@ -1,5 +1,5 @@
 // pages/login.js
-const app=getApp().globalData;
+const app=getApp();
 Page({
 
   /**
@@ -84,7 +84,7 @@ Page({
 
   click_login:function(e){
    wx.request({
-    url: app.IP_address+'/login', 
+    url: app.globalData.IP_address+'/login', 
     header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
     data: {
         phone: this.data.number,
@@ -95,9 +95,16 @@ Page({
           console.log("发送成功");
           console.log(res);
           if(res.data.valid=='0'){
-            wx.navigateTo({
-              url: '/pages/main/main?ID=' + res.U_ID
-            })
+            if(res.identity=='P'){
+              wx.navigateTo({
+                url: '/pages/main_patient/main?U_ID=' + res.U_ID + '&identity=' + res.identity
+              })
+            }
+            else {
+              wx.navigateTo({
+                url: '/pages/main_doctor/main?U_ID=' + res.U_ID + '&identity=' + res.identity
+              })
+            }
           }
           else{
             wx.showToast({

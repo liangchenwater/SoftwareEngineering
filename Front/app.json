@@ -4,7 +4,8 @@
     "pages/log_reg_page/log_reg_page",
     "pages/login/login",
     "pages/register/register",
-    "pages/main/main"
+    "pages/main_patient/main",
+    "components/calendarWeek/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

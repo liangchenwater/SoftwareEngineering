@@ -21,12 +21,12 @@ App({
     })
 },
 
-  
   globalData: {
     userInfo: null,
     IP_address:"http://10.192.110.195",
     windowWidth:"",
-    windowHeight:""
+    windowHeight:"",
+    menu_open:false
 
   }
 })

@@ -1,8 +1,6 @@
-from io import SEEK_SET
-from time import time
 import DataBase
-from typing import List 
-from datetime import date, datetime, timedelta
+from typing import List,Tuple,Dict
+from datetime import datetime, timedelta
 
 class Users:
     def __init__(self,msg='',Password='',msgid=False):
@@ -38,13 +36,13 @@ class Users:
         self.Department = Department
         self.WorkTime = WorkTime
     
-    def logIn(self):
+    def logIn(self)->Tuple[int,Dict]:
         DB = DataBase.DataBase()
         code,data = DB.Login(self.Phone,self.Password)
         DB.close()
         return code,data
     
-    def getInfo(self,doctor=False):
+    def getInfo(self,doctor=False)->Dict:
         DB = DataBase.DataBase()
         if doctor==False:
             data = DB.GetPatientInformation(self.U_ID)
@@ -53,7 +51,7 @@ class Users:
         DB.close()
         return data
     
-    def signUp(self):
+    def signUp(self)->Tuple[int,str]:
         DB = DataBase.DataBase()
         code,uid = DB.AddUser(
             Phone=self.Phone,
@@ -69,7 +67,21 @@ class Users:
         )
         DB.close()
         return code,uid
-        
+    
+    def modInfo(self):
+        DB = DataBase.DataBase()
+        DB.ModUser(
+            U_ID=self.U_ID,
+            U_Identity=self.U_Identity,
+            Gender=self.Gender,
+            Age=self.Age,
+            U_Name=self.U_Name,
+            Title=self.Title,
+            Department=self.Department,
+            WorkTime=self.WorkTime
+        )
+        DB.close()
+
 class Prescription:
     def __init__(
         self,
@@ -159,3 +171,32 @@ class M_Record:
 
     def addPres(self,pres:Prescription):
         self.Prescriptions.append(pres)
+
+class Appointment:
+    def __init__(
+        self,
+        Patient_id,
+        Doctor_id,
+        Ap_Time,
+        Description,
+        Location=''
+    ):
+        self.Patient_id = Patient_id
+        self.Doctor_id = Doctor_id
+        self.Ap_Time = Ap_Time
+        self.Description = Description
+        self.Location = Location
+
+    def addAppointment(self)->int:
+        DB = DataBase.DataBase()
+        code = DB.AddApointment(
+            Patient_ID=self.Patient_id,
+            Doctor_ID=self.Doctor_id,
+            Ap_Time=self.Ap_Time,
+            Description=self.Description,
+            Location=self.Location
+        )
+        DB.close()
+        return code
+    
+        

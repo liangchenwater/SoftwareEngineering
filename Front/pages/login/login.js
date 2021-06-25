@@ -1,12 +1,18 @@
 // pages/login.js
+const app=getApp().globalData;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-      number:"11",
-      password:""
+      number:"",
+      password:"",
+      typeName: 'password',
+      passFlag: 1,
+      storePass: '',  // 暂存密码,用于显示密码
+      width:"",
+      height:""
   },
 
   /**
@@ -27,7 +33,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({width:app.windowWidth})
   },
 
   /**
@@ -77,43 +83,43 @@ Page({
   },
 
   click_login:function(e){
-    wx.request({
-      url:'http://127.0.0.1:5000/login', 
-      header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
-      data: {
-          phone: this.data.number,
-          password: this.data.password,
-       },
-       method: 'post',
-       success: function (res) {
-            console.log("发送成功");
-
-       }
-    })
-    wx.request({
-      url: 'http://127.0.0.1:5000/login',
-      data:formData,
-      method:'GET',
-      header: { 'Content-Type': 'application/json' },
-      success: function (res) {
-        if(res.valid==0){
-          wx.navigateTo({
-            url: '/pages/main/main?ID=' + res.U_ID
+   wx.request({
+    url: app.IP_address+'/login', 
+    header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
+    data: {
+        phone: this.data.number,
+        password: this.data.password,
+     },
+     method: 'POST',
+     success: function (res) {
+          console.log("发送成功");
+          console.log(res);
+          if(res.data.valid=='0'){
+            wx.navigateTo({
+              url: '/pages/main/main?ID=' + res.U_ID
+            })
+          }
+          else{
+            wx.showToast({
+              title: '密码错误或该用户不存在！',
+              icon: 'none',
+              duration: 1500
           })
+          }
+     },
+     fail:function(res){
+      console.log("发送失败");
+    }
+  })
+  },
 
-        }
-        else{
-          wx.showToast({
-            title: '密码错误或该用户不存在！',
-            icon: 'none',
-            duration: 1500
-        })
-        }
-      },
-      fail:function(res){
-        console.log("-------fail------")
-      }
-    })
-
+  showPass(){     // 显示密码而非*号
+    console.log(this.data.storePass)
+    if (this.data.passFlag == 1){ // 第一次点击
+      this.setData({ passFlag: 2, typeName : 'text'});
+    }else{                        // 第二次点击
+      this.setData({ passFlag: 1, typeName : 'password'});
+    }
   }
+
 })

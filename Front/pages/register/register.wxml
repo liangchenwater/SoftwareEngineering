@@ -1,6 +1,6 @@
 <!--pages/register/register.wxml-->
 
-<view>
+<view class="mypage" style="height:{{height}}">
 		<view id="title_text">
 			<view id="welcome_text">
 				<text>欢迎使用医患通平台！</text>
@@ -10,7 +10,18 @@
 			</view>
 		</view>
 
+
 		<view class="fill">
+      <radio-group class="radio-group" bindchange="radioChange">
+        <label display="inline-block" class="radio" wx:for-items="{{items}}" wx:key="name" >
+          <view space="emsp">
+            <radio value="{{item.name}}" checked="{{item.checked}}">
+              <text>{{item.value}}      </text>
+            </radio>
+          </view>
+        </label>
+      </radio-group>
+
 			<view id="name">
 				<text class="rect_set name_rect"></text>
 				<view id="input_text">
@@ -26,37 +37,66 @@
 			</view>
 
 			<view id="password">
-				<text class="rect_set password_rect"></text>
+				<text class="rect_set2 password_rect"></text>
 				<view id="password1_text">
-          <input bindinput="set_password"/> 
+						<input bindinput="set_password" type="{{typeName1}}"/> 
+						<view class='seePass1' bindtap='showPass1'>
+							<icon class="iconfont1 .not_see" wx:if="{{passFlag1 == 1}}"></icon>
+							<icon class='iconfont2 .can_see' wx:else></icon>
+						</view>
 				</view>
         <view id="password2_text">
-          <input bindinput="verify_password"/> 
+          <input bindinput="set_verify_password" type="{{typeName2}}"/> 
+					<view class='seePass2' bindtap='showPass2'>
+							<icon class="iconfont1 .not_see" wx:if="{{passFlag2 == 1}}"></icon>
+							<icon class='iconfont2 .can_see' wx:else></icon>
+						</view>
 				</view>
 			</view>
 
-      <radio-group class="radio-group" bindchange="radioChange">
-        <label display="inline-block" class="radio" wx:for-items="{{items}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
-          <view space="emsp">
-            <radio>
-              <text>{{item.value}}      </text>
-            </radio>
-          </view>
-        </label>
-      </radio-group>
-		</view>
-
-	<view class="box">
-		<button bindtap="click_register" class="register_button" plain>
-			<view id="register_button_text">
-				<text>注　　册</text>
+			<view id="age">
+				<text class="rect_set age_rect"></text>
+				<view id="input_text">
+					<picker mode="selector" range="{{array}}" value="{{index}}" bindchange="set_gender">
+							<text>{{array[index]}}</text>
+					</picker>
+				</view>
+				<view id="input_text2">
+          <input bindinput="set_age"/> 
+				</view>
 			</view>
-		</button>
-	</view>
+
+			<block wx:if="{{showView==true}}">
+				<view id="cert_ID">
+					<text class="rect_set cert_ID_rect"></text>
+					<view id="input_text">
+						<input bindinput="set_cert_ID"/> 
+					</view>
+				</view>
+
+				<view id="office">
+					<text class="rect_set office_rect"></text>
+					<view id="input_text">
+						<input bindinput="set_office"/> 
+					</view>
+					<view id="input_text2">
+          <input bindinput="set_position"/> 
+				</view>
+				</view>
+			</block>
+
+			<view class="box">
+				<button bindtap="click_register" class="register_button" plain>
+					<view id="register_button_text">
+						<text>注　　册</text>
+					</view>
+				</button>
+			</view>
+
+			<view class="login_text">
+				<text space="ensp">已有账号? </text><navigator url="../login/login"><view style="text-decoration:underline;">登录</view>	</navigator>
+			</view>
 
 
-	<view class="login_text">
-		<text space="ensp">已有账号? </text><navigator url="../login/login"><view style="text-decoration:underline;">登录</view>	</navigator>
-	</view>
-
+		</view>
 </view>

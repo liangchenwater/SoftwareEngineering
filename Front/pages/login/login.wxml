@@ -19,9 +19,13 @@
 			</view>
 
 			<view id="password">
-				<text class="rect_set password_rect"></text>
+				<text class="rect_set password_rect"  scale="({{width}},1)"></text>
 				<view id="password_text">
-					<input bindinput="set_password"/> 
+					<input bindinput="set_password" type="{{typeName}}"/> 
+						<view class='seePass' bindtap='showPass'>
+							<icon class="iconfont1 .not_see" wx:if="{{passFlag == 1}}"></icon>
+							<icon class='iconfont2 .can_see' wx:else></icon>
+						</view>
 				</view>
 			</view>
 		</view>
@@ -31,7 +35,7 @@
 		<text>忘记密码？请联系管理员修改</text>
 	</view>
 	<view class="box">
-		<button bindtap="click_login" class="login_button" plain>
+		<button bindtap="click_login" class="login_button">
 			<view id="login_button_text">
 				<text>登　　录</text>
 			</view>

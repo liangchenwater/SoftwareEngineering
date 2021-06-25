@@ -3,7 +3,7 @@ import json
 from flask import request,Flask
 from werkzeug.datastructures import is_immutable
 import DataBase
-from Class import Users,M_Record,Prescription,Appointment
+from Class import Users,M_Record,Prescription,Appointment,Event,Calender
 
 app = Flask(__name__)
 #DB = DataBase.DataBase()
@@ -230,6 +230,55 @@ def AddAppointment():
         return json.dumps({'code':-1,'msg':"人数已满"},indent=2,ensure_ascii=False)
     else:
         return json.dumps({'code':0,'msg':'预约成功'},indent=2,ensure_ascii=False)
+
+@app.route('/addevent',methods=['POST'])
+def AddEvent():
+    Calen = Calender()
+    data = request.get_json()
+    u_id = data['u_id']
+    event_type = data['event_type']
+    event_time = datetime.strftime(data['event_time'],"%Y-%m-%d %H:%M")
+    notice = data['notice']
+    note = data['note']
+
+    new_event = Event(u_id,event_type,event_time,notice,note)
+    event_id = Calen.addEvent(new_event)
+
+    if event_id == -1:
+        return json.dumps({'event_id':-1,'msg':"添加失败！"},indent=2,ensure_ascii=False)
+    else:
+        return json.dumps({'event_id':event_id,'msg':"添加成功！"},indent=2,ensure_ascii=False)
+
+@app.route('/deleteevent',methods=['POST'])
+def DeleteEvent():
+    Calen = Calender()
+    data = request.get_json()
+    u_id = data['u_id']
+    event_id = data['event_id']
+    code = Calen.deleteEvent(u_id,event_id)
+    if code == -1:
+        return json.dumps({'code':-1,'msg':"删除失败！"},indent=2,ensure_ascii=False)
+    else:
+        return json.dumps({'code':code,'msg':"删除成功！"},indent=2,ensure_ascii=False)
+    
+@app.route('/displaycalender',methods=['GET','POST'])
+def DisplayCalender():
+    Calen = Calender()
+    data = request.get_json()
+    u_id = data['u_id']
+    begin = datetime.strftime(data['begin'],"%Y-%m-%d")
+    end = datetime.strftime(data['end'],"%Y-%m-%d")
+    event_list = Calen.Display(u_id,begin,end)
+    str_list = ""
+    if event_list.size()==0:
+        return json.dumps({'msg':"没有需要完成的事务"},indent = 2,ensure_ascii=False)
+    for i in range(len(event_list)):
+        str_temp = json.dumps(event_list[i],indent=2,ensure_ascii=False).encode('latin1').decode('gbk')
+        str_list += "\n"
+        str_list += str_temp
+    return str_list
+
+    
 
 
 if __name__ == '__main__':

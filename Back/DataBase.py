@@ -37,7 +37,7 @@ class DataBase():
         parameter: begin/end: yyyy-mm-dd
         '''
         
-        sql = 'SELECT * FROM Calender_Events WHERE U_ID=\'%s\' AND (Event_Time BETWEEN CONVERT(smalldatetime,\'%s\',23) AND CONVERT(smalldatetime,\'%s\',23))' % (uid,begin,end)
+        sql = 'SELECT * FROM Calender_Events WHERE U_ID=\'%s\' AND (Event_Time BETWEEN CONVERT(smalldatetime,\'%s\',23) AND CONVERT(smalldatetime,\'%s\',23)) ORDER BY Event_Time' % (uid,begin,end)
         self.cursor.execute(sql)
         row = self.cursor.fetchall()
         return row
@@ -249,8 +249,45 @@ class DataBase():
         '''
         Event_ID = str(int(time.time()*100000))
         sql = "INSERT INTO Calender_Events VALUES (\'%s\',\'%s\',\'%s\',\'%s\',CONVERT(smalldatetime,\'%s\',20),\'%s\')" % (U_ID,Event_ID,Event_Type,Note,Event_Time,Notice)
-        self.cursor.execute(sql)
-        self.conn.commit()
+        try:
+            self.cursor.execute(sql)
+            self.conn.commit()
+            return Event_ID
+        except Exception as ex:
+            self.conn.rollback()
+            raise ex
+
+
+    def DeleteEvent(
+        self,
+        u_id,
+        event_id
+    ):
+        '''
+        U_ID,Event_ID to decide the event
+        '''
+        sql = "DELETE FROM Calender_Events WHERE U_ID = \'%s\' AND Event_ID = \'%s\'" % (u_id,event_id)
+        try:
+            self.cursor.execute(sql)
+            self.conn.commit()
+            return 0
+        except Exception as ex:
+            self.conn.rollback()
+            return -1
     
+    # def Display(
+    #     self,
+    #     u_id
+    # ):
+    #     sql = "SELECT * FROM Calender_Events WHERE U_ID = \'%s\' ORDER BY Event_Time" % (u_id)
+    #     try:
+    #         self.cursor.execute(sql)
+    #         self.conn.commit()
+    #         return sql
+    #     except Exception as ex:
+    #         self.conn.rollback()
+    #         return ""
+
+
 
 

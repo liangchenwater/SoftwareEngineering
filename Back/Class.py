@@ -198,5 +198,33 @@ class Appointment:
         )
         DB.close()
         return code
+
+class Calender:
+
+        #eventList with time stamp
+    def addEvent(self,
+        event:Event):
+        DB = DataBase.DataBase()
+        event_id = DB.AddEvent(event.U_ID,event.Event_Type,event.Event_Time,event.Notice,event.Note)
+        DB.close()
     
-        
+    def deleteEvent(
+        self,
+        u_id,
+        event_id
+    ):
+        DB = DataBase.DataBase()
+        code = DB.DeleteEvent(u_id,event_id)
+        DB.close()
+        return code
+    
+    def Display(
+        self,
+        u_id,
+        begin,
+        end
+    ):
+        DB = DataBase.DataBase()
+        event_list = DB.GetCalender(u_id,begin,end)
+        DB.close()
+        return event_list

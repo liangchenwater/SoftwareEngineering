@@ -237,7 +237,7 @@ def AddEvent():
     data = request.get_json()
     u_id = data['u_id']
     event_type = data['event_type']
-    event_time = datetime.strftime(data['event_time'],"%Y-%m-%d %H:%M")
+    event_time = data['event_time']
     notice = data['notice']
     note = data['note']
 
@@ -266,17 +266,10 @@ def DisplayCalender():
     Calen = Calender()
     data = request.get_json()
     u_id = data['u_id']
-    begin = datetime.strftime(data['begin'],"%Y-%m-%d")
-    end = datetime.strftime(data['end'],"%Y-%m-%d")
+    begin=data['begin']
+    end = data['end']
     event_list = Calen.Display(u_id,begin,end)
-    str_list = ""
-    if event_list.size()==0:
-        return json.dumps({'msg':"没有需要完成的事务"},indent = 2,ensure_ascii=False)
-    for i in range(len(event_list)):
-        str_temp = json.dumps(event_list[i],indent=2,ensure_ascii=False).encode('latin1').decode('gbk')
-        str_list += "\n"
-        str_list += str_temp
-    return str_list
+    return json.dumps(event_list,indent=2,ensure_ascii=False).encode('latin1').decode('gbk')
 
     
 

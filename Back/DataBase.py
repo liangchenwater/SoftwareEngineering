@@ -1,7 +1,7 @@
 from datetime import time,datetime, timedelta
 import pymssql
 import time
-from typing import Tuple,Dict
+from typing import List, Tuple,Dict
 
 class DataBase():
     def __init__(self):
@@ -32,14 +32,15 @@ class DataBase():
         else:
             return -1,row
     
-    def GetCalender(self,uid:str,begin:str,end:str):
+    def GetCalender(self,uid:str,begin:str,end:str)->List[Dict]:
         '''
         parameter: begin/end: yyyy-mm-dd
         '''
         
-        sql = 'SELECT * FROM Calender_Events WHERE U_ID=\'%s\' AND (Event_Time BETWEEN CONVERT(smalldatetime,\'%s\',23) AND CONVERT(smalldatetime,\'%s\',23)) ORDER BY Event_Time' % (uid,begin,end)
+        #sql = 'SELECT * FROM Calender_Events WHERE U_ID=\'%s\' AND (Event_Time BETWEEN CONVERT(smalldatetime,\'%s\') AND CONVERT(smalldatetime,\'%s\')) ORDER BY Event_Time' % (uid,begin,end)
+        sql = 'SELECT Event_ID,Event_Type,Note,CONVERT(varchar,Event_Time,20) AS Event_Time,Notice FROM Calender_Events WHERE U_ID=\'%s\' AND (Event_Time BETWEEN CONVERT(smalldatetime,\'%s\') AND CONVERT(smalldatetime,\'%s\')) ORDER BY Event_Time' % (uid,begin,end)
         self.cursor.execute(sql)
-        row = self.cursor.fetchall()
+        row = self.cursor.fetchall()   
         return row
     
     def GetPatientInformation(self,uid:str)->Dict:

@@ -205,8 +205,9 @@ class Calender:
     def addEvent(self,
         event:Event):
         DB = DataBase.DataBase()
-        event_id = DB.AddEvent(event.U_ID,event.Event_Type,event.Event_Time,event.Notice,event.Note)
+        event_id = DB.AddEvent(event.U_ID,event.Type,event.Time,event.Notice,event.Note)
         DB.close()
+        return event_id
     
     def deleteEvent(
         self,

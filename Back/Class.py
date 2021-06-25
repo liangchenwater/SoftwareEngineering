@@ -167,6 +167,13 @@ class M_Record:
                         Event_Time=Event_Time,
                         Note=Notes
                     )
+        if self.FU_Time != '':
+            DB.AddEvent(
+                U_ID=self.Patient_ID,
+                Event_Type='F',
+                Event_Time=self.FU_Time,
+                Note=self.Description
+            )
         DB.close()
 
     def addPres(self,pres:Prescription):
@@ -195,6 +202,12 @@ class Appointment:
             Ap_Time=self.Ap_Time,
             Description=self.Description,
             Location=self.Location
+        )
+        DB.AddEvent(
+            U_ID=self.Patient_id,
+            Event_Type='A',
+            Event_Time=self.Ap_Time,
+            Note=self.Description
         )
         DB.close()
         return code

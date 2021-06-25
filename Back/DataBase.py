@@ -169,7 +169,7 @@ class DataBase():
         '''
         Ap_Time format: yyyy-mm-dd hh:mm:ss
         '''
-        time_next = (datetime.strptime(Ap_Time,"%Y-%m-%d %H:%M:%S")+timedelta(minutes=30)).strftime("%Y-%m-%d %H:%M:%S")
+        time_next = ((datetime.strptime(Ap_Time,"%Y-%m-%d %H:%M:%S")+timedelta(minutes=30))).strftime("%Y-%m-%d %H:%M:%S")
         
         sql = "SELECT * FROM Appointments WHERE Doctor_ID=\'%s\' AND (AP_Time BETWEEN CONVERT(smalldatetime,\'%s\',20) AND CONVERT(smalldatetime,\'%s\',20))" % (Doctor_ID,Ap_Time,time_next)
         self.cursor.execute(sql)
@@ -276,19 +276,6 @@ class DataBase():
             self.conn.rollback()
             return -1
     
-    # def Display(
-    #     self,
-    #     u_id
-    # ):
-    #     sql = "SELECT * FROM Calender_Events WHERE U_ID = \'%s\' ORDER BY Event_Time" % (u_id)
-    #     try:
-    #         self.cursor.execute(sql)
-    #         self.conn.commit()
-    #         return sql
-    #     except Exception as ex:
-    #         self.conn.rollback()
-    #         return ""
-
 
 
 

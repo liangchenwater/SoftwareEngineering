@@ -18,6 +18,9 @@
 | /doctorinfo  | GET/POST | char(10) UID                                                 | U_Name<br />Gender<br />Age<br />Phone<br />Title<br />Work_Time: <span style='color:red'>这里最好后边改成统一格式化字符串</span> | <span style='color:red'>废弃</span> |
 | /modinfo     | POST     | uid: str<br />identity: str<br />new_name: str<br />new_gender: str<br />new_age: int<br />new_title: str<br />new_department: str<br />new_work_time: str<br /> |                                                              | Y                                   |
 | /userinfo    | POST     | U_ID<br />identity: 'P' or 'D'                               | U_Name<br />Gender<br />Age<br />Phone<br />(Title)<br />(Work_Time)<br />(Department) | Y                                   |
+| /addEvent    | POST     | u_id:str<br/>event_type:'F','M','A'<br/>event_time:str<br/>notice:'Y' or 'N'<br/>note:str | event_id:str<br/>                                            | Y                                   |
+| /deleteEvent | POST     | u_id:str<br/>event_id:str                                    | code:-1 or other                                             | Y                                   |
+| /display     | GET/POST | u_id:str<br/>begin<br/>end<br/>                              | event_list:list of event<br/>event:<br/>Event_id:str<br/>event_type:<br/>Note:str<br/> | Y                                   |
 
 ## 就诊模块
 

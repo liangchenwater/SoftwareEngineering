@@ -269,6 +269,13 @@ def DisplayCalender():
     begin=data['begin']
     end = data['end']
     event_list = Calen.Display(u_id,begin,end)
+    for event in event_list:
+        notes = event['Note'].split('&')
+        event['name'] = notes[0]
+        event['info1'] = notes[1]
+        event['info2'] = notes[2]
+        event['info3'] = notes[3]
+        del event['Note']
     return json.dumps(event_list,indent=2,ensure_ascii=False).encode('latin1').decode('gbk')
 
     

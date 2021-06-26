@@ -1,3 +1,4 @@
+from flask.globals import session
 import DataBase
 from typing import List,Tuple,Dict
 from datetime import datetime, timedelta
@@ -105,13 +106,13 @@ class Event:
         U_ID,
         Event_Type,
         Event_Time,
-        Notice='Y',
+        Complete='N',
         Note=''
         ):
             self.U_ID = U_ID
             self.Type = Event_Type
             self.Time = Event_Time
-            self.Notice = Notice
+            self.Notice = Complete
             self.Note = Note
 
 class M_Record:
@@ -156,7 +157,17 @@ class M_Record:
                 Dose=self.Prescriptions[i].Dose,
                 Notes=self.Prescriptions[i].Notes
             )
-            Notes = str(self.Prescriptions[i].Frequency_D)+'天'+str(self.Prescriptions[i].Frequency_T)+'次'
+            #name
+            Notes:str = self.Prescriptions[i].Medicine
+            Notes += '&'
+            #info1:dose
+            Notes += self.Prescriptions[i].Dose
+            Notes += '&'
+            #info2:frequency
+            Notes += str(self.Prescriptions[i].Frequency_D)+'天'+str(self.Prescriptions[i].Frequency_T)+'次'
+            Notes += '&'
+            #info3:notes
+            Notes += self.Prescriptions[i].Notes
             endtime = datetime.strptime(self.Prescriptions[i].Endtime,"%Y-%m-%d")
             for day in range((endtime.date()-starttime.date()).days+1):
                 if day % self.Prescriptions[i].Frequency_D == 0:
@@ -167,12 +178,21 @@ class M_Record:
                         Event_Time=Event_Time,
                         Note=Notes
                     )
+        Notes = '&'
+        #info1:doctorname
+        Notes += DB.GetDoctorInformation(self.Doctor_ID)['U_Name'].encode('latin1').decode('gbk')
+        Notes += '&'
+        #info2:patientname
+        Notes += DB.GetPatientInformation(self.Patient_ID)['U_Name'].encode('latin1').decode('gbk')
+        Notes += '&'
+        #info3:appointnote
+        Notes += self.Description
         if self.FU_Time != '':
             DB.AddEvent(
                 U_ID=self.Patient_ID,
                 Event_Type='F',
                 Event_Time=self.FU_Time,
-                Note=self.Description
+                Note=Notes
             )
         DB.close()
 
@@ -203,11 +223,19 @@ class Appointment:
             Description=self.Description,
             Location=self.Location
         )
+        Notes = self.Description
+        Notes += '&'
+        #info1:doctorname
+        Notes += DB.GetDoctorInformation(self.Doctor_id)['U_Name'].encode('latin1').decode('gbk')
+        Notes += '&'
+        #info2:patientname
+        Notes += DB.GetPatientInformation(self.Patient_id)['U_Name'].encode('latin1').decode('gbk')
+        Notes += '&'
         DB.AddEvent(
             U_ID=self.Patient_id,
             Event_Type='A',
             Event_Time=self.Ap_Time,
-            Note=self.Description
+            Note=Notes
         )
         DB.close()
         return code

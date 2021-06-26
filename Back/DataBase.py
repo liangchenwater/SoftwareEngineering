@@ -38,7 +38,7 @@ class DataBase():
         '''
         
         #sql = 'SELECT * FROM Calender_Events WHERE U_ID=\'%s\' AND (Event_Time BETWEEN CONVERT(smalldatetime,\'%s\') AND CONVERT(smalldatetime,\'%s\')) ORDER BY Event_Time' % (uid,begin,end)
-        sql = 'SELECT Event_ID,Event_Type,Note,CONVERT(varchar,Event_Time,20) AS Event_Time,Notice FROM Calender_Events WHERE U_ID=\'%s\' AND (Event_Time BETWEEN CONVERT(smalldatetime,\'%s\') AND CONVERT(smalldatetime,\'%s\')) ORDER BY Event_Time' % (uid,begin,end)
+        sql = 'SELECT Event_ID,Event_Type,Note,CONVERT(varchar,Event_Time,20) AS Event_Time,Complete FROM Calender_Events WHERE U_ID=\'%s\' AND (Event_Time BETWEEN CONVERT(smalldatetime,\'%s\') AND CONVERT(smalldatetime,\'%s\')) ORDER BY Event_Time' % (uid,begin,end)
         self.cursor.execute(sql)
         row = self.cursor.fetchall()   
         return row
@@ -242,14 +242,14 @@ class DataBase():
         U_ID,
         Event_Type,
         Event_Time,
-        Notice='Y',
+        Complete='N',
         Note=''
     ):
         '''
         Event_Time format: yyyy-mm-dd hh:mm:ss
         '''
         Event_ID = str(int(time.time()*100000))
-        sql = "INSERT INTO Calender_Events VALUES (\'%s\',\'%s\',\'%s\',\'%s\',CONVERT(smalldatetime,\'%s\',20),\'%s\')" % (U_ID,Event_ID,Event_Type,Note,Event_Time,Notice)
+        sql = "INSERT INTO Calender_Events VALUES (\'%s\',\'%s\',\'%s\',\'%s\',CONVERT(smalldatetime,\'%s\',20),\'%s\')" % (U_ID,Event_ID,Event_Type,Note,Event_Time,Complete)
         try:
             self.cursor.execute(sql)
             self.conn.commit()

@@ -20,7 +20,7 @@
 | /userinfo    | POST     | U_ID<br />identity: 'P' or 'D'                               | U_Name<br />Gender<br />Age<br />Phone<br />(Title)<br />(Work_Time)<br />(Department) | Y                                   |
 | /addEvent    | POST     | u_id:str<br/>event_type:'F','M','A'<br/>event_time:str<br/>notice:'Y' or 'N'<br/>note:str | event_id:str<br/>                                            | Y                                   |
 | /deleteEvent | POST     | u_id:str<br/>event_id:str                                    | code:-1 or other                                             | Y                                   |
-| /display     | GET/POST | u_id:str<br/>begin<br/>end<br/>                              | event_list:list of event<br/>event:<br/>Event_id:str<br/>event_type:<br/>Note:str<br/> | Y                                   |
+| /display     | GET/POST | u_id:str<br/>begin:str<br/>end:str<br/>                      | event_list:list of event<br/>event:<br/>Event_id:str<br/>event_type:<br/>event_time:str<br>Note:str<br/>notice:'Y'or'N'<br/> | Y                                   |
 
 ## 就诊模块
 

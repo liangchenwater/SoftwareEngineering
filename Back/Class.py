@@ -93,6 +93,18 @@ class Users:
        )
        DB.close()
        return row
+    
+    def addContact(self,contact_id:str)->int:
+        DB = DataBase.DataBase()
+        code = DB.AddContact(self.U_ID,contact_id)
+        DB.close()
+        return code
+    
+    def getContacts(self)->List[str]:
+        DB = DataBase.DataBase()
+        contacts = DB.GetContacts(self.U_ID)
+        DB.close()
+        return contacts
 
 class Prescription:
     def __init__(

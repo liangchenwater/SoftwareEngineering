@@ -1,4 +1,5 @@
 from datetime import time,datetime, timedelta
+from os import cpu_count
 import pymssql
 import time
 from typing import List, Tuple,Dict
@@ -286,7 +287,29 @@ class DataBase():
         if row:
             return row
         return []
-        
+    
+    def AddContact(self,U_ID:str,Contact_ID:str)->List[str]:
+        sql = 'SELECT Contacts FROM Users WHERE U_ID='+U_ID
+        self.cursor.execute(sql)
+        contacts:str = self.cursor.fetchone()['Contacts']
+        if not Contact_ID in contacts:
+            contacts += str(int(Contact_ID))
+            contacts += '&'
+        sql = 'UPDATE Users SET Contacts=\'%s\' WHERE U_ID=\'%s\'' % (contacts,U_ID)
+        try:
+            self.cursor.execute(sql)
+            self.conn.commit()
+            return 0
+        except Exception as e:
+            self.conn.rollback()
+            return -1
+
+    def GetContacts(self,U_ID:str):
+        sql = 'SELECT Contacts FROM Users WHERE U_ID=\''+U_ID+'\''
+        self.cursor.execute(sql)
+        contacts = self.cursor.fetchone()['Contacts'].split('&')[:-1]
+        return [contact.zfill(10) for contact in contacts]
+
 
 
 

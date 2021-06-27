@@ -282,5 +282,20 @@ def SearchDocs():
     row = user.searchDocs()
     return json.dumps(row,indent=2,ensure_ascii=False).encode('latin1').decode('gbk')
 
+@app.route('/addcontact',methods=['POST'])
+def AddContact():
+    data = request.get_json()
+    uid = data['uid']
+    contact_id = data['contact_id']
+    user = Users(msg=uid,msgid=True)
+    code = user.addContact(contact_id)
+    return json.dumps({'code':code},indent=2,ensure_ascii=False)
+
+@app.route('/getcontacts',methods=['GET'])
+def GetContacts():
+    uid = request.values['uid']
+    user = Users(msg=uid,msgid=True)
+    return json.dumps(user.getContacts(),indent=2,ensure_ascii=False)
+    
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')

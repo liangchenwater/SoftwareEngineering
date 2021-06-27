@@ -33,9 +33,9 @@
 
 ## 好友模块
 
-| 接口地址    | Method | 需要提供的字段                                               | 返回                                                         | 完成 |
-| ----------- | ------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
-| /searchdocs | POST   | phone: 可以为空串,<br />name: 可以为空串<br />hospital: 可以为空串<br />department: 可以为空串 | 医生列表，包含医生的U_ID, Phone, U_Name, Title, Department, Hospital | Y    |
-|             |        |                                                              |                                                              |      |
-|             |        |                                                              |                                                              |      |
-|             |        |                                                              |                                                              |      |
+| 接口地址     | Method | 需要提供的字段                                               | 返回                                                         | 完成 |
+| ------------ | ------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
+| /searchdocs  | POST   | phone: 可以为空串,<br />name: 可以为空串<br />hospital: 可以为空串<br />department: 可以为空串 | 医生列表，包含医生的U_ID, Phone, U_Name, Title, Department, Hospital | Y    |
+| /addcontact  | POST   | uid<br />contact_id                                          | code: 0表示添加成功                                          | Y    |
+| /getcontacts | GET    | uid                                                          | 联系人UID的列表                                              | Y    |
+|              |        |                                                              |                                                              |      |

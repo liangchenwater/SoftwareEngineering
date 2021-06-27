@@ -13,22 +13,12 @@ App({
       }
     })
 
-    wx.getSystemInfo({
-      success: function(res) {
-        windowWidth=res.windowWidth;
-        windowHeight=res.windowHeight;
-      }
-    })
 },
 
   globalData: {
-    U_ID:"",
-    identity:"",
-    IP_address:"http://10.192.110.195",
-
-
-    windowWidth:"",
-    windowHeight:""
-
+    U_ID:"000001",
+    identity:"P",
+    IP_address:"http://10.192.110.195"
   }
+
 })

@@ -9,6 +9,7 @@ Page({
       Name:'王小明',
       Department:'',
       Title:'',
+      date:' ',
 
       
       open: false,
@@ -58,21 +59,6 @@ Page({
       })
   },
 
-  init(res) {
-    const canvas = res[0].node
-    const width = wx.getSystemInfoSync().windowWidth
-    const height = wx.getSystemInfoSync().windowHeight
-    const dpr = wx.getSystemInfoSync().pixelRatio
-    canvas.width = width * dpr
-    canvas.height = height * dpr
-    const ctx = canvas.getContext('2d')
-    ctx.scale(dpr, dpr)
-    this.render(canvas, ctx)
-  },
-  render(canvas, ctx) {
-    ctx.fillStyle = 'red';
-    ctx.fillRect(0, 0, canvas.width, canvas.width)
-  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -121,9 +107,12 @@ Page({
 
   },
   mydata:function(e){ //可获取日历点击事件
-    let data = e.detail.data
-    console.log(data)
+    this.setData({
+      date: e.detail.data
+  });
+    console.log(this.data.date)
    },
+
    pull_menu:function(){
      console.log("pull")
    },

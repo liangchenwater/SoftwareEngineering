@@ -1,5 +1,7 @@
 // pages/main/main.js
 const app = getApp()
+var util=require('../../utils/util.js')
+
 Page({
 
   /**
@@ -10,11 +12,17 @@ Page({
       Age:'0',
       Gender:'其他',
       remind:[
-        {type:"", name:"阿司匹林",other_info:"1片",time:"08:00",desctription:"",finish:false,show:false},
-        {type:"", name:"",other_info:"",time:"",desctription:"",finish:false,show:false},
-        {type:"", name:"",other_info:"",time:"",desctription:"",finish:false,show:false},
-        {type:"", name:"",other_info:"",time:"",desctription:"",finish:false,show:false}
+      { Event_ID:"", 
+        Event_Type:"M",
+        Event_Time:"2021-06-25 00:00:00",
+        Complete:false,
+        name:"阿司匹林",
+        info1:"1片",
+        info2:"1天2次",
+        info3:"",
+        show:false }
       ],
+      date:'',
 
       open: false,
       // mark 是指原点x轴坐标
@@ -30,16 +38,33 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-
-    // 通过 SelectorQuery 获取 Canvas 节点
-    wx.createSelectorQuery()
-      .select('#canvas')
-      .fields({
-        node: true,
-        size: true,
-      })
-      .exec(this.init.bind(this))
-
+    var DATE = util.formatDate(new Date());
+    this.setData({
+      date: DATE,
+    });
+    console.log(this.data.date)
+    wx.request({
+      //等待填充
+      url: app.globalData.IP_address+'/displaycalender', 
+      header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
+      data: {
+          u_id:app.globalData.U_ID,
+          begin: this.data.date+"00:00:00",
+          end: this.data.date+"23:59:59"
+       },
+       method: 'POST',
+       success: function (res) {
+            console.log("发送成功");
+            console.log(res);
+            this.setData({ 
+                remind:res.data.event_list
+            });
+       },
+       fail:function(res){
+        console.log("发送失败");
+      }
+    })
+      
       wx.request({
         url: app.globalData.IP_address+'/userinfo', 
         header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
@@ -66,23 +91,9 @@ Page({
           console.log("发送失败");
         }
       })
+      
   },
 
-  init(res) {
-    const canvas = res[0].node
-    const width = wx.getSystemInfoSync().windowWidth
-    const height = wx.getSystemInfoSync().windowHeight
-    const dpr = wx.getSystemInfoSync().pixelRatio
-    canvas.width = width * dpr
-    canvas.height = height * dpr
-    const ctx = canvas.getContext('2d')
-    ctx.scale(dpr, dpr)
-    this.render(canvas, ctx)
-  },
-  render(canvas, ctx) {
-    ctx.fillStyle = 'red';
-    ctx.fillRect(0, 0, canvas.width, canvas.width)
-  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -94,6 +105,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if(app.globalData.U_ID==""){
+      wx.showToast({
+        title: '请先登录！',
+        icon: 'none',
+        duration: 1500
+    })
+    setTimeout(
+      function () {
+        wx.redirectTo({
+        url: '/pages/login/login'
+        })
+        },1500)
+    }
   },
 
   /**
@@ -130,10 +154,37 @@ Page({
   onShareAppMessage: function () {
 
   },
+
+
   mydata:function(e){ //可获取日历点击事件
-    let data = e.detail.data
-    console.log(data)
+    this.setData({
+      date: e.detail.data
+    });
+    console.log(this.data.date)
+    wx.request({
+      //等待填充
+      url: app.globalData.IP_address+'/displaycalender', 
+      header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
+      data: {
+          u_id:app.globalData.U_ID,
+          begin: this.data.date+"00:00:00",
+          end: this.data.date+"23:59:59"
+       },
+       method: 'POST',
+       success: function (res) {
+            console.log("发送成功");
+            console.log(res);
+            this.setData({ 
+                remind:res.data.event_list
+            });
+       },
+       fail:function(res){
+        console.log("发送失败");
+      }
+    })
    },
+
+
    pull_menu:function(){
      console.log("pull")
    },
@@ -160,8 +211,8 @@ Page({
     var that = this
     let index = e.currentTarget.dataset.index
     console.log(index)
-    let currect = "remind["+index+"].finish"
-    if (that.data.remind[index].finish === true) {
+    let currect = "remind["+index+"].Complete"
+    if (that.data.remind[index].Complete === true) {
       that.setData({
         [currect]: false
       })
@@ -225,5 +276,27 @@ Page({
                   open: false
               });
           }
+      },
+      tap_info: function(e){
+        wx.navigateTo({
+          url: ''
+        })
+      },
+      tap_friend: function(e){
+        wx.navigateTo({
+          url: ''
+        })
+      },
+      tap_record: function(e){
+        wx.navigateTo({
+          url: ''
+        })
+      },
+      tap_logout:function(e){
+        app.globalData.U_ID="";
+        app.globalData.identity="";
+        wx.navigateTo({
+          url: '/pages/login/login'
+        })
       }
 })

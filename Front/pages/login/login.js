@@ -99,12 +99,12 @@ Page({
             app.globalData.identity=res.identity;
             if(res.identity=='P'){
               wx.navigateTo({
-                url: '/pages/main_patient/main?U_ID=' + res.U_ID + '&identity=' + res.identity
+                url: '/pages/main_patient/main'
               })
             }
             else {
               wx.navigateTo({
-                url: '/pages/main_doctor/main?U_ID=' + res.U_ID + '&identity=' + res.identity
+                url: '/pages/main_doctor/main'
               })
             }
           }

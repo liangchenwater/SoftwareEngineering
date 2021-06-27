@@ -23,6 +23,12 @@
               "pages/main_patient/main"
             ]
           }
+        },
+        {
+          "name": "pages/record_list/record_list",
+          "pathName": "pages/record_list/record_list",
+          "query": "",
+          "scene": null
         }
       ]
     }

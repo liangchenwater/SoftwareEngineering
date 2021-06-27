@@ -5,6 +5,7 @@
   style="width: 100%; height: 30%;">
   </canvas>
 -->
+<wxs module="MY" src="../../wxs/substring.wxs"></wxs>
 <view class="temp {{open ? 'slidown' : 'slidup'}} {{open ? 'disappear':''}} menu" >
   <view class="wc" bindtap="tap_info">
       <text>个人资料</text>
@@ -15,7 +16,7 @@
   <view class="wc" bindtap="tap_record">
       <text>病历记录</text>
   </view>
-  <view class="wc" bindtap="">
+  <view class="wc" bindtap="tap_logout">
       <text>退出登录</text>
   </view>
 </view>
@@ -39,11 +40,13 @@
     <view class="listMain">
     <view class="list" wx:for="{{remind}}" wx:key="index">
       <view class=" {{item.show? 'remind_open':'remind_close'}} {{item.show? 'open_rect':'close_rect'}}">
-        <view class="title">{{item.name}}</view>
-        <view class="time">{{item.time}}</view>
-        <view class="other_info">{{item.other_info}}</view>
-        <view class="finish {{item.finish?'finish_icon':'unfinish_icon'}}" bindtap="finishBtn" data-index="{{index}}"></view>
-        <view class="desc {{item.show ? 'show' : 'hide'}}">{{item.desc}}</view>
+        <view bindtap='change_clock'>
+          <view class="title">{{item.Event_Type=='M'? item.name:''}}{{item.Event_Type=='F'?'复诊':''}}{{item.Event_Type=='A'?'初诊':''}}</view>
+          <view class="other_info">{{item.info1}}</view>
+        </view>
+        <view class="time">{{ MY.Sub(item.Event_Time)}}</view>
+        <view class="finish {{item.Complete?'finish_icon':'unfinish_icon'}}" bindtap="finishBtn" data-index="{{index}}"></view>
+        <text class="desc {{item.show ? 'show' : 'hide'}}">{{item.Event_Type=='M' ? '服药次数：'+item.info2+'，每次'+item.info1+'\n'+'备注：'+item.info3 :'症状描述：'+item.name+'\n备注：'+item.info3}}</text>
         <view class="open_close unshow_button" bindtap="listBtn" wx:if="{{!item.show}}" data-index="{{index}}"></view>
         <view class="open_close show_button" bindtap="listBtn" wx:if="{{item.show}}" data-index="{{index}}"></view>
       </view>

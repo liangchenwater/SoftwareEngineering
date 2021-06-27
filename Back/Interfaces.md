@@ -4,8 +4,8 @@
 
 | 接口地址 | Method   | 需要提供的字段                                               | 返回                                                         | 完成 |
 | -------- | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
-| /login   | GET/POST | varchar(11) phone <br />varchar(8) password                  | "valid": 0表示登陆成功，-1表示登陆失败，未查询到用户<br />“U_ID": char(10)，如果登陆成功则返回用户UID，如果登陆失败则返回”None“ | Y    |
-| /signup  | POST     | phone<br />password<br />name<br />identity<br />gender<br />(age):可以为空，但是必须提供空串或者-1<br />(certificate)<br />(title)<br />(department)<br />(worktime) | "state"：-1表示用户已经存在，0表示注册新用户成功<br />"U_ID"：已存在的用户ID或者新的用户ID | Y    |
+| /login   | GET/POST | phone<br />password                                          | "valid": 0表示登陆成功，-1表示登陆失败，未查询到用户<br />“U_ID": char(10)，如果登陆成功则返回用户UID，如果登陆失败则返回”None“ | Y    |
+| /signup  | POST     | phone<br />password<br />name<br />identity<br />gender<br />(age):可以为空，但是必须提供空串或者-1<br />(certificate)<br />(title)<br />(department)<br />(hospital) | "state"：-1表示用户已经存在，0表示注册新用户成功<br />"U_ID"：已存在的用户ID或者新的用户ID | Y    |
 |          |          |                                                              |                                                              |      |
 
 <span style='color:red'>有个疑问：如果我们登陆的时候分患者和医生的话那医生自己如果有就医要求怎么办？是否需要两个账号？</span>
@@ -15,9 +15,9 @@
 | 接口地址         | Method   | 需要提供的字段                                               | 返回                                                         | 完成                                |
 | ---------------- | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ----------------------------------- |
 | /patientinfo     | GET/POST | char(10) UID                                                 | U_Name：用户名<br />Gender：性别（M，F，O）<br />Age：年龄<br />Phone：电话 | <span style='color:red'>废弃</span> |
-| /doctorinfo      | GET/POST | char(10) UID                                                 | U_Name<br />Gender<br />Age<br />Phone<br />Title<br />Work_Time: <span style='color:red'>这里最好后边改成统一格式化字符串</span> | <span style='color:red'>废弃</span> |
-| /modinfo         | POST     | uid: str<br />identity: str<br />new_name: str<br />new_gender: str<br />new_age: int<br />new_title: str<br />new_department: str<br />new_work_time: str<br /> |                                                              | Y                                   |
-| /userinfo        | POST     | U_ID<br />identity: 'P' or 'D'                               | U_Name<br />Gender<br />Age<br />Phone<br />(Title)<br />(Work_Time)<br />(Department) | Y                                   |
+| /doctorinfo      | GET/POST | char(10) UID                                                 | U_Name<br />Gender<br />Age<br />Phone<br />Title<br />Hospital | <span style='color:red'>废弃</span> |
+| /modinfo         | POST     | uid: str<br />identity: str<br />new_name: str<br />new_gender: str<br />new_age: int<br />new_title: str<br />new_department: str<br />new_hospital: str<br /> |                                                              | Y                                   |
+| /userinfo        | POST     | U_ID<br />identity: 'P' or 'D'                               | U_Name<br />Gender<br />Age<br />Phone<br />(Title)<br />(Hospital)<br />(Department) | Y                                   |
 | /addevent        | POST     | u_id:str<br/>event_type:'F','M','A'<br/>event_time:str<br/>notice:'Y' or 'N'<br/>note:str | event_id:str<br/>                                            | Y                                   |
 | /deleteevent     | POST     | u_id:str<br/>event_id:str                                    | code:-1 or other                                             | Y                                   |
 | /displaycalender | GET/POST | u_id:str<br/>begin:str<br/>end:str<br/>                      | 返回一个event列表，每个event包含Event_ID<br />Event_Type<br />Event_Time<br />Complete<br />name<br />info1<br />info2<br />info3 | Y                                   |

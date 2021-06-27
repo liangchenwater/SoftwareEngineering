@@ -57,9 +57,9 @@ def ModInfo():
     if identity=='D':
         new_title=data['new_title']
         new_department=data['new_department']
-        new_work_time=data['new_work_time']
+        new_hospital=data['new_hospital']
     else:
-        new_title = new_department = new_work_time = ''
+        new_title = new_department = new_hospital = ''
     user.setInfo(
         Phone='',
         Pass='',
@@ -69,7 +69,7 @@ def ModInfo():
         Age=new_age,
         Title=new_title,
         Department=new_department,
-        WorkTime=new_work_time
+        hospital=new_hospital
     )
     user.modInfo()
     return json.dumps({'code':200,},indent=2,ensure_ascii=False)
@@ -100,9 +100,9 @@ def SignUp():
         certificate = request.values['certificate']
         title = request.values['title']
         department = request.values['department']
-        worktime = request.values['worktime']
+        hospital = request.values['hospital']
     else:
-        certificate = title = department = worktime = ''
+        certificate = title = department = hospital = ''
     
     user = Users()
 
@@ -116,23 +116,9 @@ def SignUp():
         Certificate_ID=certificate,
         Title=title,
         Department=department,
-        WorkTime=worktime
+        Hospital=hospital
     )
     code,uid = user.signUp()
-    '''
-    code,uid = DB.AddUser(
-        Phone=phone,
-        Pass=password,
-        U_Name=name,
-        U_Identity=identity,
-        Gender=gender,
-        Age=age,
-        Certificate=certificate,
-        Title=title,
-        Department=department,
-        Worktime=worktime
-    )
-    '''
     return json.dumps({'state':code,'U_ID':uid},indent=2,ensure_ascii=False)
 '''    
 @app.route('/addrecord',methods=['POST'])
@@ -279,7 +265,22 @@ def DisplayCalender():
     return json.dumps(event_list,indent=2,ensure_ascii=False).encode('latin1').decode('gbk')
 
     
-
+@app.route('/searchdocs',methods=['POST'])
+def SearchDocs():
+    data = request.get_json()
+    phone = data['phone']
+    name = data['name']
+    hospital = data['hospital']
+    department = data['department']
+    user = Users()
+    user.setInfo(
+        Phone=phone,
+        U_Name=name,
+        Hospital=hospital,
+        Department=department
+    )
+    row = user.searchDocs()
+    return json.dumps(row,indent=2,ensure_ascii=False).encode('latin1').decode('gbk')
 
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0')

@@ -50,7 +50,7 @@ class DataBase():
         return row
     
     def GetDoctorInformation(self,uid)->Dict:
-        sql = 'SELECT U_Name,Gender,Age,Phone,Title,Department,Work_Time FROM Users,Doctors WHERE Users.U_ID=Doctors.U_ID AND Users.U_ID=\'%s\'' % (uid)
+        sql = 'SELECT U_Name,Gender,Age,Phone,Title,Department,Hospital FROM Users,Doctors WHERE Users.U_ID=Doctors.U_ID AND Users.U_ID=\'%s\'' % (uid)
         self.cursor.execute(sql)
         row = self.cursor.fetchone()
         return row
@@ -67,7 +67,7 @@ class DataBase():
         #Only doctors have these keys
         Title='',
         Department='',
-        WorkTime=''):
+        Hospital=''):
         #sql = "SELECT U_ID FROM Users WHERE Phone=\'%s\'"%(Phone)
         #self.cursor.execute(sql)
         #row=self.cursor.fetchone()
@@ -88,19 +88,7 @@ class DataBase():
         try:
             self.cursor.execute(sql)
             if U_Identity=='D':
-                #sql= "SELECT Title U_ID Doctors WHERE U_ID=\'%s\'"%(U_ID)
-                #elf.cursor.execute(sql)
-                #ow=self.cursor.fetchone()
-                #orig_title=str(row['Title'])
-                #orig_department=str(row['Department'])
-                #orig_work_time=str(row['Work_Time'])
-                #if Title=='':
-                #    Title=orig_title
-                #if Department=='':
-                #    Department=orig_department
-                #if WorkTime=='':
-                #    WorkTime=orig_work_time
-                sql = "UPDATE Doctors SET Title=\'%s\', Department=\'%s\', Work_Time=\'%s\' WHERE U_ID=\'%s\'"%(Title,Department,WorkTime,U_ID)
+                sql = "UPDATE Doctors SET Title=\'%s\', Department=\'%s\', Hospital=\'%s\' WHERE U_ID=\'%s\'"%(Title,Department,Hospital,U_ID)
                 self.cursor.execute(sql)
             self.conn.commit()
         except Exception as e:
@@ -120,7 +108,7 @@ class DataBase():
         Certificate_ID:str='',
         Title:str='',
         Department:str='',
-        WorkTime:str=''
+        Hospital:str=''
     )->Tuple[int,str]:
         sql = "SELECT U_ID FROM Users WHERE Phone=\'%s\'" % (Phone)
         self.cursor.execute(sql)
@@ -138,15 +126,15 @@ class DataBase():
         else:
             U_ID = '0000000001'
         if Age==-1:
-            sql = "INSERT INTO Users VALUES(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',NULL,\'%s\',\'%s\')" % (U_ID,Phone,Pass,U_Name,Gender,U_Identity,U_Profile)
+            sql = "INSERT INTO Users VALUES(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',NULL,\'%s\',\'%s\',\'\')" % (U_ID,Phone,Pass,U_Name,Gender,U_Identity,U_Profile)
         else:
-            sql = "INSERT INTO Users VALUES(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',%d,\'%s\',\'%s\')" % (U_ID,Phone,Pass,U_Name,Gender,Age,U_Identity,U_Profile)
+            sql = "INSERT INTO Users VALUES(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',%d,\'%s\',\'%s\',\'\')" % (U_ID,Phone,Pass,U_Name,Gender,Age,U_Identity,U_Profile)
         #print(U_ID)
         #print(sql)
         try:
             self.cursor.execute(sql)
             if U_Identity=='D':
-                sql = "INSERT INTO Doctors VALUES(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')" % (U_ID,Certificate_ID,Title,Department,WorkTime)
+                sql = "INSERT INTO Doctors VALUES(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')" % (U_ID,Certificate_ID,Title,Department,Hospital)
                 self.cursor.execute(sql)
             #else:
                 #sql = "INSERT INTO MR_Records VALUES(\'%s\',\'%s\',\'0000000000\',CONVERT(smalldatetime,\'0000-00-00 00:00:00\',20),\'\',\'\',NULL" % (U_ID+'00000',U_ID)
@@ -276,6 +264,29 @@ class DataBase():
             self.conn.rollback()
             return -1
     
+    def SearchDoctors(
+        self,
+        Phone:str='',
+        Name:str='',
+        Hospital:str='',
+        Department:str=''
+    )->List :
+        sql = 'SELECT Users.U_ID,Phone,U_Name,Title,Department,Hospital FROM Users,Doctors WHERE Users.U_ID=Doctors.U_ID'
+        if Phone != '':
+            sql += ' AND Phone=\'%s\''%(Phone)
+        if Name != '':
+            sql += ' AND U_Name LIKE \'%'+Name+'%\''
+        if Hospital != '':
+            sql += ' AND Hospital LIKE \'%'+Hospital+'%\''
+        if Department != '':
+            sql += ' AND Department LIKE \'%'+Department+'%\''
+        
+        self.cursor.execute(sql)
+        row = self.cursor.fetchall()
+        if row:
+            return row
+        return []
+        
 
 
 

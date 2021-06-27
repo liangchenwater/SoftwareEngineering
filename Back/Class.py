@@ -13,17 +13,17 @@ class Users:
     
     def setInfo(
         self,
-        Phone,
-        Pass,
-        U_Name,
-        U_Identity,
-        Gender,
-        Age,
+        Phone='',
+        Pass='',
+        U_Name='',
+        U_Identity='P',
+        Gender='O',
+        Age=-1,
         U_Profile='',
         Certificate_ID='',
         Title='',
         Department='',
-        WorkTime=''
+        Hospital=''
         ):
         self.Phone = Phone
         self.Password = Pass
@@ -35,7 +35,7 @@ class Users:
         self.Certificate_ID = Certificate_ID
         self.Title = Title
         self.Department = Department
-        self.WorkTime = WorkTime
+        self.Hospital = Hospital
     
     def logIn(self)->Tuple[int,Dict]:
         DB = DataBase.DataBase()
@@ -64,7 +64,7 @@ class Users:
             Certificate_ID=self.Certificate_ID,
             Title=self.Title,
             Department=self.Department,
-            WorkTime=self.WorkTime
+            Hospital=self.Hospital
         )
         DB.close()
         return code,uid
@@ -79,9 +79,20 @@ class Users:
             U_Name=self.U_Name,
             Title=self.Title,
             Department=self.Department,
-            WorkTime=self.WorkTime
+            Hospital=self.Hospital
         )
         DB.close()
+    
+    def searchDocs(self)->List:
+       DB = DataBase.DataBase()
+       row = DB.SearchDoctors(
+           Phone=self.Phone,
+           Name=self.U_Name,
+           Hospital=self.Hospital,
+           Department=self.Department
+       )
+       DB.close()
+       return row
 
 class Prescription:
     def __init__(

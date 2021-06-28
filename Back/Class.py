@@ -248,11 +248,11 @@ class Appointment:
         )
         Notes = self.Description
         Notes += '&'
-        #info1:doctorname
-        Notes += DB.GetDoctorInformation(self.Doctor_id)['U_Name'].encode('latin1').decode('gbk')
+        #info1:doctorid
+        Notes += self.Doctor_id
         Notes += '&'
-        #info2:patientname
-        Notes += DB.GetPatientInformation(self.Patient_id)['U_Name'].encode('latin1').decode('gbk')
+        #info2:patientid
+        Notes += self.Patient_id
         Notes += '&'
         DB.AddEvent(
             U_ID=self.Patient_id,

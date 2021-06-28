@@ -74,6 +74,13 @@
 					</view>
 				</view>
 
+				<view id="hospital">
+					<text class="rect_set hospital_rect"></text>
+					<view id="input_text">
+						<input bindinput="set_hospital"/> 
+					</view>
+				</view>
+
 				<view id="office">
 					<text class="rect_set office_rect"></text>
 					<view id="input_text">

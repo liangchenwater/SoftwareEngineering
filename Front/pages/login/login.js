@@ -95,14 +95,15 @@ Page({
           console.log("发送成功");
           console.log(res);
           if(res.data.valid=='0'){
-            app.globalData.U_ID=res.U_ID;
-            app.globalData.identity=res.identity;
-            if(res.identity=='P'){
+            app.globalData.U_ID=res.data.U_ID;
+            app.globalData.identity=res.data.identity;
+            console.log(app.globalData.U_ID)
+            if(res.data.identity=='P'){
               wx.navigateTo({
                 url: '/pages/main_patient/main'
               })
             }
-            else {
+            else if (res.data.identity=='D'){
               wx.navigateTo({
                 url: '/pages/main_doctor/main'
               })

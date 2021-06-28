@@ -6,7 +6,7 @@
   </canvas>
 -->
 <wxs module="MY" src="../../wxs/substring.wxs"></wxs>
-<view class="temp {{open ? 'slidown' : 'slidup'}} {{open ? 'disappear':''}} menu" >
+<view z-index='2' class="temp {{open ? 'slidown' : 'slidup'}} {{open ? 'disappear':''}} menu" >
   <view class="wc" bindtap="tap_info">
       <text>个人资料</text>
   </view>
@@ -23,15 +23,16 @@
 
 <view class="page {{open ? ['c-state'] : ''}} ">
   <view space="ensp">
-    <text class="pull {{open?'close_button':'pull_button'}}" bindtap="tap_ch"></text>
-    <view id="title_text">
-      <view id="name_text">
-        <text>{{Name}}</text>
+    <text class='back_rec back' z-index='3'>     </text>
+      <text class="pull {{open?'close_button':'pull_button'}}" bindtap="tap_ch"></text>
+      <view id="title_text">
+        <view id="name_text">
+          <text>{{Name}}</text>
+        </view>
+        <view id="gender_text">
+          <text >{{Gender}}  |  {{Age}} 岁</text>
+        </view>
       </view>
-      <view id="gender_text">
-        <text >{{Gender}}  |  {{Age}} 岁</text>
-      </view>
-    </view>
     <calendar  bindmydata="mydata" class="calendar"></calendar>
     <text class="inform_text" space="ensp">  提醒</text>
   </view>
@@ -45,8 +46,8 @@
           <view class="other_info">{{item.info1}}</view>
         </view>
         <view class="time">{{ MY.Sub(item.Event_Time)}}</view>
-        <view class="finish {{item.Complete?'finish_icon':'unfinish_icon'}}" bindtap="finishBtn" data-index="{{index}}"></view>
-        <text class="desc {{item.show ? 'show' : 'hide'}}">{{item.Event_Type=='M' ? '服药次数：'+item.info2+'，每次'+item.info1+'\n'+'备注：'+item.info3 :'症状描述：'+item.name+'\n备注：'+item.info3}}</text>
+        <view class="finish {{item.Complete=='Y'?'finish_icon':'unfinish_icon'}}" bindtap="finishBtn" data-index="{{index}}"></view>
+        <text class="desc {{item.show ? 'show' : 'hide'}}">{{item.Event_Type=='M' ? ('服药次数：'+item.info2+'，每次'+item.info1+'\n'+'备注：'+item.info3 ): ('就诊地址：'+item.Hospital+item.Department+'\n医生电话：'+item.Phone + (item.Event_Type=='A'? ('\n症状描述：'+item.name):''))}}</text>
         <view class="open_close unshow_button" bindtap="listBtn" wx:if="{{!item.show}}" data-index="{{index}}"></view>
         <view class="open_close show_button" bindtap="listBtn" wx:if="{{item.show}}" data-index="{{index}}"></view>
       </view>

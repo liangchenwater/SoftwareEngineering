@@ -18,7 +18,7 @@ App({
   globalData: {
     U_ID:"000001",
     identity:"P",
-    IP_address:"http://10.192.110.195"
+    IP_address:"http://10.192.110.195:5000"
   }
 
 })

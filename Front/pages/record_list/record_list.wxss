@@ -37,7 +37,7 @@ page{
 }
 
 .listMain .list .title{
-  font-size: 22px;
+  font-size: 20px;
   color:rgba(59, 62, 81, 1);
   position: absolute;
   top:36rpx;

@@ -22,6 +22,7 @@ page{
 }
 
 .user_info{
+  z-index:2;
   position: absolute;
   width: 103px;
   height: 160rpx;
@@ -40,7 +41,7 @@ page{
 }
 
 #title_text {
-  z-index:1;
+  z-index:3;
   position: fixed;
   width: 200rpx;
   height: 110rpx;
@@ -50,6 +51,7 @@ page{
 }
 
 #name_text{
+  z-index:3;
   opacity: 1;
   position: fixed;
   justify-content: center;
@@ -65,6 +67,7 @@ page{
 }
 
 #gender_text {
+  z-index:3;
   opacity: 0.8;
   position: absolute;
   bottom: 0%;
@@ -105,8 +108,18 @@ page{
   text-align: center;
 }
 
-.first_rec{
-  color: rgba(245,245,245,1);
+.back_rec{
+  z-index:2;
+  overflow: visible;
+  position: fixed;
+  width: 375px;
+  height: 239px;
+  top:0;
+  transform: matrix(1,0,0,1,0,0);
+}
+
+.back{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='376' height='239' viewBox='0 0 376 239'%3E %3Crect id='矩形_154' data-name='矩形 154' width='376' height='239' fill='%23f5f5f5'/%3E %3C/svg%3E ");
 }
 
 .listMain {
@@ -299,7 +312,7 @@ page{
 
 
 .pull{
-  z-index:1;
+  z-index:3;
   overflow: visible;
   position: fixed;
   justify-content: center;

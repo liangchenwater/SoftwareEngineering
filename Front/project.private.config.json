@@ -29,6 +29,18 @@
           "pathName": "pages/record_list/record_list",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/register/register",
+          "pathName": "pages/register/register",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/main_doctor/main",
+          "pathName": "pages/main_doctor/main",
+          "query": "",
+          "scene": null
         }
       ]
     }

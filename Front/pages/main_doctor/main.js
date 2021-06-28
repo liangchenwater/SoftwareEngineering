@@ -1,17 +1,29 @@
 // pages/main/main.js
 const app = getApp()
+var util=require('../../utils/util.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-      Name:'王小明',
+      Name:'',
       Department:'',
       Title:'',
-      date:' ',
+      remind:[
+      { Event_ID:"", 
+        Event_Type:"F",
+        Event_Time:"2021-06-25 00:00:00",
+        Complete:'N',
+        name:"阿司匹林",
+        info1:"1片",
+        info2:"1天2次",
+        info3:"",
+        show:false }
+      ],
+      date:'',
 
-      
       open: false,
       // mark 是指原点x轴坐标
       mark: 0,
@@ -26,37 +38,89 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    var that = this;
+    var DATE = util.formatDate(new Date());
+    this.setData({
+      date: DATE,
+    });
+    wx.request({
+      url: app.globalData.IP_address+'/userinfo', 
+      header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
+      data: {
+          U_ID: app.globalData.U_ID,
+          identity: app.globalData.identity,
+       },
+       method: 'POST',
+       success: function (res) {
+            console.log("userinfo发送成功");
+            console.log(res.data.Age);
+            console.log(res.data.Gender);
+            that.setData({ 
+              Name: res.data.U_Name, 
+              Department: res.data.Department,
+              Title: res.data.Title
+            });
+       },
+       fail:function(res){
+        console.log("userinfo发送失败");
+      }
+    })
 
-    // 通过 SelectorQuery 获取 Canvas 节点
-    wx.createSelectorQuery()
-      .select('#canvas')
-      .fields({
-        node: true,
-        size: true,
-      })
-      .exec(this.init.bind(this))
+    wx.request({
+      //等待填充
+      url: app.globalData.IP_address+'/displaycalender', 
+      header: { "ContentType": "application/json;charset=utf-8", },
+      data: {
+          u_id: app.globalData.U_ID,
+          begin: that.data.date+" 00:00:00",
+          end: that.data.date+" 23:59:59"
+       },
+       method: 'POST',
+       success: function (res) {
+            console.log("calender发送成功");
+            console.log(res.data);
+            that.setData({ 
+                remind:res.data
+            });
+       },
+       fail:function(res){
+        console.log("calender发送失败");
+      }
+    })
+    var that=this;
+    for(var i in that.data.remind){
+    　　if(that.data.remind[i].Event_Type!='M'){
 
-      wx.request({
-        url: app.globalData.IP_address+'/userinfo', 
-        header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
-        data: {
-            U_ID: app.globalData.U_ID,
-            identity: app.globalData.identity,
-         },
-         method: 'POST',
-         success: function (res) {
-              console.log("发送成功");
-              console.log(res);
-              this.setData({ 
-                Name: res.data.U_Name, 
-                Department:res.data.Department,
-                Title:res.data.Title
-              });
-         },
-         fail:function(res){
-          console.log("发送失败");
-        }
-      })
+          that.setData({ 
+            ['remind['+i+'].Name']:'xiaoming', 
+            ['remind['+i+'].Age']: '15',
+            ['remind['+i+'].Gender']: 'nan',
+            ['remind['+i+'].Phone']: '199902030131'
+          });
+
+        wx.request({
+          url: app.globalData.IP_address+'/userinfo', 
+          header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
+          data: {
+              U_ID: that.data.remind[i].info2,
+              identity: 'P',
+          },
+          method: 'POST',
+          success: function (res) {
+                console.log("sub_userinfo发送成功");
+                that.setData({ 
+                  ['remind['+i+'].Name']:res.data.Name, 
+                  ['remind['+i+'].Age']: res.data.Age,
+                  ['remind['+i+'].Gender']: res.data.Gender,
+                  ['remind['+i+'].Phone']: res.data.Phone
+                });
+          },
+          fail:function(res){
+            console.log("sub_user发送失败");
+          }
+        })
+    }
+    }
   },
 
 
@@ -70,6 +134,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if(app.globalData.U_ID==""){
+      wx.showToast({
+        title: '请先登录！',
+        icon: 'none',
+        duration: 1500
+    })
+    setTimeout(
+      function () {
+        wx.redirectTo({
+        url: '/pages/login/login'
+        })
+        },1500)
+    }
   },
 
   /**
@@ -106,16 +183,102 @@ Page({
   onShareAppMessage: function () {
 
   },
+
+
   mydata:function(e){ //可获取日历点击事件
+    var that=this;
     this.setData({
       date: e.detail.data
-  });
+    });
     console.log(this.data.date)
+    wx.request({
+      //等待填充
+      url: app.globalData.IP_address+'/displaycalender', 
+      header: { "ContentType": "application/json;charset=utf-8", },
+      data: {
+          u_id:app.globalData.U_ID,
+          begin: that.data.date+" 00:00:00",
+          end: that.data.date+" 23:59:59"
+       },
+       method: 'POST',
+       success: function (res) {
+            console.log("发送成功");
+            console.log(res.data);
+            that.setData({ 
+                remind:res.data
+            });
+       },
+       fail:function(res){
+        console.log("发送失败");
+      }
+    })
+
+    var that=this;
+    for(var i in that.data.remind){
+    　　if(that.data.remind[i].Event_Type!='M'){
+        wx.request({
+          url: app.globalData.IP_address+'/userinfo', 
+          header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
+          data: {
+              U_ID: that.data.remind[i].info2,
+              identity: 'P',
+          },
+          method: 'POST',
+          success: function (res) {
+                console.log("sub_userinfo发送成功");
+                that.setData({ 
+                  ['remind['+i+'].Name']:res.data.Name, 
+                  ['remind['+i+'].Age']: res.data.Age,
+                  ['remind['+i+'].Gender']: res.data.Gender,
+                  ['remind['+i+'].Phone']: res.data.Phone
+                });
+          },
+          fail:function(res){
+            console.log("sub_user发送失败");
+          }
+        })
+    }
+    }
    },
+
 
    pull_menu:function(){
      console.log("pull")
    },
+
+   listBtn:function (e) {
+    var that = this
+    let index = e.currentTarget.dataset.index
+    console.log(index)
+    let currect = "remind["+index+"].show"
+    if (that.data.remind[index].show === true) {
+      console.log("隐藏")
+      that.setData({
+        [currect]: false
+      })
+    } else{
+      console.log("显示")
+      that.setData({
+        [currect]: true
+      })
+    }
+  },
+
+  finishBtn:function (e) {
+    var that = this
+    let index = e.currentTarget.dataset.index
+    console.log(index)
+    let currect = "remind["+index+"].Complete"
+    if (that.data.remind[index].Complete === true) {
+      that.setData({
+        [currect]: false
+      })
+    } else{
+      that.setData({
+        [currect]: true
+      })
+    }
+  },
 
 
 
@@ -170,5 +333,27 @@ Page({
                   open: false
               });
           }
+      },
+      tap_info: function(e){
+        wx.navigateTo({
+          url: ''
+        })
+      },
+      tap_friend: function(e){
+        wx.navigateTo({
+          url: ''
+        })
+      },
+      tap_record: function(e){
+        wx.navigateTo({
+          url: ''
+        })
+      },
+      tap_logout:function(e){
+        app.globalData.U_ID="";
+        app.globalData.identity="";
+        wx.navigateTo({
+          url: '/pages/login/login'
+        })
       }
 })

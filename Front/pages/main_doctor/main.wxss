@@ -22,6 +22,7 @@ page{
 }
 
 .user_info{
+  z-index:2;
   position: absolute;
   width: 103px;
   height: 160rpx;
@@ -29,6 +30,7 @@ page{
   top: 12.4%;
   overflow: visible;
 }
+
 .user_info .name{
   position: absolute;
   width: 103px;
@@ -38,22 +40,23 @@ page{
   overflow: visible;
 }
 
-
 #title_text {
+  z-index:3;
   position: fixed;
-  width: 400rpx;
+  width: 200rpx;
   height: 110rpx;
-  left:175rpx;
+  left: 280rpx;
   top: 150rpx;
   overflow: visible;
 }
 
 #name_text{
+  z-index:3;
   opacity: 1;
   position: fixed;
   justify-content: center;
   align-items: center;
-  width: 400rpx;
+  width: 200rpx;
   overflow: visible;
   text-align: center;
   font-family: Symbol;
@@ -64,11 +67,12 @@ page{
 }
 
 #gender_text {
+  z-index:3;
   opacity: 0.8;
   position: absolute;
   bottom: 0%;
   overflow: visible;
-  width: 400rpx;
+  width: 200rpx;
   text-align: center;
   font-family: Bio Sans;
   font-style: normal;
@@ -78,18 +82,20 @@ page{
 }
 
 .calendar{
+  z-index:2;
   width: 100%;
-  height: 100%;
-  position: relative;
+  height: 222rpx;
+  position:fixed;
   top:285rpx;
 }
 
 .inform_text {
+  z-index:2;
   background-color: rgba(245,245,245,1);
-  width: 300rpx;
-  position: relative;
-  top:290rpx;
-  left:20rpx;
+  width: 100%;
+  height:40rpx;
+  position:fixed;
+  top:507rpx;
   align-items: center;
   padding: .35rem .35rem;
   text-align: left;
@@ -102,11 +108,146 @@ page{
   text-align: center;
 }
 
-.first_rec{
-  color: rgba(245,245,245,1);
+.back_rec{
+  z-index:2;
+  overflow: visible;
+  position: fixed;
+  width: 375px;
+  height: 239px;
+  top:0;
+  transform: matrix(1,0,0,1,0,0);
 }
 
+.back{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='376' height='239' viewBox='0 0 376 239'%3E %3Crect id='矩形_154' data-name='矩形 154' width='376' height='239' fill='%23f5f5f5'/%3E %3C/svg%3E ");
+}
 
+.listMain {
+  z-index:1;
+  position:absolute;
+  width:100%;
+  top:580rpx;
+}
+
+.listMain .list{
+  padding: 0rpx 0rpx 10rpx 0rpx;
+  position: relative;
+}
+
+.listMain .list .title{
+  font-size: 22px;
+  color:rgba(59, 62, 81, 1);
+  position: absolute;
+  top:48rpx;
+  left:65rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font:Hind;
+  overflow: hidden;
+}
+
+.listMain .list .time{
+  font-size: 14px;
+  color:rgba(59, 62, 81, 1);
+  position: absolute;
+  top:77rpx;
+  right:120rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font:Hind;
+  overflow: hidden;
+}
+
+.listMain .list .other_info{
+  font-size: 14px;
+  color:rgba(59, 62, 81, 1);
+  position: absolute;
+  top:103rpx;
+  left:65rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font:Hind;
+  opacity:0.7;
+  overflow: hidden;
+}
+
+.listMain .list .desc{
+  font-size: 16px;
+  color:rgba(59, 62, 81, 1);
+  position: absolute;
+  top:160rpx;
+  left:65rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font:Hind;
+  opacity:0.8;
+}
+.listMain .list .listBtn{
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  color: #999;
+  font-size: 26rpx;
+}
+.show{ display: block;}
+.hide{ display: none;}
+
+.remind_open{
+  overflow: visible;
+  position: relative;
+  width: 375px;
+  height: 175px;
+  transform: matrix(1,0,0,1,0,0);
+}
+.remind_close{
+  overflow: visible;
+  position: relative;
+  width: 375px;
+  height: 95px;
+  transform: matrix(1,0,0,1,0,0);
+}
+.open_rect{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='375' height='175' viewBox='0 0 375 175'%3E %3Cg id='矩形_57' data-name='矩形 57' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='375' height='175' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='374' height='174' rx='29.5' fill='none'/%3E %3C/g%3E %3C/svg%3E ");
+}
+.close_rect{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='375' height='94.999' viewBox='0 0 375 94.999'%3E %3Cg id='矩形_56' data-name='矩形 56' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='375' height='94.999' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='374' height='93.999' rx='29.5' fill='none'/%3E %3C/g%3E %3C/svg%3E ");
+}
+
+.open_close{
+  overflow: visible;
+  position: absolute;
+  width: 12.2px;
+  height: 7px;
+  left:670rpx;
+  top:43px;
+  transform: matrix(1,0,0,1,0,0);
+}
+
+.show_button{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12.109' height='6.925' viewBox='0 0 12.109 6.925'%3E %3Cpath id='路径_5599' data-name='路径 5599' d='M-.167-2.325l-.541.541a.328.328,0,0,1-.465,0L-6.125-6.724l-4.952,4.941a.328.328,0,0,1-.465,0l-.541-.541a.328.328,0,0,1,0-.465l5.726-5.726a.328.328,0,0,1,.465,0L-.167-2.789A.328.328,0,0,1-.167-2.325Z' transform='translate(12.18 8.612)' fill='%233b3e51'/%3E %3C/svg%3E ");
+}
+
+.unshow_button{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12.109' height='6.925' viewBox='0 0 12.109 6.925'%3E %3Cpath id='路径_5600' data-name='路径 5600' d='M-.167-7.675l-.541-.541a.328.328,0,0,0-.465,0L-6.125-3.276l-4.952-4.941a.328.328,0,0,0-.465,0l-.541.541a.328.328,0,0,0,0,.465l5.726,5.726a.328.328,0,0,0,.465,0L-.167-7.211A.328.328,0,0,0-.167-7.675Z' transform='translate(12.18 8.313)' fill='%233b3e51'/%3E %3C/svg%3E ");
+}
+
+.finish{
+  overflow: visible;
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  left:685rpx;
+  top:-2px;
+  transform: matrix(1,0,0,1,0,0);
+}
+
+.finish_icon{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E %3Ccircle id='椭圆_12' data-name='椭圆 12' cx='13' cy='13' r='13' fill='%23f5f5f5'/%3E %3Cpath id='路径_5595' data-name='路径 5595' d='M-.281-6.75A8.719,8.719,0,0,0-9-15.469,8.719,8.719,0,0,0-17.719-6.75,8.719,8.719,0,0,0-9,1.969,8.719,8.719,0,0,0-.281-6.75Zm-9.727,4.617a.563.563,0,0,1-.8,0L-14.46-5.79a.563.563,0,0,1,0-.8l.8-.8a.563.563,0,0,1,.8,0l2.463,2.463,5.275-5.275a.562.562,0,0,1,.8,0l.8.8a.563.563,0,0,1,0,.8Z' transform='translate(21.999 20.244)' fill='%236ac27e'/%3E %3C/svg%3E ");
+}
+
+.unfinish_icon{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E %3Ccircle id='椭圆_12' data-name='椭圆 12' cx='13' cy='13' r='13' fill='%23f5f5f5'/%3E %3Cpath id='路径_5596' data-name='路径 5596' d='M-9-15.469A8.719,8.719,0,0,0-17.719-6.75,8.719,8.719,0,0,0-9,1.969,8.719,8.719,0,0,0-.281-6.75,8.719,8.719,0,0,0-9-15.469Zm0,1.688A7.027,7.027,0,0,1-1.969-6.75,7.027,7.027,0,0,1-9,.281,7.027,7.027,0,0,1-16.031-6.75,7.027,7.027,0,0,1-9-13.781ZM-4.071-9.2l-.792-.8a.422.422,0,0,0-.6,0l-4.969,4.929-2.1-2.119a.422.422,0,0,0-.6,0l-.8.792a.422.422,0,0,0,0,.6l3.192,3.217a.422.422,0,0,0,.6,0L-4.073-8.6A.422.422,0,0,0-4.071-9.2Z' transform='translate(21.999 19.777)' fill='%238d8e8f'/%3E %3C/svg%3E ");
+}
 
 /* 菜单相关 */
 
@@ -125,7 +266,9 @@ page{
   stroke: rgba(245,245,245,1);
 }
 .wc {
-  margin-top: 2rpx;
+  position: relative;
+  top:30rpx;
+  margin-top: 10rpx;
   width: 100%;
   height:90rpx;
   text-align: center;
@@ -138,7 +281,7 @@ page{
 
 /* 当屏幕向下滑动，主页的动画样式 */
 .c-state {
-  transform:  translateY(440rpx);
+  transform:  translateY(220px);
 }
 
 @keyframes slidown{
@@ -171,6 +314,7 @@ page{
 
 
 .pull{
+  z-index:3;
   overflow: visible;
   position: fixed;
   justify-content: center;

@@ -8,14 +8,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-      Name:'王小明',
-      Age:'0',
-      Gender:'其他',
+      Name:'',
+      Age:'',
+      Gender:'',
       remind:[
       { Event_ID:"", 
-        Event_Type:"M",
+        Event_Type:"A",
         Event_Time:"2021-06-25 00:00:00",
-        Complete:false,
+        Complete:'N',
         name:"阿司匹林",
         info1:"1片",
         info2:"1天2次",
@@ -38,60 +38,92 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    var that = this;
     var DATE = util.formatDate(new Date());
     this.setData({
       date: DATE,
     });
-    console.log(this.data.date)
     wx.request({
-      //等待填充
-      url: app.globalData.IP_address+'/displaycalender', 
+      url: app.globalData.IP_address+'/userinfo', 
       header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
       data: {
-          u_id:app.globalData.U_ID,
-          begin: this.data.date+"00:00:00",
-          end: this.data.date+"23:59:59"
+          U_ID: app.globalData.U_ID,
+          identity: app.globalData.identity,
        },
        method: 'POST',
        success: function (res) {
-            console.log("发送成功");
-            console.log(res);
-            this.setData({ 
-                remind:res.data.event_list
+            console.log("userinfo发送成功");
+            console.log(res.data.Age);
+            console.log(res.data.Gender);
+            that.setData({ 
+              Name: res.data.U_Name, 
+              Age: res.data.Age
+            });
+            if(res.data.Gender=='M')
+            that.setData({Gender : '男'})
+            else if(res.data.Gender=='F')
+            that.setData({Gender : '女'})
+            else
+            that.setData({Gender : '其他'})
+       },
+       fail:function(res){
+        console.log("发送失败");
+      }
+    })
+
+    wx.request({
+      //等待填充
+      url: app.globalData.IP_address+'/displaycalender', 
+      header: { "ContentType": "application/json;charset=utf-8", },
+      data: {
+          u_id: app.globalData.U_ID,
+          begin: that.data.date+" 00:00:00",
+          end: that.data.date+" 23:59:59"
+       },
+       method: 'POST',
+       success: function (res) {
+            console.log("calender发送成功");
+            console.log(res.data);
+            that.setData({ 
+                remind:res.data
             });
        },
        fail:function(res){
         console.log("发送失败");
       }
     })
-      
-      wx.request({
-        url: app.globalData.IP_address+'/userinfo', 
-        header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
-        data: {
-            U_ID: this.data.U_ID,
-            identity: this.data.identity,
-         },
-         method: 'POST',
-         success: function (res) {
-              console.log("发送成功");
-              console.log(res);
-              this.setData({ 
-                Name: res.data.U_Name, 
-                Age:res.data.Age
-              });
-              if(res.data.Gender='M')
-              this.setData({Gender : '男'})
-              else if(res.data.Gender='F')
-              this.setData({Gender : '女'})
-              else
-              this.setData({Gender : '其他'})
-         },
-         fail:function(res){
-          console.log("发送失败");
-        }
-      })
-      
+
+    for(var i in that.data.remind){
+    　　if(that.data.remind[i].Event_Type!='M'){
+
+          that.setData({ 
+            ['remind['+i+'].Department']:'内科', 
+            ['remind['+i+'].Hospital']:'浙大一院', 
+            ['remind['+i+'].Phone']: '199902030131'
+          });
+
+        wx.request({
+          url: app.globalData.IP_address+'/userinfo', 
+          header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
+          data: {
+              U_ID: that.data.remind[i].info1,
+              identity: 'P',
+          },
+          method: 'POST',
+          success: function (res) {
+                console.log("sub_userinfo发送成功");
+                that.setData({ 
+                  ['remind['+i+'].Department']:res.data.Department, 
+                  ['remind['+i+'].Hospital']:res.data.Hospital, 
+                  ['remind['+i+'].Phone']: res.data.Phone
+                });
+          },
+          fail:function(res){
+            console.log("sub_user发送失败");
+          }
+        })
+    }
+    }
   },
 
 
@@ -157,6 +189,7 @@ Page({
 
 
   mydata:function(e){ //可获取日历点击事件
+    var that=this;
     this.setData({
       date: e.detail.data
     });
@@ -164,24 +197,50 @@ Page({
     wx.request({
       //等待填充
       url: app.globalData.IP_address+'/displaycalender', 
-      header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
+      header: { "ContentType": "application/json;charset=utf-8", },
       data: {
           u_id:app.globalData.U_ID,
-          begin: this.data.date+"00:00:00",
-          end: this.data.date+"23:59:59"
+          begin: that.data.date+" 00:00:00",
+          end: that.data.date+" 23:59:59"
        },
        method: 'POST',
        success: function (res) {
             console.log("发送成功");
-            console.log(res);
-            this.setData({ 
-                remind:res.data.event_list
+            console.log(res.data);
+            that.setData({ 
+                remind:res.data
             });
        },
        fail:function(res){
         console.log("发送失败");
       }
     })
+
+    for(var i in that.data.remind){
+      　　if(that.data.remind[i].Event_Type!='M'){
+  
+          wx.request({
+            url: app.globalData.IP_address+'/userinfo', 
+            header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
+            data: {
+                U_ID: that.data.remind[i].info1,
+                identity: 'P',
+            },
+            method: 'POST',
+            success: function (res) {
+                  console.log("sub_userinfo发送成功");
+                  that.setData({ 
+                    ['remind['+i+'].Department']:res.data.Department, 
+                    ['remind['+i+'].Hospital']:res.data.Hospital, 
+                    ['remind['+i+'].Phone']: res.data.Phone
+                  });
+            },
+            fail:function(res){
+              console.log("sub_user发送失败");
+            }
+          })
+      }
+      }
    },
 
 

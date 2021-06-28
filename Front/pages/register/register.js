@@ -11,7 +11,7 @@ Page({
       number:"",
       password:"",
       verify_password:"",
-      gender:"",
+      gender:"M",
       age:"",
       office:"",
       position:"",
@@ -208,6 +208,7 @@ Page({
           worktime:""
         }
       }
+      console.log(send_data);
     wx.request({
       url:app.globalData.IP_address+'/signup', 
       header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },

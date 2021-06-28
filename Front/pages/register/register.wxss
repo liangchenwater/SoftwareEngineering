@@ -3,6 +3,7 @@
 page{
   background-color: rgba(245,245,245,1);
 }
+
 .mypage{
   font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
   width: 100%;
@@ -57,7 +58,7 @@ page{
   left: 0px;
   top: 250rpx;
   width: 100%;
-  height: 120%;
+  height: 135%;
   overflow: visible;
   display: flex;
   flex-direction: column;
@@ -104,11 +105,19 @@ page{
   overflow: visible;
 }
 
+#hospital{
+  position: relative;
+  width: 100%;
+  height: 171rpx;
+  top: 615rpx;
+  overflow: visible;
+}
+
 #office {
   position: relative;
   width: 100%;
   height: 171rpx;
-  top: 625rpx;
+  top: 720rpx;
   overflow: visible;
 }
 
@@ -149,7 +158,7 @@ page{
   top: 93rpx;
   position: absolute;
   overflow: visible;
-  width: 250px;
+  width: 600rpx;
   white-space: nowrap;
   text-align: left;
   font-family: Bio Sans;
@@ -162,9 +171,9 @@ page{
 #input_text2 {
   left: 440rpx;
   top: 93rpx;
-  position: absolute;
+  position: relative;
   overflow: visible;
-  width: 250px;
+  width: 250rpx;
   white-space: nowrap;
   text-align: left;
   font-family: Bio Sans;
@@ -198,6 +207,7 @@ page{
   left:8%;
   top:10rpx;
 }
+
 .radio {
   position: relative;
   display: flex;
@@ -221,7 +231,6 @@ page{
   justify-content: space-around;
   align-content: center;
   margin-top: 200rpx;
-
 }
 
 .box .register_button{
@@ -236,8 +245,8 @@ page{
   position: absolute;
   width: 90%;
   height: 90rpx;
-  left: 5%;
-  bottom:8%;
+  left: 38rpx;
+  bottom:120rpx;
   overflow: visible;
   cursor: pointer;
 }
@@ -293,6 +302,10 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 
 .cert_ID_rect{
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='375' height='85' viewBox='0 0 375 85'%3E %3Cg id='矩形_153' data-name='矩形 153' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='375' height='85' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='374' height='84' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='医师执业证书编号' transform='translate(30 35)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E医师执业证书编号%3C/tspan%3E%3C/text%3E %3Ctext id='_' data-name='*' transform='translate(145 33)' fill='%23ff2424' font-size='16' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3C/svg%3E ");
+}
+
+.hospital_rect{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='375' height='85' viewBox='0 0 375 85'%3E %3Cg id='矩形_56' data-name='矩形 56' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='375' height='85' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='374' height='84' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='问诊地址' transform='translate(30 34)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E问诊地址%3C/tspan%3E%3C/text%3E %3Ctext id='_' data-name='*' transform='translate(90 31)' fill='%23ff2424' font-size='14' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3C/svg%3E ");
 }
 
 .office_rect{

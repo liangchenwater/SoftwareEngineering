@@ -24,7 +24,7 @@ def Login():
 
     #code,data = DB.Login(phone,password)
     if code == 0:
-        return json.dumps({'valid': code, 'U_ID': data['U_ID']}, indent=2, ensure_ascii=False)
+        return json.dumps({'valid': code, 'U_ID': data['U_ID'],'identity':data['U_Identity']}, indent=2, ensure_ascii=False)
     else:
         return json.dumps({'valid': code, 'U_ID': 'None'}, indent=2, ensure_ascii=False)
 
@@ -76,6 +76,7 @@ def ModInfo():
 
 @app.route('/userinfo',methods=['GET','POST'])
 def GetInfo():
+    #print(request.values.values())
     uid = request.values['U_ID']
     identity = request.values['identity']
 
@@ -86,6 +87,7 @@ def GetInfo():
 
 @app.route('/signup',methods=['POST'])
 def SignUp():
+
     phone = request.values['phone']
     password = request.values['password']
     name = request.values['name']
@@ -249,6 +251,7 @@ def DeleteEvent():
     
 @app.route('/displaycalender',methods=['GET','POST'])
 def DisplayCalender():
+    #print('displaycalender:',request.get_json().values())
     Calen = Calender()
     data = request.get_json()
     u_id = data['u_id']

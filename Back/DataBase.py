@@ -25,7 +25,7 @@ class DataBase():
         self.conn.close()
         
     def Login(self,phone:str,password:str)->Tuple[int,Dict]:
-        sql = 'SELECT U_ID FROM Users WHERE Phone=\'%s\' AND Pass=\'%s\'' % (phone,password)
+        sql = 'SELECT U_ID,U_Identity FROM Users WHERE Phone=\'%s\' AND Pass=\'%s\'' % (phone,password)
         self.cursor.execute(sql)
         row = self.cursor.fetchone()
         if row:

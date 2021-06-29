@@ -310,6 +310,47 @@ class DataBase():
         contacts = self.cursor.fetchone()['Contacts'].split('&')[:-1]
         return [contact.zfill(10) for contact in contacts]
 
+    def FindMRecord(self,
+        MR_ID:str
+    )->List[Dict]:
+        sql = 'SELECT Patient_ID,Doctor_ID,MR_Time,Condition_Descrip,Medical_Advice,Follow_Up_Time FROM M_Records WHERE MR_ID=\''+MR_ID+'\''
+        self.cursor.execute(sql)
+        row = self.cursor.fetchone()
+        doctor_id = row['Doctor_ID']
+        sql = 'SELECT U_Name FROM Users WHERE U_ID=\''+doctor_id+'\''
+        
+        self.cursor.execute(sql)
+        doctor_name = self.cursor.fetchone()
+        row['Doctor_NAME'] = doctor_name
+        
+        Mrec = []
+        sql = 'SELECT Medicine,Frequency,Dose,Notes FROM Prescriptions WHERE MR_ID MR_ID=\''+MR_ID+'\''
+        self.cursor.execute(sql)
+        row_pre = self.cursor.fetchall()
+        Mrec.append(row)
+        Mrec.append(row_pre)
+        if Mrec:
+            return Mrec
+        return []
+
+    def GetMRList(
+        self,
+        patient_id:str='',
+        doctor_id:str=''
+    ):
+        if doctor_id != '':
+            sql = 'SELECT MR_ID FROM M_Records WHERE Patien_ID=\''+patient_id+'\''+'Doctor_ID=\''+doctor_id+'\''
+        else:
+            sql = 'SELECT MR_ID FROM M_Records WHERE Patien_ID=\''+patient_id+'\''
+        self.cursor.execute(sql)
+        row = self.cursor.fetchall()
+        mr_list = []
+        for item in row:
+            mr_id = item['MR_ID']
+            mr_temp = self.FindMecord(mr_id)
+            mr_list.append(mr_list)
+        
+        return mr_list
 
 
 

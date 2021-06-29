@@ -222,6 +222,20 @@ class M_Record:
     def addPres(self,pres:Prescription):
         self.Prescriptions.append(pres)
 
+    def displayMRList(
+        self,
+        patient_id,
+        doctor_id
+    ):
+        DB = DataBase.DataBase()
+        mr_list = DB.GetMRList(patient_id,doctor_id)
+        DB.close()
+        return mr_list
+    
+
+
+
+
 class Appointment:
     def __init__(
         self,

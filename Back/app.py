@@ -267,7 +267,15 @@ def DisplayCalender():
         del event['Note']
     return json.dumps(event_list,indent=2,ensure_ascii=False).encode('latin1').decode('gbk')
 
-    
+@app.route('/displaymrlist',methods=['GET','POST'])
+def DisplayMRList():
+    mr_temp = M_Record()
+    data = request.get_json()
+    patient_id = data['patient_id']
+    doctor_id = data['doctor_id']
+    mr_list = mr_temp.displayMRList(patient_id,doctor_id)
+    return json.dumps(mr_list,indent=2,ensure_ascii=False).encode('latin1').decode('gbk')    
+
 @app.route('/searchdocs',methods=['POST'])
 def SearchDocs():
     data = request.get_json()

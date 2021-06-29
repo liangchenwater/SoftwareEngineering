@@ -1,2 +1,60 @@
 <!--pages/record/record.wxml-->
-<text>pages/record/record.wxml</text>
+<wxs module="MY" src="../../wxs/substring.wxs"></wxs>
+<view>
+  <text class="main_text" space="ensp">病历详情</text>
+  <text class="title_icon myicon"></text>
+  <text class="title_icon myicon"></text>
+  <view class="listMain">
+    <view class="list" >
+      <view class=" name_rect">
+        <text class="input_text">{{Name}}</text>
+        <text class="input_text2">{{Gender}}</text>
+        <text class="input_text3">{{Age}}</text>
+      </view>
+    </view>
+    <view class="list" >
+      <view class="describe_rect">
+        <text class="input_text">{{description}}</text>
+      </view>
+    </view>
+    <view class="list">
+      <view class="advice_rect">
+        <text class="input_text">{{advice}}</text>
+      </view>
+    </view>
+
+    <view class="list inform_text"> 药物 </view>
+    <view wx:for="{{medicine}}" wx:key="index">
+
+      <view>
+        <view class="list"> 
+          <text class="inform_text2"> 药物{{index+1}} </text>
+        </view>
+        <view class="list">
+          <view class="medicine_name_rect">
+            <text class="input_text">{{medicine[index].name}}</text>
+          </view>
+        </view>
+        <view class="list">
+          <view class="frequency_rect">
+            <text class="input_text">{{medicine[index].dose}}</text>
+            <text class="input_text4">{{medicine[index].frequency_d}}天{{medicine[index].frequency_t}}次</text>
+          </view>
+        </view>
+
+        <view class="list">
+          <view class="endtime_rect">
+            <text class="input_text">{{MY.SubDate(medicine[index].endtime)}}</text>
+          </view>
+        </view>
+
+        <view class="list">
+          <view class="note_rect">
+          </view>
+        </view>
+      </view>
+
+    </view>
+
+  </view>
+</view>

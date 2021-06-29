@@ -29,7 +29,7 @@
 
   <view>
     <view class="listMain">
-    <view class="list" wx:for="{{remind}}" wx:key="index">
+    <view class="{{item.show ? 'list2' : 'list'}}" wx:for="{{remind}}" wx:key="index">
       <view class=" {{item.show? 'remind_open':'remind_close'}} {{item.show? 'open_rect':'close_rect'}}">
         <view bindtap='change_clock'>
           <view class="title">{{item.Event_Type=='M'? item.name:''}}{{item.Event_Type=='F'?'复诊':''}}{{item.Event_Type=='A'?'初诊':''}}</view>
@@ -39,7 +39,16 @@
         <view class="finish {{item.Complete=='Y'?'finish_icon':'unfinish_icon'}}" bindtap="finishBtn" data-index="{{index}}"></view>
         <text space="ensp" class="desc {{item.show ? 'show' : 'hide'}}">{{'性别：'+item.Gender+'    年龄：'+item.Age+'\n'+'电话：'+item.Phone}}{{item.Event_Type=='A'? ('\n症状描述：'+item.name):''}}</text>
         <view class="open_close unshow_button" bindtap="listBtn" wx:if="{{!item.show}}" data-index="{{index}}"></view>
-        <view class="open_close show_button" bindtap="listBtn" wx:if="{{item.show}}" data-index="{{index}}"></view>
+        <view class="open_close show_button" bindtap="listBtn" wx:if="{{item.show}}" data-index="{{index}}">
+          <view class="box">
+          <button bindtap="click_record" class="record_button" data-index="{{index}}">
+            <view id="record_button_text">
+              <text>填写病历</text>
+            </view>
+          </button>
+          </view>
+        </view>
+
       </view>
     </view>
     </view>

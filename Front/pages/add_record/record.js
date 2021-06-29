@@ -9,15 +9,15 @@ Page({
   data: {
     patient_id:"",
     doctor_id:"",
-    Name:"小明",
-    Gender:"男",
-    Age:"20",
+    Name:"",
+    Gender:"",
+    Age:"",
     description:"",
     advice:"",
 
     medicine0:"阿司匹林",
     medicine1:"感冒药",
-    pres_num:'2',
+    pres_num:'0',
     medicine:[
       {
         name:"",
@@ -42,9 +42,15 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (option) {
+    this.setData({
+      patient_id:option.patient_id,
+      Name:option.Name,
+      Gender:option.Gender,
+      Age:option.Age
+    });
     var that=this;
-
+    console.log(this.data.Name)
     wx.request({
       url: app.globalData.IP_address+'/userinfo', 
       header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
@@ -81,7 +87,7 @@ Page({
         ['medicine['+i+'].frequency_t']:this.data['frequency_t'+i],
         ['medicine['+i+'].endtime']:this.data['endtime'+i],
         ['medicine['+i+'].dose']:this.data['dose'+i],
-        ['medicine['+i+'].notes']:this.data['notes'+i],
+        ['medicine['+i+'].notes']:this.data['notes'+i]
       })
     }
     console.log(this.data.medicine)
@@ -135,5 +141,104 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  add_medicine:function(){
+    var that = this;
+    var old = parseInt(this.data.pres_num)
+    that.setData({
+      pres_num:old+1
+    })
+    console.log(this.data.pres_num)
+  },
+
+  minus_medicine:function(){
+    var that = this;
+    var old = parseInt(this.data.pres_num)
+    if(old>0){
+    that.setData({
+      pres_num:old-1
+    })
   }
+    console.log(this.data.pres_num)
+  },
+
+  set_describe:function(e){
+    var that = this
+    that.setData({
+      description:e.detail.value
+    })
+  },
+
+  set_advice:function(e){
+    var that = this
+    that.setData({
+      advice:e.detail.value
+    })
+  },
+
+  set_medicine_name:function(e){
+    var that = this
+    let index = e.currentTarget.dataset.index
+    that.setData({
+      ['medicine['+index+'].name']:e.detail.value
+    })
+  },
+
+  set_dose:function(e){
+    var that = this
+    let index = e.currentTarget.dataset.index
+    that.setData({
+      ['medicine['+index+'].dose']:e.detail.value
+    })
+  },
+
+  set_frequency_d:function(e){
+    var that = this
+    let index = e.currentTarget.dataset.index
+    that.setData({
+      ['medicine['+index+'].frequency_d']:e.detail.value
+    })
+  },
+
+  set_frequency_t:function(e){
+    var that = this
+    let index = e.currentTarget.dataset.index
+    that.setData({
+      ['medicine['+index+'].frequency_t']:e.detail.value
+    })
+  },
+
+  set_note:function(e){
+    var that = this
+    let index = e.currentTarget.dataset.index
+    that.setData({
+      ['medicine['+index+'].note']:e.detail.value
+    })
+  },
+
+  DateChange:function(e){
+    var that = this
+    let index = e.currentTarget.dataset.index
+    console.log(index)
+    that.setData({
+      ['medicine['+index+'].endtime']:e.detail.value+'00:00:00'
+    })
+  },
+
+  click_save:function(){
+    wx.request({
+      url:app.globalData.IP_address+'/addrecord', 
+      header: { "ContentType": "application/json;charset=utf-8", },
+      data: this.data,
+      method: 'post',
+      success: function (res) {
+            console.log("发送成功");
+      },
+      fail: function(res){
+            console.log("-------fail------")
+          }
+        })
+  }
+
 })

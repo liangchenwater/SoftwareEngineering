@@ -1,0 +1,81 @@
+<!--pages/record/record.wxml-->
+<wxs module="MY" src="../../wxs/substring.wxs"></wxs>
+  <text class="main_text" space="ensp">填写病历</text>
+  <text class="title_icon myicon"></text>
+
+  <view class="listMain">
+
+    <view class="list" >
+      <view class=" name_rect">
+        <text class="input_text">{{Name}}</text>
+        <text class="input_text2">{{Gender}}</text>
+        <text class="input_text3">{{Age}}</text>
+      </view>
+    </view>
+
+    <view class="list" >
+      <view class="describe_rect">
+        <input class="input_text" bindinput="set_describe"></input>
+      </view>
+    </view>
+
+    <view class="list">
+      <view class="advice_rect">
+        <input class="input_text" bindinput="set_advice"></input>
+      </view>
+    </view>
+
+    <view class="list"> 
+      <view  class="inform_text">药物 </view>
+      <view class="add add_button" bindtap="add_medicine"></view>
+      <view class="minus minus_button" bindtap="minus_medicine"></view>
+    </view>
+
+    <view wx:for="{{pres_num-0}}" wx:key="index">
+      <view>
+        <view class="list"> 
+          <text class="inform_text2"> 药物{{index+1}} </text>
+        </view>
+
+        <view class="list">
+          <view class="medicine_name_rect">
+            <input data-index="{{index}}"  class="input_text" bindinput="set_medicine_name"></input>
+          </view>
+        </view>
+
+        <view class="list">
+          <view class="frequency_rect">
+            <input data-index="{{index}}"  class="input_text" bindinput="set_dose"></input>
+            <input data-index="{{index}}"  class="input_text4" bindinput="set_frequency_d"></input><text class="text4">天</text><input data-index="{{index}}"  class="input_text5" bindinput="set_frequency_t"></input><text class="text5">次</text>
+          </view>
+        </view>
+
+        <view class="list">
+          <view class="endtime_rect">
+            <picker class="input_text" mode="date" value="{{medicine[index].endtime}}"  bindchange="DateChange" data-index="{{index}}">
+            <view class="picker">
+               {{MY.SubDate(medicine[index].endtime)}}
+            </view>
+          </picker>
+          </view>
+        </view>
+
+        <view class="list">
+          <view class="note_rect">
+            <input data-index="{{index}}" class="input_text" bindinput="set_note"></input>
+          </view>
+        </view>
+
+      </view>
+    </view>
+
+    <view class="list"> 
+      <view class="box">
+      <button bindtap="click_save" class="save_button" plain>
+        <view id="save_button_text">
+          <text>提　　交</text>
+        </view>
+			</button>
+      </view>
+    </view>
+  </view>

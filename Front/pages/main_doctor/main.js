@@ -20,6 +20,15 @@ Page({
         info1:"1片",
         info2:"1天2次",
         info3:"",
+        show:false },
+        { Event_ID:"", 
+        Event_Type:"F",
+        Event_Time:"2021-06-25 00:00:00",
+        Complete:'N',
+        name:"阿司匹林",
+        info1:"1片",
+        info2:"1天2次",
+        info3:"",
         show:false }
       ],
       date:'',
@@ -355,5 +364,15 @@ Page({
         wx.navigateTo({
           url: '/pages/login/login'
         })
-      }
+      },
+
+      click_record:function (e) {
+        var that = this
+        let index = e.currentTarget.dataset.index
+        console.log(index)
+        console.log(this.data.remind[index].Name)
+        wx.navigateTo({
+          url: '/pages/add_record/record?patient_id='+this.data.remind[index].info2+'&Name='+this.data.remind[index].Name+'&Gender='+this.data.remind[index].Gender+'&Age='+this.data.remind[index].Age
+        })
+      },
 })

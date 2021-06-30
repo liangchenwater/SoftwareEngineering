@@ -7,8 +7,9 @@
     "pages/main_patient/main",
     "pages/main_doctor/main",
     "components/calendarWeek/index",
-    "pages/record_list/record_list",
-    "pages/record/record"
+    "pages/patient_record_list/record_list",
+    "pages/record/record",
+    "pages/add_record/record"
   ],
   "window": {
     "backgroundTextStyle": "light",

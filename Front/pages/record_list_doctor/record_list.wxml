@@ -1,0 +1,14 @@
+<!--pages/record_list/record_list.wxml-->
+<view>
+  <text class="main_text" space="ensp"> 病历列表</text>
+  <text class="title_icon myicon"></text>
+  <view class="listMain">
+  <view class="list" wx:for="{{record}}" wx:key="index">
+    <view class=" record_rect rect">
+      <view bindtap='to_one_record' data-index="{{index}}">
+        <view class="title">{{item.time}}</view>
+      </view>
+    </view>
+  </view>
+  </view>
+</view>

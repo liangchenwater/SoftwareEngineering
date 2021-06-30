@@ -1,0 +1,88 @@
+/* pages/record_list/record_list.wxss */
+page{
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: rgba(245,245,245,1);
+}
+
+.main_text{
+  opacity: 1;
+  position: absolute;
+  top:52rpx;
+  width: 400rpx;
+  left:130rpx;
+  overflow: visible;
+  font-family: Symbol;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  color: rgba(59,62,81,1);
+}
+
+.listMain {
+  z-index:1;
+  position:absolute;
+  width:100%;
+  top:140rpx;
+}
+
+.listMain .list{
+  padding: 0rpx 0rpx 10rpx 0rpx;
+  position: relative;
+}
+
+.listMain .list .title{
+  font-size: 20px;
+  color:rgba(59, 62, 81, 1);
+  position: absolute;
+  top:55rpx;
+  left:65rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font:Hind;
+  overflow: hidden;
+}
+
+.listMain .list .other_info{
+  font-size: 14px;
+  color:rgba(59, 62, 81, 1);
+  position: absolute;
+  top:90rpx;
+  left:65rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font:Hind;
+  opacity:0.7;
+  overflow: hidden;
+}
+
+.record_rect{
+  overflow: visible;
+  position: relative;
+  width: 375px;
+  height: 83px;
+  transform: matrix(1,0,0,1,0,0);
+}
+
+.rect{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='375' height='83' viewBox='0 0 375 83'%3E %3Cg id='矩形_118' data-name='矩形 118' fill='%23fff' stroke='%23e8e8e8' stroke-width='1'%3E %3Crect width='375' height='83' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='374' height='82' rx='29.5' fill='none'/%3E %3C/g%3E %3C/svg%3E ");
+}
+
+.title_icon{
+  overflow: visible;
+  position: absolute;
+  top:60rpx;
+  left:50rpx;
+  width: 34.3px;
+  height: 20.6px;
+  transform: matrix(1,0,0,1,0,0);
+}
+
+.myicon{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34.313' height='20.595' viewBox='0 0 34.313 20.595'%3E %3Cpath id='路径_5626' data-name='路径 5626' d='M.858-1.286a.86.86,0,0,0,.858-.858A.86.86,0,0,0,.858-3,.86.86,0,0,0,0-2.144.857.857,0,0,0,.858-1.286ZM33.878-11.568l-6.084.011L25.05-14.232a2.551,2.551,0,0,0-1.817-.756H17.818a2.548,2.548,0,0,0-1.517.536A2.581,2.581,0,0,0,14.731-15H11.005a2.573,2.573,0,0,0-1.817.756l-2.68,2.68H.429A.43.43,0,0,0,0-11.139v.858a.43.43,0,0,0,.429.429h3V.434h-3A.43.43,0,0,0,0,.863v.858a.43.43,0,0,0,.429.429h3A1.709,1.709,0,0,0,5.141.45H6.92l4.369,4.181A4.3,4.3,0,0,0,16.7,4.621l.386.332A2.86,2.86,0,0,0,21.1,4.54L22.278,3.1a2.574,2.574,0,0,0,3.216-.643L26,1.828A2.57,2.57,0,0,0,26.567.45h2.605a1.712,1.712,0,0,0,1.71,1.7h3a.43.43,0,0,0,.429-.429V.863a.43.43,0,0,0-.429-.429h-3V-9.842l3-.011a.43.43,0,0,0,.429-.429v-.858A.435.435,0,0,0,33.878-11.568ZM24.669.74l-.509.627a.856.856,0,0,1-1.206.123L22,.718,19.775,3.452a1.134,1.134,0,0,1-1.576.182l-1.64-1.4L16,2.922a2.574,2.574,0,0,1-3.57.424L7.612-1.27H5.146V-9.858H7.215l3.179-3.179A.861.861,0,0,1,11-13.289h3.726c.048.118.016.037.059.155l-3.163,2.905A3.673,3.673,0,0,0,11.4-5.033a3.705,3.705,0,0,0,5.194.225l1.222-1.12L24.546-.466A.864.864,0,0,1,24.669.74Zm4.492-2.01H26.095a2.719,2.719,0,0,0-.472-.525L19.089-7.1l1.522-1.4a.857.857,0,0,0,.054-1.212.862.862,0,0,0-1.211-.054L15.427-6.079A2.025,2.025,0,0,1,12.656-6.2a1.964,1.964,0,0,1,.118-2.771l4.455-4.085a.862.862,0,0,1,.579-.225h5.414a.856.856,0,0,1,.611.257l3.254,3.168h2.075ZM33.449-3a.86.86,0,0,0-.858.858.86.86,0,0,0,.858.858.86.86,0,0,0,.858-.858A.857.857,0,0,0,33.449-3Z' transform='translate(0 15.004)' fill='%236ac27e'/%3E %3C/svg%3E ");
+}

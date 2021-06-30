@@ -13,14 +13,14 @@ page{
 .main_text{
   opacity: 1;
   position: absolute;
-  top:50rpx;
+  top:52rpx;
   width: 400rpx;
-  left:120rpx;
+  left:130rpx;
   overflow: visible;
   font-family: Symbol;
   font-style: normal;
-  font-weight: normal;
-  font-size: 22px;
+  font-weight: bold;
+  font-size: 20px;
   color: rgba(59,62,81,1);
 }
 
@@ -40,7 +40,7 @@ page{
   font-size: 20px;
   color:rgba(59, 62, 81, 1);
   position: absolute;
-  top:36rpx;
+  top:55rpx;
   left:65rpx;
   white-space: nowrap;
   text-overflow: ellipsis;

@@ -42,9 +42,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (option) {
+    this.setData(option.data);
     var that=this;
-
     wx.request({
       url: app.globalData.IP_address+'/userinfo', 
       header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
@@ -74,7 +74,6 @@ Page({
     })
 
     for(var i=0;i<that.data.pres_num;i++){
-      var name=this.data.medicine0
       that.setData({
         ['medicine['+i+'].name']:this.data['medicine'+i],
         ['medicine['+i+'].frequency_d']:this.data['frequency_d'+i],

@@ -25,8 +25,8 @@
           }
         },
         {
-          "name": "pages/patient_record_list/record_list",
-          "pathName": "pages/patient_record_list/record_list",
+          "name": "pages/record_list_patient/record_list",
+          "pathName": "pages/record_list_patient/record_list",
           "query": "",
           "scene": null
         },
@@ -51,6 +51,12 @@
         {
           "name": "pages/add_record/record",
           "pathName": "pages/add_record/record",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/record_list_doctor/record_list",
+          "pathName": "pages/record_list_doctor/record_list",
           "query": "",
           "scene": null
         }

@@ -353,11 +353,7 @@ Page({
           url: ''
         })
       },
-      tap_record: function(e){
-        wx.navigateTo({
-          url: ''
-        })
-      },
+
       tap_logout:function(e){
         app.globalData.U_ID="";
         app.globalData.identity="";

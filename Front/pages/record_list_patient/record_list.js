@@ -1,4 +1,5 @@
 // pages/record_list/record_list.js
+const app = getApp()
 Page({
 
   /**
@@ -15,7 +16,6 @@ Page({
         doctor_name:"王刚"
       }
       ],
-
   },
 
   /**
@@ -25,10 +25,11 @@ Page({
     var that = this;
     wx.request({
       //等待填充
-      url: app.globalData.IP_address+'/    ', 
+      url: app.globalData.IP_address+'/displaymrlist', 
       header: { "ContentType": "application/json;charset=utf-8", },
       data: {
           patient_id:app.globalData.U_ID,
+          doctor_id:'',
        },
        method: 'POST',
        success: function (res) {
@@ -97,19 +98,8 @@ Page({
     var that = this
     let index = e.currentTarget.dataset.index
     console.log(index)
-    let currect = "remind["+index+"].ID"
-
-    if (that.data.remind[index].Complete === true) {
-      that.setData({
-        [currect]: false
-      })
-    } else{
-      that.setData({
-        [currect]: true
-      })
-    }
     wx.navigateTo({
-      url: '/pages/record/record?data='+remind["+index+"]
+      url: '/pages/record/record?data='+this.data.record[index]
     })
   }
 })

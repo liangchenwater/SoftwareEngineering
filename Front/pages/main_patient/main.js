@@ -346,11 +346,13 @@ Page({
           url: ''
         })
       },
+      
       tap_record: function(e){
         wx.navigateTo({
-          url: ''
+          url: '/pages/record_list_patient/record'
         })
       },
+
       tap_logout:function(e){
         app.globalData.U_ID="";
         app.globalData.identity="";

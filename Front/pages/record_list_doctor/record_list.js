@@ -1,10 +1,12 @@
 // pages/record_list/record_list.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    patient_id:"",
     record:[
       {
         time:"2021-10-21 10:00",
@@ -15,13 +17,37 @@ Page({
         doctor_name:"王刚"
       }
       ],
-
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (option) {
+    var that = this;
+    that.setData({
+      patient_id: option.data.patient_id
+    })
+
+    wx.request({
+      //等待填充
+      url: app.globalData.IP_address+'/displaymrlist', 
+      header: { "ContentType": "application/json;charset=utf-8", },
+      data: {
+          patient_id:this.data.patient_id,
+          doctor_id:app.globalData.U_ID,
+       },
+       method: 'POST',
+       success: function (res) {
+            console.log("发送成功");
+            console.log(res.data);
+            that.setData({ 
+                record:res.data
+            });
+       },
+       fail:function(res){
+        console.log("发送失败");
+      }
+    })
 
   },
 
@@ -77,19 +103,8 @@ Page({
     var that = this
     let index = e.currentTarget.dataset.index
     console.log(index)
-    let currect = "remind["+index+"].ID"
-
-    if (that.data.remind[index].Complete === true) {
-      that.setData({
-        [currect]: false
-      })
-    } else{
-      that.setData({
-        [currect]: true
-      })
-    }
     wx.navigateTo({
-      url: '/pages/record/record?data='+remind["+index+"]
+      url: '/pages/record/record?data='+this.data.record[index]
     })
   }
 })

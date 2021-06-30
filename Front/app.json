@@ -7,7 +7,8 @@
     "pages/main_patient/main",
     "pages/main_doctor/main",
     "components/calendarWeek/index",
-    "pages/patient_record_list/record_list",
+    "pages/record_list_patient/record_list",
+    "pages/record_list_doctor/record_list",
     "pages/record/record",
     "pages/add_record/record"
   ],

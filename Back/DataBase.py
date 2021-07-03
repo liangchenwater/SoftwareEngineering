@@ -320,17 +320,18 @@ class DataBase():
         sql = 'SELECT U_Name FROM Users WHERE U_ID=\''+doctor_id+'\''
         
         self.cursor.execute(sql)
-        doctor_name = self.cursor.fetchone()
+        doctor_name = self.cursor.fetchone()['U_Name']
         row['Doctor_NAME'] = doctor_name
         
-        Mrec = []
+        #Mrec = {}
         sql = 'SELECT Medicine,Frequency_t,Frequency_d,Dose,Notes FROM Prescriptions WHERE MR_ID=\''+MR_ID+'\''
         self.cursor.execute(sql)
         row_pre = self.cursor.fetchall()
-        Mrec.append(row)
-        Mrec.append(row_pre)
-        if Mrec:
-            return Mrec
+        #Mrec.append(row)
+        #Mrec.append(row_pre)
+        row['pres_list'] = row_pre
+        if row:
+            return row
         return []
 
     def GetMRList(

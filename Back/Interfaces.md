@@ -21,7 +21,7 @@
 | /addevent        | POST     | u_id:str<br/>event_type:'F','M','A'<br/>event_time:str<br/>notice:'Y' or 'N'<br/>note:str | event_id:str<br/>                                            | Y                                   |
 | /deleteevent     | POST     | u_id:str<br/>event_id:str                                    | code:-1 or other                                             | Y                                   |
 | /displaycalender | GET/POST | u_id:str<br/>begin:str<br/>end:str<br/>                      | 返回一个event列表，每个event包含Event_ID<br />Event_Type<br />Event_Time<br />Complete<br />name<br />info1<br />info2<br />info3 | Y                                   |
-| /displaymrlist   | GET/POST | patient_id:str<br/>doctor_id:str（可以为空）<br/>            | 返回一个MR的列表，每个MR包括Patient_ID<br/>Doctor_ID<br/>MR_Time:datetime<br/>Condition_Descrip:str<br/>Medical_Advice:str<br/>Follow_Up_Time:datetime<br/>Prescription的List<br/>每一个Prescriptions<br/>Medicine:str<br/>Frequency:str<br/>Dose:str<br/>Notes:str<br/> | 未测试                              |
+| /displaymrlist   | GET/POST | patient_id:str<br/>doctor_id:str（可以为空）<br/>            | 返回一个MR的列表，每个MR包括Patient_ID<br/>Doctor_ID<br/>MR_Time:datetime<br/>Condition_Descrip:str<br/>Medical_Advice:str<br/>Follow_Up_Time:datetime<br/>Prescription的List<br/>每一个Prescriptions<br/>Medicine:str<br/>Frequency_d:int<br/>Frequency_t:int<br />Dose:str<br/>Notes:str<br/> | 未测试                              |
 
 ## 就诊模块
 

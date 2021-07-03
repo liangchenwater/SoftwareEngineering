@@ -312,8 +312,8 @@ class DataBase():
 
     def FindMRecord(self,
         MR_ID:str
-    )->List[Dict]:
-        sql = 'SELECT Patient_ID,Doctor_ID,MR_Time,Condition_Descrip,Medical_Advice,Follow_Up_Time FROM M_Records WHERE MR_ID=\''+MR_ID+'\''
+    )->List:
+        sql = 'SELECT Patient_ID,Doctor_ID,CONVERT(varchar,MR_Time,20) AS MR_Time,Condition_Descrip,Medical_Advice,CONVERT(varchar,Follow_Up_Time,20) AS Follow_Up_Time FROM M_Records WHERE MR_ID=\''+MR_ID+'\''
         self.cursor.execute(sql)
         row = self.cursor.fetchone()
         doctor_id = row['Doctor_ID']
@@ -324,7 +324,7 @@ class DataBase():
         row['Doctor_NAME'] = doctor_name
         
         Mrec = []
-        sql = 'SELECT Medicine,Frequency,Dose,Notes FROM Prescriptions WHERE MR_ID MR_ID=\''+MR_ID+'\''
+        sql = 'SELECT Medicine,Frequency_t,Frequency_d,Dose,Notes FROM Prescriptions WHERE MR_ID=\''+MR_ID+'\''
         self.cursor.execute(sql)
         row_pre = self.cursor.fetchall()
         Mrec.append(row)
@@ -339,16 +339,16 @@ class DataBase():
         doctor_id:str=''
     ):
         if doctor_id != '':
-            sql = 'SELECT MR_ID FROM M_Records WHERE Patien_ID=\''+patient_id+'\''+'Doctor_ID=\''+doctor_id+'\''
+            sql = 'SELECT MR_ID FROM M_Records WHERE Patient_ID=\''+patient_id+'\''+'Doctor_ID=\''+doctor_id+'\''
         else:
-            sql = 'SELECT MR_ID FROM M_Records WHERE Patien_ID=\''+patient_id+'\''
+            sql = 'SELECT MR_ID FROM M_Records WHERE Patient_ID=\''+patient_id+'\''
         self.cursor.execute(sql)
         row = self.cursor.fetchall()
         mr_list = []
         for item in row:
             mr_id = item['MR_ID']
-            mr_temp = self.FindMecord(mr_id)
-            mr_list.append(mr_list)
+            mr_temp = self.FindMRecord(mr_id)
+            mr_list.append(mr_temp)
         
         return mr_list
 

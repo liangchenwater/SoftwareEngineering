@@ -269,11 +269,12 @@ def DisplayCalender():
 
 @app.route('/displaymrlist',methods=['GET','POST'])
 def DisplayMRList():
-    mr_temp = M_Record()
+    
     data = request.get_json()
     patient_id = data['patient_id']
     doctor_id = data['doctor_id']
-    mr_list = mr_temp.displayMRList(patient_id,doctor_id)
+    user = Users(msg=patient_id,msgid=True)
+    mr_list = user.displayMRList(doctor_id)
     return json.dumps(mr_list,indent=2,ensure_ascii=False).encode('latin1').decode('gbk')    
 
 @app.route('/searchdocs',methods=['POST'])

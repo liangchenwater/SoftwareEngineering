@@ -105,6 +105,14 @@ class Users:
         contacts = DB.GetContacts(self.U_ID)
         DB.close()
         return contacts
+    def displayMRList(
+        self,
+        doctor_id=''
+    ):
+        DB = DataBase.DataBase()
+        mr_list = DB.GetMRList(self.U_ID,doctor_id)
+        DB.close()
+        return mr_list
 
 class Prescription:
     def __init__(
@@ -222,15 +230,7 @@ class M_Record:
     def addPres(self,pres:Prescription):
         self.Prescriptions.append(pres)
 
-    def displayMRList(
-        self,
-        patient_id,
-        doctor_id
-    ):
-        DB = DataBase.DataBase()
-        mr_list = DB.GetMRList(patient_id,doctor_id)
-        DB.close()
-        return mr_list
+
     
 
 

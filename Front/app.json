@@ -10,7 +10,9 @@
     "pages/record_list_patient/record_list",
     "pages/record_list_doctor/record_list",
     "pages/record/record",
-    "pages/add_record/record"
+    "pages/add_record/record",
+    "pages/changeinfo_doctor/userinfo",
+    "pages/changeinfo_patient/userinfo"
   ],
   "window": {
     "backgroundTextStyle": "light",

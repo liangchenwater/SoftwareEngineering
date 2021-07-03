@@ -12,28 +12,17 @@ Page({
     Name:"小明",
     Gender:"男",
     Age:"20",
-    description:"",
-    advice:"",
-
-    medicine0:"阿司匹林",
-    medicine1:"感冒药",
+    Condition_Descrip:"",
+    Medicine_Advice:"",
     pres_num:'2',
-    medicine:[
+    pres_list:[
       {
-        name:"",
-        frequency_d:"1",
-        frequency_t:"3",
-        endtime:"2021-08-10 00:00:00",
-        dose:"1颗",
-        notes:""
-      },
-      {
-        name:"",
-        frequency_d:"",
-        frequency_t:"",
-        endtime:"",
-        dose:"",
-        notes:""
+        Medicine:"hello",
+        Frequency_d:"1",
+        Frequency_t:"3",
+        Endtime:"2021-08-10 00:00:00",
+        Dose:"1颗",
+        Notes:""
       }
     ]
 
@@ -73,17 +62,7 @@ Page({
       }
     })
 
-    for(var i=0;i<that.data.pres_num;i++){
-      that.setData({
-        ['medicine['+i+'].name']:this.data['medicine'+i],
-        ['medicine['+i+'].frequency_d']:this.data['frequency_d'+i],
-        ['medicine['+i+'].frequency_t']:this.data['frequency_t'+i],
-        ['medicine['+i+'].endtime']:this.data['endtime'+i],
-        ['medicine['+i+'].dose']:this.data['dose'+i],
-        ['medicine['+i+'].notes']:this.data['notes'+i],
-      })
-    }
-    console.log(this.data.medicine)
+    console.log(this.data.pres_list)
 
   },
 

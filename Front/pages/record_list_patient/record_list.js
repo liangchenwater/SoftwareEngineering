@@ -8,12 +8,12 @@ Page({
   data: {
     record:[
       {
-        time:"2021-10-21 10:00",
-        doctor_name:"王刚"
+        MR_Time:"2021-10-21 10:00",
+        doctor_NAME:"王刚"
       },
       {
-        time:"2021-10-23 09:00",
-        doctor_name:"王刚"
+        MR_Time:"2021-10-23 09:00",
+        doctor_NAME:"王刚"
       }
       ],
   },

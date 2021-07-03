@@ -1,0 +1,363 @@
+/* pages/login.wxss */
+
+page{
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: rgba(245,245,245,1);
+}
+
+.mypage{
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: rgba(245,245,245,1);
+}
+
+.main_text{
+  opacity: 1;
+  position: absolute;
+  top:200rpx;
+  width: 400rpx;
+  left:30rpx;
+  overflow: visible;
+  font-family: Symbol;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  color: rgba(59,62,81,1);
+}
+
+
+.fill{
+  position: absolute;
+  left: 0px;
+  top: 250rpx;
+  width: 100%;
+  height: 135%;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.input_text {
+  left: 30px;
+  top: 93rpx;
+  position: absolute;
+  overflow: visible;
+  width: 600rpx;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Bio Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: rgba(47,54,61,1);
+}
+.input_text0 {
+  left: 30px;
+  top: 93rpx;
+  position: absolute;
+  overflow: visible;
+  width: 300rpx;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Bio Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: rgba(47,54,61,1);
+}
+
+.input_text1 {
+  left: 25px;
+  top: 93rpx;
+  position: absolute;
+  overflow: visible;
+  width: 200rpx;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Bio Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: rgba(47,54,61,1);
+}
+
+.input_text2 {
+  left: 335rpx;
+  top: 93rpx;
+  position: relative;
+  overflow: visible;
+  width: 250rpx;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Bio Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: rgba(47,54,61,1);
+}
+
+.input_text3 {
+  left: 548rpx;
+  top: 47rpx;
+  position: relative;
+  overflow: visible;
+  width: 150rpx;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Bio Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: rgba(47,54,61,1);
+}
+
+.input_text4 {
+  left: 440rpx;
+  top: 93rpx;
+  position: relative;
+  overflow: visible;
+  width: 100rpx;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Bio Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: rgba(47,54,61,1);
+}
+
+.login_text{
+  left: 0px;
+  bottom: 30rpx;
+  position: absolute;
+  display:flex;
+  justify-content:center;
+  overflow: visible;
+  width: 750rpx;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-style: normal;
+  font-weight: 250;
+  font-size: 15px;
+  color: rgba(47,54,61,1);
+}
+
+
+.box{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: center;
+  margin-top: 200rpx;
+}
+
+.box .register_button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(106,194,126,1);
+  border:none;
+  shape-rendering: auto;
+  flex-direction: column;
+  border-radius: 32rpx;
+  position: absolute;
+  width: 90%;
+  height: 90rpx;
+  left: 38rpx;
+  bottom:120rpx;
+  overflow: visible;
+  cursor: pointer;
+}
+
+#register_button_text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  line-height: 75rpx;
+  top:-2%;
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: rgba(255,255,255,1);
+}
+
+.listMain {
+  z-index:1;
+  position:absolute;
+  width:100%;
+	top:270rpx;
+	left:0;
+}
+
+.listMain .list{
+  position:relative;
+  padding: 0rpx 0rpx 15rpx 0rpx;
+}
+
+.rect_set{
+  overflow: visible;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  height: 85px;
+  transform: matrix(1,0,0,1,0,0);
+}
+
+.rect_set2{
+  overflow: visible;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  height: 133.105px;
+  transform: matrix(1,0,0,1,0,0);
+}
+
+.phone_rect{
+	width: 100%;
+  height: 85px;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='375' height='85' viewBox='0 0 375 85'%3E %3Cg id='矩形_56' data-name='矩形 56' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='375' height='85' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='374' height='84' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='手机号码' transform='translate(30 34)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E手机号码%3C/tspan%3E%3C/text%3E %3Ctext id='_' data-name='' transform='translate(90 31)' fill='%23ff2424' font-size='0' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3C/svg%3E ");
+}
+
+.name_rect{
+	width: 100%;
+  height: 85px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='375' height='85' viewBox='0 0 375 85'%3E %3Cg id='矩形_56' data-name='矩形 56' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='375' height='85' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='374' height='84' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='姓_名' data-name='姓 名' transform='translate(30 34)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E姓%3C/tspan%3E%3Ctspan y='0' xml:space='preserve' font-family='AdobeClean-Regular, Adobe Clean'%3E %3C/tspan%3E%3Ctspan y='0'%3E名%3C/tspan%3E%3C/text%3E %3Ctext id='_' data-name='*' transform='translate(69 31)' fill='%23ff2424' font-size='14' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3C/svg%3E ");
+}
+
+
+
+.hospital_rect{
+	width: 100%;
+  height: 85px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='375' height='85' viewBox='0 0 375 85'%3E %3Cg id='矩形_56' data-name='矩形 56' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='375' height='85' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='374' height='84' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='问诊地址' transform='translate(30 34)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E问诊地址%3C/tspan%3E%3C/text%3E %3Ctext id='_' data-name='*' transform='translate(90 31)' fill='%23ff2424' font-size='0' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3C/svg%3E ");
+}
+
+.office_rect{
+	width: 100%;
+  height: 85px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='376' height='85' viewBox='0 0 376 85'%3E %3Cg id='矩形_151' data-name='矩形 151' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='188' height='85' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='187' height='84' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='科_室' data-name='科 室' transform='translate(30 34)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E科%3C/tspan%3E%3Ctspan y='0' xml:space='preserve' font-family='AdobeClean-Regular, Adobe Clean'%3E %3C/tspan%3E%3Ctspan y='0'%3E室%3C/tspan%3E%3C/text%3E %3Ctext id='_' data-name='*' transform='translate(69 31)' fill='%23ff2424' font-size='0' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3Cg id='矩形_152' data-name='矩形 152' transform='translate(188)' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='188' height='85' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='187' height='84' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='职_称' data-name='职 称' transform='translate(218 34)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E职%3C/tspan%3E%3Ctspan y='0' xml:space='preserve' font-family='AdobeClean-Regular, Adobe Clean'%3E %3C/tspan%3E%3Ctspan y='0'%3E称%3C/tspan%3E%3C/text%3E %3Ctext id='_2' data-name='*' transform='translate(257 29)' fill='%23ff2424' font-size='0' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3C/svg%3E ");
+}
+
+
+
+.name_rect{
+  width: 100%;
+  height: 90px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='375' height='90' viewBox='0 0 375 90'%3E %3Cg id='full_name' data-name='full name'%3E %3Cg id='矩形_142' data-name='矩形 142' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='146' height='90' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='145' height='89' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='姓名' transform='translate(26 31)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E姓名%3C/tspan%3E%3C/text%3E %3C/g%3E %3Cg id='full_name-2' data-name='full name' transform='translate(146.288)'%3E %3Cg id='矩形_142-2' data-name='矩形 142' transform='translate(-0.287)' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='109' height='90' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='108' height='89' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='性别' transform='translate(20.713 31)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E性别%3C/tspan%3E%3C/text%3E %3C/g%3E %3Cg id='full_name-3' data-name='full name' transform='translate(254.501)'%3E %3Cg id='矩形_142-3' data-name='矩形 142' transform='translate(0.499)' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='120' height='90' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='119' height='89' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='年龄' transform='translate(18.499 31)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E年龄%3C/tspan%3E%3C/text%3E %3C/g%3E %3C/svg%3E ");
+}
+
+.intro_rect{
+  width: 100%;
+  height: 169px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='375' height='169' viewBox='0 0 375 169'%3E %3Cg id='矩形_56' data-name='矩形 56' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='375' height='169' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='374' height='168' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='个人简介' transform='translate(26 38)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E个人简介%3C/tspan%3E%3C/text%3E %3C/svg%3E ");
+}
+
+
+/* 菜单相关 */
+
+/* 菜单内容的 css 样式 */
+.temp{
+  /* 默认为不显示 */
+  display:none;
+  /* 下拉框的宽度， */
+  width: 100%;
+  height: 440rpx;
+  overflow-y: scroll;
+  line-height:100rpx;
+  justify-content: center;
+  align-items: center;
+  background:rgba(245,245,245,1);
+  stroke: rgba(245,245,245,1);
+}
+.wc {
+  margin-top: 2rpx;
+  width: 100%;
+  height:90rpx;
+  text-align: center;
+  font-family: Symbol;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  color: rgba(59,62,81,1);
+}
+
+/* 当屏幕向下滑动，主页的动画样式 */
+.c-state {
+  transform:  translateY(220px);
+}
+
+@keyframes slidown{
+  from{
+      transform:  translateY(-100%);
+  }
+  to{
+      transform:  translateY(0%);
+  }
+}
+.slidown{
+  display: block;
+  animation: slidown .2s ease-in both;
+}
+
+/* 上拉动画 */
+@keyframes slidup{
+  from{
+      transform:  translateY(0%);
+  }
+  to{
+      transform:  translateY(-100%);
+  }
+}
+.slidup{
+  display: block;
+  animation: slidup .2s ease-in both;
+  height: 0px;
+}
+
+
+.pull{
+  z-index:3;
+  overflow: visible;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  left:335rpx;
+  top:40rpx;
+  height:88rpx;
+  width:88rpx;
+  background-size: 44px 44px;
+  background-color: rgba(245,245,245,1);
+  background-repeat:no-repeat;
+  transform: matrix(1,0,0,1,0,0);
+}
+
+.pull_button{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E %3Ccircle id='椭圆_10' data-name='椭圆 10' cx='22' cy='22' r='22' fill='%233b3e51'/%3E %3Cg id='组_3' data-name='组 3' transform='translate(11.487 19.014)'%3E %3Cline id='直线_1' data-name='直线 1' x2='20.598' transform='translate(0 0)' fill='none' stroke='%23fff' stroke-linecap='round' stroke-width='3'/%3E %3Cline id='直线_2' data-name='直线 2' x2='20.598' transform='translate(0 6.338)' fill='none' stroke='%23fff' stroke-linecap='round' stroke-width='3'/%3E %3C/g%3E %3C/svg%3E ");
+}
+
+.close_button{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E %3Ccircle id='椭圆_10' data-name='椭圆 10' cx='22' cy='22' r='22' fill='%233b3e51'/%3E %3Cg id='组_3' data-name='组 3' transform='translate(14.88 14.602)'%3E %3Cline id='直线_1' data-name='直线 1' x2='20.912' transform='translate(0 14.787) rotate(-45)' fill='none' stroke='%23fff' stroke-linecap='round' stroke-width='3'/%3E %3Cline id='直线_2' data-name='直线 2' x2='20.912' transform='translate(0) rotate(45)' fill='none' stroke='%23fff' stroke-linecap='round' stroke-width='3'/%3E %3C/g%3E %3C/svg%3E ");
+}
+
+.menu{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='375' height='219' viewBox='0 0 375 219'%3E %3Cpath id='矩形_88' data-name='矩形 88' d='M0,0H375a0,0,0,0,1,0,0V189a30,30,0,0,1-30,30H30A30,30,0,0,1,0,189V0A0,0,0,0,1,0,0Z' fill='%23fff'/%3E %3Cline id='直线_61' data-name='直线 61' x2='90' transform='translate(143 200)' fill='none' stroke='%233b3e51' stroke-linecap='round' stroke-width='3'/%3E %3C/svg%3E ");
+}

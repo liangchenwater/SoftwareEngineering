@@ -59,6 +59,36 @@
           "pathName": "pages/record_list_doctor/record_list",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/main_patient/main",
+          "pathName": "pages/main_patient/main",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/userinfo_patient/userinfo",
+          "pathName": "pages/userinfo_patient/userinfo",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/userinfo_doctor/userinfo",
+          "pathName": "pages/userinfo_doctor/userinfo",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/write_record/write_record",
+          "pathName": "pages/write_record/write_record",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/changeinfo_patient/userinfo",
+          "pathName": "pages/changeinfo_patient/userinfo",
+          "query": "",
+          "scene": null
         }
       ]
     }

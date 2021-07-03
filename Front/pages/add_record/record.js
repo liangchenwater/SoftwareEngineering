@@ -18,21 +18,13 @@ Page({
     medicine0:"阿司匹林",
     medicine1:"感冒药",
     pres_num:'0',
-    medicine:[
+    pres_list:[
       {
-        name:"",
+        medicine:"",
         frequency_d:"1",
         frequency_t:"3",
         endtime:"2021-08-10 00:00:00",
         dose:"1颗",
-        notes:""
-      },
-      {
-        name:"",
-        frequency_d:"",
-        frequency_t:"",
-        endtime:"",
-        dose:"",
         notes:""
       }
     ]
@@ -45,9 +37,11 @@ Page({
   onLoad: function (option) {
     this.setData({
       patient_id:option.patient_id,
+      doctor_id:app.globalData.U_ID,
       Name:option.Name,
       Gender:option.Gender,
-      Age:option.Age
+      Age:option.Age,
+      fu_time:""
     });
     var that=this;
     console.log(this.data.Name)
@@ -78,18 +72,6 @@ Page({
         console.log("发送失败");
       }
     })
-
-    for(var i=0;i<that.data.pres_num;i++){
-      var name=this.data.medicine0
-      that.setData({
-        ['medicine['+i+'].name']:this.data['medicine'+i],
-        ['medicine['+i+'].frequency_d']:this.data['frequency_d'+i],
-        ['medicine['+i+'].frequency_t']:this.data['frequency_t'+i],
-        ['medicine['+i+'].endtime']:this.data['endtime'+i],
-        ['medicine['+i+'].dose']:this.data['dose'+i],
-        ['medicine['+i+'].notes']:this.data['notes'+i]
-      })
-    }
     console.log(this.data.medicine)
 
   },
@@ -181,7 +163,7 @@ Page({
     var that = this
     let index = e.currentTarget.dataset.index
     that.setData({
-      ['medicine['+index+'].name']:e.detail.value
+      ['pres_list['+index+'].medicine']:e.detail.value
     })
   },
 
@@ -189,7 +171,7 @@ Page({
     var that = this
     let index = e.currentTarget.dataset.index
     that.setData({
-      ['medicine['+index+'].dose']:e.detail.value
+      ['pres_list['+index+'].dose']:e.detail.value
     })
   },
 
@@ -197,7 +179,7 @@ Page({
     var that = this
     let index = e.currentTarget.dataset.index
     that.setData({
-      ['medicine['+index+'].frequency_d']:e.detail.value
+      ['pres_list['+index+'].frequency_d']:e.detail.value
     })
   },
 
@@ -205,7 +187,7 @@ Page({
     var that = this
     let index = e.currentTarget.dataset.index
     that.setData({
-      ['medicine['+index+'].frequency_t']:e.detail.value
+      ['pres_list['+index+'].frequency_t']:e.detail.value
     })
   },
 
@@ -213,7 +195,7 @@ Page({
     var that = this
     let index = e.currentTarget.dataset.index
     that.setData({
-      ['medicine['+index+'].note']:e.detail.value
+      ['pres_list['+index+'].notes']:e.detail.value
     })
   },
 
@@ -222,7 +204,7 @@ Page({
     let index = e.currentTarget.dataset.index
     console.log(index)
     that.setData({
-      ['medicine['+index+'].endtime']:e.detail.value+'00:00:00'
+      ['medicine['+index+'].endtime']:e.detail.value
     })
   },
 

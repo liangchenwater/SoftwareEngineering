@@ -338,7 +338,7 @@ Page({
       },
       tap_info: function(e){
         wx.navigateTo({
-          url: ''
+          url: '/pages/changeinfo_patient/userinfo'
         })
       },
       tap_friend: function(e){

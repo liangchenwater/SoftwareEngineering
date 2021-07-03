@@ -1,0 +1,65 @@
+
+<view z-index='2' class="temp {{open ? 'slidown' : 'slidup'}} {{open ? 'disappear':''}} menu" >
+  <view class="wc" bindtap="tap_info">
+      <text>个人资料</text>
+  </view>
+  <view class="wc" bindtap="tap_friend">
+      <text>通讯录</text>
+  </view>
+  <view class="wc" bindtap="tap_record">
+      <text>病历记录</text>
+  </view>
+  <view class="wc" bindtap="tap_logout">
+      <text>退出登录</text>
+  </view>
+</view>
+
+
+<view class="mypage {{open ? ['c-state'] : ''}} ">
+    <text class="pull {{open?'close_button':'pull_button'}}" bindtap="tap_ch"></text>
+
+
+
+  <text class="main_text" space="ensp">个人资料</text>
+  <view class="listMain">
+
+		<view class="list" >
+				<view class="phone_rect">
+					<text class="input_text">{{Phone}}</text>
+				</view> 
+		</view>
+
+			<view class="list" >
+				<view class="name_rect">
+					<input class="input_text1" value="{{U_Name}}" bindinput="set_U_Name"></input>
+					<view class="input_text2">
+						<picker mode="selector" range="{{array}}" value="{{index}}" bindchange="set_Gender">
+								<text>{{Gender}}</text>
+						</picker>
+					</view>
+					<input class="input_text3" value="{{Age}}" bindinput="set_Age"></input>
+				</view>
+   	 </view>
+
+
+		<view class="list" >
+				<view class="intro_rect">
+					<input class="input_text" value="{{Introdution}}"></input>
+				</view>
+		</view>
+
+		<view class="list" >
+			<view class="box" >
+				<button bindtap="click_send" class="register_button" plain>
+					<view id="register_button_text">
+						<text space="emsp">更  新</text>
+					</view>
+				</button>
+			</view>
+			</view>
+
+
+
+		</view>
+</view>
+

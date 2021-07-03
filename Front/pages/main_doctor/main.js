@@ -29,6 +29,24 @@ Page({
         info1:"1片",
         info2:"1天2次",
         info3:"",
+        show:false },
+        { Event_ID:"", 
+        Event_Type:"F",
+        Event_Time:"2021-06-25 00:00:00",
+        Complete:'N',
+        name:"阿司匹林",
+        info1:"1片",
+        info2:"1天2次",
+        info3:"",
+        show:false },
+        { Event_ID:"", 
+        Event_Type:"F",
+        Event_Time:"2021-06-25 00:00:00",
+        Complete:'N',
+        name:"阿司匹林",
+        info1:"1片",
+        info2:"1天2次",
+        info3:"",
         show:false }
       ],
       date:'',
@@ -345,7 +363,7 @@ Page({
       },
       tap_info: function(e){
         wx.navigateTo({
-          url: ''
+          url: '/pages/changeinfo_doctor/userinfo'
         })
       },
       tap_friend: function(e){

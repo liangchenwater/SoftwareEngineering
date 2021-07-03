@@ -6,8 +6,8 @@
   <view class="list" wx:for="{{record}}" wx:key="index">
     <view class=" record_rect rect">
       <view bindtap='to_one_record' data-index="{{index}}">
-        <view class="title">{{item.time}}</view>
-        <view class="other_info">{{item.doctor_name}}</view>
+        <view class="title">{{item.MR_Time}}</view>
+        <view class="other_info">{{item.doctor_NAME}}</view>
       </view>
     </view>
   </view>

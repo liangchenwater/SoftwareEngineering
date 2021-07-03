@@ -14,17 +14,17 @@
     </view>
     <view class="list" >
       <view class="describe_rect">
-        <text class="input_text">{{description}}</text>
+        <text class="input_text">{{Condition_Descrip}}</text>
       </view>
     </view>
     <view class="list">
       <view class="advice_rect">
-        <text class="input_text">{{advice}}</text>
+        <text class="input_text">{{Medical_Advice}}</text>
       </view>
     </view>
 
     <view class="list inform_text"> 药物 </view>
-    <view wx:for="{{medicine}}" wx:key="index">
+    <view wx:for="{{pres_list}}" wx:key="index">
 
       <view>
         <view class="list"> 
@@ -32,19 +32,19 @@
         </view>
         <view class="list">
           <view class="medicine_name_rect">
-            <text class="input_text">{{medicine[index].name}}</text>
+            <text class="input_text">{{pres_list[index].Medicine}}</text>
           </view>
         </view>
         <view class="list">
           <view class="frequency_rect">
-            <text class="input_text">{{medicine[index].dose}}</text>
-            <text class="input_text4">{{medicine[index].frequency_d}}天{{medicine[index].frequency_t}}次</text>
+            <text class="input_text">{{pres_list[index].Dose}}</text>
+            <text class="input_text4">{{pres_list[index].Frequency_d}}天{{pres_list[index].Frequency_t}}次</text>
           </view>
         </view>
 
         <view class="list">
           <view class="endtime_rect">
-            <text class="input_text">{{MY.SubDate(medicine[index].endtime)}}</text>
+            <text class="input_text">{{MY.SubDate(pres_list[index].Endtime)}}</text>
           </view>
         </view>
 

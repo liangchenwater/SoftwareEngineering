@@ -173,7 +173,7 @@ page{
 }
 
 .input_text3 {
-  left: 515rpx;
+  left: 500rpx;
   top: 93rpx;
   position: relative;
   overflow: visible;
@@ -230,6 +230,7 @@ page{
   font-size: 16px;
   color: rgba(47,54,61,1);
 }
+
 .input_text5 {
   left: 555rpx;
   top: 5rpx;

@@ -8,14 +8,6 @@ Page({
   data: {
     patient_id:"",
     record:[
-      {
-        time:"2021-10-21 10:00",
-        doctor_name:"王刚"
-      },
-      {
-        time:"2021-10-23 09:00",
-        doctor_name:"王刚"
-      }
       ],
   },
 
@@ -31,7 +23,7 @@ Page({
     wx.request({
       //等待填充
       url: app.globalData.IP_address+'/displaymrlist', 
-      header: { "ContentType": "application/json;charset=utf-8", },
+      header: { "ContentType": "application/json;charset=utf-8" },
       data: {
           patient_id:this.data.patient_id,
           doctor_id:app.globalData.U_ID,
@@ -103,8 +95,10 @@ Page({
     var that = this
     let index = e.currentTarget.dataset.index
     console.log(index)
+    console.log(that.data.record[index])
+    var mydata=JSON.stringify(that.data.record[index])
     wx.navigateTo({
-      url: '/pages/record/record?data='+this.data.record[index]
+      url: '/pages/record/record?newdata='+mydata
     })
   }
 })

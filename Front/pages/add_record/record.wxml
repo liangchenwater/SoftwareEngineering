@@ -4,7 +4,6 @@
   <text class="title_icon myicon"></text>
 
   <view class="listMain">
-
     <view class="list" >
       <view class=" name_rect">
         <text class="input_text">{{Name}}</text>
@@ -52,11 +51,7 @@
 
         <view class="list">
           <view class="endtime_rect">
-            <picker class="input_text" mode="date" value="{{medicine[index].endtime}}"  bindchange="DateChange" data-index="{{index}}">
-            <view class="picker">
-               {{MY.SubDate(medicine[index].endtime)}}
-            </view>
-          </picker>
+            <picker mode="date" bindchange="DateChange" data-index="{{index}}"><text class="input_text">  {{ pres_list[index].endtime==undefined? today:MY.SubDate(pres_list[index].endtime)}}</text></picker>
           </view>
         </view>
 

@@ -12,15 +12,6 @@ Page({
       Age:'',
       Gender:'',
       remind:[
-      { Event_ID:"", 
-        Event_Type:"A",
-        Event_Time:"2021-06-25 00:00:00",
-        Complete:'N',
-        name:"阿司匹林",
-        info1:"1片",
-        info2:"1天2次",
-        info3:"",
-        show:false }
       ],
       date:'',
 
@@ -38,6 +29,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+  },
+
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function (e) {
+},
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     var that = this;
     var DATE = util.formatDate(new Date());
     this.setData({
@@ -53,8 +57,6 @@ Page({
        method: 'POST',
        success: function (res) {
             console.log("userinfo发送成功");
-            console.log(res.data.Age);
-            console.log(res.data.Gender);
             that.setData({ 
               Name: res.data.U_Name, 
               Age: res.data.Age
@@ -66,7 +68,7 @@ Page({
             else
             that.setData({Gender : '其他'})
        },
-       fail:function(res){
+       fail:function(){
         console.log("发送失败");
       }
     })
@@ -87,56 +89,12 @@ Page({
             that.setData({ 
                 remind:res.data
             });
+            that.get_info()
        },
        fail:function(res){
         console.log("发送失败");
       }
     })
-
-    for(var i in that.data.remind){
-    　　if(that.data.remind[i].Event_Type!='M'){
-
-          that.setData({ 
-            ['remind['+i+'].Department']:'内科', 
-            ['remind['+i+'].Hospital']:'浙大一院', 
-            ['remind['+i+'].Phone']: '199902030131'
-          });
-
-        wx.request({
-          url: app.globalData.IP_address+'/userinfo', 
-          header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
-          data: {
-              U_ID: that.data.remind[i].info1,
-              identity: 'P',
-          },
-          method: 'POST',
-          success: function (res) {
-                console.log("sub_userinfo发送成功");
-                that.setData({ 
-                  ['remind['+i+'].Department']:res.data.Department, 
-                  ['remind['+i+'].Hospital']:res.data.Hospital, 
-                  ['remind['+i+'].Phone']: res.data.Phone
-                });
-          },
-          fail:function(res){
-            console.log("sub_user发送失败");
-          }
-        })
-    }
-    }
-  },
-
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function (e) {
-},
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
     if(app.globalData.U_ID==""){
       wx.showToast({
         title: '请先登录！',
@@ -190,10 +148,9 @@ Page({
 
   mydata:function(e){ //可获取日历点击事件
     var that=this;
-    this.setData({
+    that.setData({
       date: e.detail.data
     });
-    console.log(this.data.date)
     wx.request({
       //等待填充
       url: app.globalData.IP_address+'/displaycalender', 
@@ -210,39 +167,49 @@ Page({
             that.setData({ 
                 remind:res.data
             });
+            that.get_info()
        },
        fail:function(res){
         console.log("发送失败");
       }
     })
-
-    for(var i in that.data.remind){
-      　　if(that.data.remind[i].Event_Type!='M'){
-  
-          wx.request({
-            url: app.globalData.IP_address+'/userinfo', 
-            header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
-            data: {
-                U_ID: that.data.remind[i].info1,
-                identity: 'P',
-            },
-            method: 'POST',
-            success: function (res) {
-                  console.log("sub_userinfo发送成功");
-                  that.setData({ 
-                    ['remind['+i+'].Department']:res.data.Department, 
-                    ['remind['+i+'].Hospital']:res.data.Hospital, 
-                    ['remind['+i+'].Phone']: res.data.Phone
-                  });
-            },
-            fail:function(res){
-              console.log("sub_user发送失败");
-            }
-          })
-      }
-      }
+    console.log("remind"+this.data.remind);
    },
 
+   get_info:function(){
+    var that=this;
+    for(var i in that.data.remind){
+        that.get_data(i)
+      }
+   },
+   get_data:function(e){
+     var i=e;
+     var that=this
+    　if(that.data.remind[i].Event_Type!='M'){
+      wx.request({
+        url: app.globalData.IP_address+'/userinfo', 
+        header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
+        data: {
+            U_ID: that.data.remind[i].info1,
+            identity: 'D',
+        },
+        method: 'POST',
+        success: function (res) {
+              console.log("sub_userinfo发送成功");
+              that.setData({ 
+                ['remind['+i+'].D_Name']:res.data.U_Name, 
+                ['remind['+i+'].Department']:res.data.Department, 
+                ['remind['+i+'].Hospital']:res.data.Hospital, 
+                ['remind['+i+'].Phone']: res.data.Phone
+              });
+              console.log(i+res.data)
+        },
+        fail:function(res){
+          console.log("sub_user发送失败");
+        }
+      })
+  }
+   },
 
    pull_menu:function(){
      console.log("pull")
@@ -268,16 +235,16 @@ Page({
 
   finishBtn:function (e) {
     var that = this
-    let index = e.currentTarget.dataset.index
-    console.log(index)
+    let index = e.currentTarget.dataset.index 
     let currect = "remind["+index+"].Complete"
-    if (that.data.remind[index].Complete === true) {
+    console.log(this.data.remind[0])
+    if (this.data.remind[index].Complete == 'Y') {
       that.setData({
-        [currect]: false
+        [currect]: 'N'
       })
     } else{
       that.setData({
-        [currect]: true
+        [currect]: 'Y'
       })
     }
   },
@@ -343,13 +310,13 @@ Page({
       },
       tap_friend: function(e){
         wx.navigateTo({
-          url: ''
+          url: '/pages/AddressbookP/AddressbookP'
         })
       },
       
       tap_record: function(e){
         wx.navigateTo({
-          url: '/pages/record_list_patient/record'
+          url: '/pages/record_list_patient/record_list'
         })
       },
 

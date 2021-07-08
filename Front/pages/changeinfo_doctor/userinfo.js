@@ -30,7 +30,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that=this
     wx.request({
       url: app.globalData.IP_address+'/userinfo', 
       header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
@@ -42,6 +42,24 @@ Page({
        success: function (res) {
             console.log("userinfo发送成功");
             that.setData(res.data);
+            if(res.data.Gender=='M'){
+              that.setData({
+                Gender:'男'
+              })
+            }
+            else if(res.data.Gender=='F'){
+              console.log(that.data.Gender)
+              that.setData({
+                Gender:'女'
+              })
+            }
+            else{
+              {
+                that.setData({
+                  Gender:'其他'
+                })
+              }
+            }
        },
        fail:function(res){
         console.log("userinfo发送失败");
@@ -158,7 +176,7 @@ tap_info: function(e){
 },
 tap_friend: function(e){
   wx.navigateTo({
-    url: ''
+    url: '/pages/AddressbookD/AddressbookD'
   })
 },
 
@@ -183,11 +201,11 @@ set_Age:function(e){
 },
 
 set_Gender:function(e){
+   var that=this
   console.log(e.detail.value);
-  this.setData({
-    index: e.detail.value,
-    Gender: this.data.array[e.detail.value]
-  })
+    that.setData({
+      Gender:that.data.array[e.detail.value]
+    })
 },
 
 set_Hospital:function(e){
@@ -209,6 +227,14 @@ set_Title:function(e){
 },
 
 click_send:function(){
+  var gender
+  if(this.data.Gender=='男'){
+    gender='M'
+  }
+  else if(this.data.Gender=='女'){
+    gender='F'
+  }
+  else gender='O'
   wx.request({
     url: app.globalData.IP_address+'/modinfo', 
     header: { "ContentType": "application/json;charset=utf-8", },
@@ -216,7 +242,7 @@ click_send:function(){
         uid: app.globalData.U_ID,
         identity: 'D',
         new_name: this.data.U_Name,
-        new_gender: this.data.Gender,
+        new_gender: gender,
         new_age: this.data.Age,
         new_title:this.data.Title,
         new_department: this.data.Department,
@@ -225,7 +251,6 @@ click_send:function(){
      method: 'POST',
      success: function (res) {
           console.log("modinfo发送成功");
-          that.setData(res.data);
      },
      fail:function(res){
       console.log("modinfo发送失败");

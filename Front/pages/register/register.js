@@ -49,8 +49,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (ide,hid) {
-    showView:(options.showView=="true"?true:false)
+  onLoad: function () {
   },
 
   /**
@@ -64,8 +63,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log(this.data.hidden);
-    console.log(this.data.identity);
   },
 
   /**
@@ -132,22 +129,21 @@ Page({
   },
 
   set_gender:function(e){
-    console.log(e.detail.value);
     this.setData({
       index: e.detail.value
     })
-    if(e.detail.value='男'){
+    if(e.detail.value=='男'){
       this.setData({
         gender:'M'
       })
     }
-    else if(e.detail.value='女'){
+    else if(e.detail.value=='女'){
       this.setData({
         gender:'F'
       })
     }
 
-    else if(e.detail.value='其他'){
+    else if(e.detail.value=='其他'){
       this.setData({
         gender:'O'
       })
@@ -169,6 +165,12 @@ Page({
   set_cert_ID:function(e){
     this.setData({
       cert_ID:e.detail.value
+    })
+  },
+
+  set_hospital:function(e){
+    this.setData({
+      hospital:e.detail.value
     })
   },
 
@@ -205,7 +207,7 @@ Page({
           department:this.data.office,
           title:this.data.position,
           certificate:this.data.cert_ID,
-          worktime:""
+          hospital:this.data.hospital
         }
       }
       console.log(send_data);

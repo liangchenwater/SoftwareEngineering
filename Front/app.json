@@ -12,7 +12,8 @@
     "pages/record/record",
     "pages/add_record/record",
     "pages/changeinfo_doctor/userinfo",
-    "pages/changeinfo_patient/userinfo"
+    "pages/changeinfo_patient/userinfo",
+    "pages/appointment/appointment"
   ],
   "window": {
     "backgroundTextStyle": "light",

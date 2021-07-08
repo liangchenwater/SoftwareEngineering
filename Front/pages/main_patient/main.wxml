@@ -43,7 +43,7 @@
       <view class=" {{item.show? 'remind_open':'remind_close'}} {{item.show? 'open_rect':'close_rect'}}">
         <view bindtap='change_clock'>
           <view class="title">{{item.Event_Type=='M'? item.name:''}}{{item.Event_Type=='F'?'复诊':''}}{{item.Event_Type=='A'?'初诊':''}}</view>
-          <view class="other_info">{{item.info1}}</view>
+          <view class="other_info">{{item.Event_Type=='M' ? item.info1:item.D_Name}}</view>
         </view>
         <view class="time">{{ MY.Sub(item.Event_Time)}}</view>
         <view class="finish {{item.Complete=='Y'?'finish_icon':'unfinish_icon'}}" bindtap="finishBtn" data-index="{{index}}"></view>

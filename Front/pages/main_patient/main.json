@@ -1,5 +1,6 @@
 {
 "usingComponents": {
   "calendar": "../../components/calendarWeek/index"
- }
+ },
+ "navigationBarTitleText": "主页"
 }

@@ -43,9 +43,9 @@ page{
 #title_text {
   z-index:3;
   position: fixed;
-  width: 200rpx;
+  width: 300rpx;
   height: 110rpx;
-  left: 280rpx;
+  left: 230rpx;
   top: 150rpx;
   overflow: visible;
 }
@@ -56,7 +56,7 @@ page{
   position: fixed;
   justify-content: center;
   align-items: center;
-  width: 200rpx;
+  width: 300rpx;
   overflow: visible;
   text-align: center;
   font-family: Symbol;
@@ -72,7 +72,7 @@ page{
   position: absolute;
   bottom: 0%;
   overflow: visible;
-  width: 200rpx;
+  width: 300rpx;
   text-align: center;
   font-family: Bio Sans;
   font-style: normal;
@@ -218,6 +218,7 @@ page{
 }
 
 .open_close{
+  z-index:3;
   overflow: visible;
   position: absolute;
   width: 12.2px;
@@ -350,12 +351,14 @@ page{
   width: 750rpx;
   height: 100%;
   position: relative;
-  top:250rpx;
-  right:450rpx;
+  top:215rpx;
+  right:-230rpx;
   flex-wrap: wrap;
   justify-content: space-around;
   align-content: center;
 }
+.box.show{ display: block;}
+.box.hide{ display: none;}
 
 .box .record_button{
   display: flex;
@@ -366,7 +369,27 @@ page{
   shape-rendering: auto;
   flex-direction: column;
   border-radius: 32rpx;
-  width: 230rpx;
+  width: 180rpx;
+  height: 90rpx;
+  overflow: visible;
+  cursor: pointer;
+}
+
+
+
+.box .add_button{
+  position:relative;
+  top:88rpx;
+  right:200rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(106,194,126,1);
+  border:none;
+  shape-rendering: auto;
+  flex-direction: column;
+  border-radius: 32rpx;
+  width: 200rpx;
   height: 90rpx;
   overflow: visible;
   cursor: pointer;
@@ -377,7 +400,7 @@ page{
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  line-height: 75rpx;
+  line-height: 45rpx;
   top:-2%;
   font-family: Source Sans Pro;
   font-style: normal;

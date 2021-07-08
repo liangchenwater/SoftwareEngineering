@@ -7,45 +7,28 @@ Page({
    * 页面的初始数据
    */
   data: {
-    patient_id:"",
-    doctor_id:"",
-    Name:"小明",
-    Gender:"男",
-    Age:"20",
-    Condition_Descrip:"",
-    Medicine_Advice:"",
-    pres_num:'2',
-    pres_list:[
-      {
-        Medicine:"hello",
-        Frequency_d:"1",
-        Frequency_t:"3",
-        Endtime:"2021-08-10 00:00:00",
-        Dose:"1颗",
-        Notes:""
-      }
-    ]
-
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (option) {
-    this.setData(option.data);
     var that=this;
+    var newdata = JSON.parse(option.newdata)
+    that.setData(newdata);
+    console.log(newdata);
+    console.log(that.data.patient_id)
     wx.request({
       url: app.globalData.IP_address+'/userinfo', 
       header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
       data: {
-          U_ID: this.data.patient_id,
+          U_ID: that.data.Patient_ID,
           identity: 'P',
        },
        method: 'POST',
        success: function (res) {
             console.log("userinfo发送成功");
-            console.log(res.data.Age);
-            console.log(res.data.Gender);
+            console.log(res.data);
             that.setData({ 
               Name: res.data.U_Name, 
               Age: res.data.Age

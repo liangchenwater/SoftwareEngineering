@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "calendar": "../../components/calendarWeek/index"
+   } ,
+   "navigationBarTitleText": "预约"
+  }
+  

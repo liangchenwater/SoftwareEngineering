@@ -1,0 +1,200 @@
+/* pages/appointment/appointment.wxss */
+
+page{
+  background-color: rgba(245,245,245,1);
+}
+.mypage{
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  width: 100%;
+  height:100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: rgba(245,245,245,1);
+}
+
+#title_text {
+  position: absolute;
+  width: 103px;
+  height: 150rpx;
+  left: 40rpx;
+  top: 70rpx;
+  overflow: visible;
+}
+
+#calendar_text {
+  position: absolute;
+  width: 100%;
+  top: 180rpx;
+  overflow: visible;
+}
+
+#appointment_text{
+  opacity: 1;
+  position: absolute;
+  left: 0rpx;
+  top: 0%;
+  overflow: visible;
+  text-align: left;
+  font-family: Symbol;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 28px;
+  color: rgba(59,62,81,1);
+}
+
+#input_text {
+  left: 30px;
+  top: 93rpx;
+  position: absolute;
+  overflow: visible;
+  width: 250px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Bio Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: rgba(47,54,61,1);
+}
+
+#input_text2 {
+  left: 440rpx;
+  top: 93rpx;
+  position: absolute;
+  overflow: visible;
+  width: 250px;
+  white-space: nowrap;
+  text-align: left;
+  font-family: Bio Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: rgba(47,54,61,1);
+}
+
+#doctor_name {
+  position: relative;
+  width: 100%;
+  height: 171rpx;
+  top: 450rpx;
+  overflow: visible;
+}
+
+#time {
+  position: relative;
+  width: 100%;
+  height: 171rpx;
+  top: 470rpx;
+  overflow: visible;
+}
+
+#symptom {
+  position: relative;
+  width: 100%;
+  height: 171rpx;
+  top: 490rpx;
+  overflow: visible;
+}
+
+#is_first_time {
+  position: relative;
+  width: 100%;
+  height: 171rpx;
+  top: 510rpx;
+  overflow: visible;
+}
+
+#note {
+  position: relative;
+  width: 100%;
+  height: 350rpx;
+  top: 530rpx;
+  overflow: visible;
+}
+
+
+
+.rect_set{
+  overflow: visible;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  height: 85px;
+  transform: matrix(1,0,0,1,0,0);
+}
+
+.rect_set2{
+  overflow: visible;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  height: 170px;
+  transform: matrix(1,0,0,1,0,0);
+}
+
+.name_rect{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='375' height='85' viewBox='0 0 375 85'%3E %3Cg id='矩形_56' data-name='矩形 56' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='375' height='85' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='374' height='84' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='医_生' data-name='医 生' transform='translate(30 34)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E医%3C/tspan%3E%3Ctspan y='0' xml:space='preserve' font-family='AdobeClean-Regular, Adobe Clean'%3E %3C/tspan%3E%3Ctspan y='0'%3E生%3C/tspan%3E%3C/text%3E %3Ctext id='_' data-name='*' transform='translate(69 31)' fill='%23ff2424' font-size='14' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3C/svg%3E ");
+}
+
+.time_rect{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='376' height='85' viewBox='0 0 376 85'%3E %3Cg id='矩形_56' data-name='矩形 56' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='188' height='85' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='187' height='84' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='开始时间' data-name='开始时间' transform='translate(30 34)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E开始时间%3C/tspan%3E%3Ctspan y='0' xml:space='preserve' font-family='AdobeClean-Regular, Adobe Clean'%3E %3C/tspan%3E%3Ctspan y='0'%3E%3C/tspan%3E%3C/text%3E %3Ctext id='_' data-name='*' transform='translate(89 31)' fill='%23ff2424' font-size='14' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3Cg id='矩形_150' data-name='矩形 150' transform='translate(188)' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='188' height='85' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='187' height='84' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='结束时间' data-name='结束时间' transform='translate(218 34)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E结束时间%3C/tspan%3E%3Ctspan y='0' xml:space='preserve' font-family='AdobeClean-Regular, Adobe Clean'%3E %3C/tspan%3E%3Ctspan y='0'%3E%3C/tspan%3E%3C/text%3E %3Ctext id='_2' data-name='*' transform='translate(277 29)' fill='%23ff2424' font-size='14' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3C/svg%3E ");
+  }
+
+  .symptom_rect{
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='375' height='85' viewBox='0 0 375 85'%3E %3Cg id='矩形_56' data-name='矩形 56' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='375' height='85' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='374' height='84' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='症状描述' data-name='症状描述' transform='translate(30 34)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E症状描述%3C/tspan%3E%3Ctspan y='0' xml:space='preserve' font-family='AdobeClean-Regular, Adobe Clean'%3E %3C/tspan%3E%3Ctspan y='0'%3E%3C/tspan%3E%3C/text%3E %3Ctext id='_' data-name='*' transform='translate(89 31)' fill='%23ff2424' font-size='14' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3C/svg%3E ");
+  }
+
+  .phone_rect{
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='375' height='85' viewBox='0 0 375 85'%3E %3Cg id='矩形_56' data-name='矩形 56' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='375' height='85' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='374' height='84' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='联系电话' data-name='联系电话' transform='translate(30 34)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E初诊/复诊%3C/tspan%3E%3Ctspan y='0' xml:space='preserve' font-family='AdobeClean-Regular, Adobe Clean'%3E %3C/tspan%3E%3Ctspan y='0'%3E%3C/tspan%3E%3C/text%3E %3Ctext id='_' data-name='*' transform='translate(89 31)' fill='%23ff2424' font-size='14' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E*%3C/tspan%3E%3C/text%3E %3C/svg%3E ");
+  }
+
+  .note_rect{
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='375' height='170' viewBox='0 0 375 170'%3E %3Cg id='矩形_56' data-name='矩形 56' fill='%23fff' stroke='%23ededed' stroke-width='1'%3E %3Crect width='375' height='170' rx='30' stroke='none'/%3E %3Crect x='0.5' y='0.5' width='374' height='169' rx='29.5' fill='none'/%3E %3C/g%3E %3Ctext id='备注' data-name='备注' transform='translate(30 34)' fill='%232f363d' font-size='14' font-family='PingFangSC-Regular, PingFang SC' opacity='0.7'%3E%3Ctspan x='0' y='0'%3E备%3C/tspan%3E%3Ctspan y='0' xml:space='preserve' font-family='AdobeClean-Regular, Adobe Clean'%3E %3C/tspan%3E%3Ctspan y='0'%3E注%3C/tspan%3E%3C/text%3E %3Ctext id='_' data-name='' transform='translate(69 31)' fill='%23ff2424' font-size='14' font-family='AdobeClean-Regular, Adobe Clean'%3E%3Ctspan x='0' y='0'%3E%3C/tspan%3E%3C/text%3E %3C/svg%3E ");
+  }
+
+  .box{
+    display: flex;
+    width: 100%;
+    height: 400rpx;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: center;
+    margin-top: 300rpx;
+    top:1000rpx;
+  }
+  
+  .box .finish_button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(106,194,126,1);
+    border:none;
+    shape-rendering: auto;
+    flex-direction: column;
+    border-radius: 32rpx;
+    position: absolute;
+    width: 90%;
+    height: 90rpx;
+    left: 5%;
+    top:132%;
+    overflow: visible;
+    cursor: pointer;
+  }
+  
+  #finish_button_text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    line-height: 75rpx;
+    top:-2%;
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    color: rgba(255,255,255,1);
+  }

@@ -1,0 +1,66 @@
+<!--pages/appointment/appointment.wxml-->
+<view class="mypage" style="height:{{height}}">
+		<view id="title_text">
+			<view id="appointment_text" space="ensp">
+				<text>预  约</text>
+			</view>
+		</view>
+
+    <view id='calendar_text'>
+      <calendar bindmydata="mydata"></calendar>
+    </view>
+
+    <view class="fill">
+
+      <view id="doctor_name">
+				<text class="rect_set name_rect"></text>
+				<view id="input_text">
+          <text>{{doctor_name}}</text>
+				</view>
+			</view>
+
+			<view id="time">
+				<text class="rect_set time_rect"></text>
+				<view id="input_text">
+          <picker mode="selector" range="{{start_array}}" value="{{start_index}}" bindchange="set_start_time">
+							<text>{{start_array[start_index]}}</text>
+					</picker>
+				</view>
+				<view id="input_text2">
+						  <text>{{end_array[end_index]}}</text>
+				</view>
+			</view>
+
+      <view id="symptom">
+				<text class="rect_set symptom_rect"></text>
+				<view id="input_text">
+          <input bindinput="set_symptom"/> 
+				</view>
+			</view>
+
+      <view id="is_first_time">
+				<text class="rect_set phone_rect"></text>
+				<view id="input_text">
+          <picker mode="selector" range="{{array}}" value="{{index}}" bindchange="set_is_first_time">
+							<text>{{array[index]}}</text>
+					</picker>
+				</view>
+			</view>
+
+      <view id="note">
+				<text class="rect_set2 note_rect"></text>
+				<view id="input_text">
+          <input bindinput="set_note"/> 
+				</view>
+			</view>
+
+			<view class="box">
+				<button bindtap="click_appointment" class="finish_button" plain>
+					<view id="finish_button_text">
+						<text>完　　成</text>
+					</view>
+				</button>
+			</view>
+
+    </view>
+</view>

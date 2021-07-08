@@ -14,21 +14,12 @@ Page({
     Age:"",
     description:"",
     advice:"",
-
-    medicine0:"阿司匹林",
-    medicine1:"感冒药",
     pres_num:'0',
     pres_list:[
       {
-        medicine:"",
-        frequency_d:"1",
-        frequency_t:"3",
-        endtime:"2021-08-10 00:00:00",
-        dose:"1颗",
-        notes:""
       }
-    ]
-
+    ],
+    today:""
   },
 
   /**
@@ -43,7 +34,10 @@ Page({
       Age:option.Age,
       fu_time:""
     });
-    var that=this;
+    var that=this
+    that.setData({
+      today:util.formatDate(new Date())
+    })
     console.log(this.data.Name)
     wx.request({
       url: app.globalData.IP_address+'/userinfo', 
@@ -197,18 +191,21 @@ Page({
     that.setData({
       ['pres_list['+index+'].notes']:e.detail.value
     })
+    console.log(this.data.pres_list[0].notes)
   },
 
   DateChange:function(e){
     var that = this
     let index = e.currentTarget.dataset.index
-    console.log(index)
+    console.log("data:"+index)
     that.setData({
-      ['medicine['+index+'].endtime']:e.detail.value
+      ['pres_list['+index+'].endtime']:e.detail.value
     })
+    console.log(this.data.pres_list[0].endtime)
   },
 
   click_save:function(){
+    console.log(this.data)
     wx.request({
       url:app.globalData.IP_address+'/addrecord', 
       header: { "ContentType": "application/json;charset=utf-8", },

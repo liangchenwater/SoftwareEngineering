@@ -98,8 +98,10 @@ Page({
     var that = this
     let index = e.currentTarget.dataset.index
     console.log(index)
+    var mydata=JSON.stringify(that.data.record[index])
+    console.log(mydata)
     wx.navigateTo({
-      url: '/pages/record/record?data='+this.data.record[index]
+      url: '/pages/record/record?newdata='+mydata
     })
   }
 })

@@ -12,35 +12,8 @@ Page({
       Department:'',
       Title:'',
       remind:[
-      { Event_ID:"", 
-        Event_Type:"F",
-        Event_Time:"2021-06-25 00:00:00",
-        Complete:'N',
-        name:"阿司匹林",
-        info1:"1片",
-        info2:"1天2次",
-        info3:"",
-        show:false },
         { Event_ID:"", 
-        Event_Type:"F",
-        Event_Time:"2021-06-25 00:00:00",
-        Complete:'N',
-        name:"阿司匹林",
-        info1:"1片",
-        info2:"1天2次",
-        info3:"",
-        show:false },
-        { Event_ID:"", 
-        Event_Type:"F",
-        Event_Time:"2021-06-25 00:00:00",
-        Complete:'N',
-        name:"阿司匹林",
-        info1:"1片",
-        info2:"1天2次",
-        info3:"",
-        show:false },
-        { Event_ID:"", 
-        Event_Type:"F",
+        Event_Type:"M",
         Event_Time:"2021-06-25 00:00:00",
         Complete:'N',
         name:"阿司匹林",
@@ -65,89 +38,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    var that = this;
-    var DATE = util.formatDate(new Date());
-    this.setData({
-      date: DATE,
-    });
-    wx.request({
-      url: app.globalData.IP_address+'/userinfo', 
-      header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
-      data: {
-          U_ID: app.globalData.U_ID,
-          identity: app.globalData.identity,
-       },
-       method: 'POST',
-       success: function (res) {
-            console.log("userinfo发送成功");
-            console.log(res.data.Age);
-            console.log(res.data.Gender);
-            that.setData({ 
-              Name: res.data.U_Name, 
-              Department: res.data.Department,
-              Title: res.data.Title
-            });
-       },
-       fail:function(res){
-        console.log("userinfo发送失败");
-      }
-    })
-
-    wx.request({
-      //等待填充
-      url: app.globalData.IP_address+'/displaycalender', 
-      header: { "ContentType": "application/json;charset=utf-8", },
-      data: {
-          u_id: app.globalData.U_ID,
-          begin: that.data.date+" 00:00:00",
-          end: that.data.date+" 23:59:59"
-       },
-       method: 'POST',
-       success: function (res) {
-            console.log("calender发送成功");
-            console.log(res.data);
-            that.setData({ 
-                remind:res.data
-            });
-       },
-       fail:function(res){
-        console.log("calender发送失败");
-      }
-    })
-    var that=this;
-    for(var i in that.data.remind){
-    　　if(that.data.remind[i].Event_Type!='M'){
-
-          that.setData({ 
-            ['remind['+i+'].Name']:'xiaoming', 
-            ['remind['+i+'].Age']: '15',
-            ['remind['+i+'].Gender']: 'nan',
-            ['remind['+i+'].Phone']: '199902030131'
-          });
-
-        wx.request({
-          url: app.globalData.IP_address+'/userinfo', 
-          header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
-          data: {
-              U_ID: that.data.remind[i].info2,
-              identity: 'P',
-          },
-          method: 'POST',
-          success: function (res) {
-                console.log("sub_userinfo发送成功");
-                that.setData({ 
-                  ['remind['+i+'].Name']:res.data.Name, 
-                  ['remind['+i+'].Age']: res.data.Age,
-                  ['remind['+i+'].Gender']: res.data.Gender,
-                  ['remind['+i+'].Phone']: res.data.Phone
-                });
-          },
-          fail:function(res){
-            console.log("sub_user发送失败");
-          }
-        })
-    }
-    }
   },
 
 
@@ -155,6 +45,58 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function (e) {
+      var that = this;
+      var DATE = util.formatDate(new Date());
+      that.setData({
+        date: DATE,
+      });
+      wx.request({
+        url: app.globalData.IP_address+'/userinfo', 
+        header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
+        data: {
+            U_ID: app.globalData.U_ID,
+            identity: app.globalData.identity,
+         },
+         method: 'POST',
+         success: function (res) {
+              console.log("userinfo发送成功");
+              console.log(res.data.Age);
+              console.log(res.data.Gender);
+              that.setData({ 
+                Name: res.data.U_Name, 
+                Department: res.data.Department,
+                Title: res.data.Title,
+              });
+         },
+         fail:function(res){
+          console.log("userinfo发送失败");
+        }
+      })
+  
+      console.log(this.data.date)
+      wx.request({
+        //等待填充
+        url: app.globalData.IP_address+'/displaycalender', 
+        header: { "ContentType": "application/json;charset=utf-8", },
+        data: {
+            u_id:app.globalData.U_ID,
+            begin: that.data.date+" 00:00:00",
+            end: that.data.date+" 23:59:59"
+         },
+         method: 'POST',
+         success: function (res) {
+              console.log("发送成功");
+              console.log(res.data);
+              that.setData({ 
+                  remind:res.data
+              });
+              console.log("record1"+that.data.remind)
+              that.get_info()
+         },
+         fail:function(res){
+          console.log("发送失败");
+        }
+      })
 },
 
   /**
@@ -214,7 +156,7 @@ Page({
 
   mydata:function(e){ //可获取日历点击事件
     var that=this;
-    this.setData({
+    that.setData({
       date: e.detail.data
     });
     console.log(this.data.date)
@@ -234,41 +176,69 @@ Page({
             that.setData({ 
                 remind:res.data
             });
+            console.log("record1"+that.data.remind)
+            that.get_info()
        },
        fail:function(res){
         console.log("发送失败");
       }
     })
+   },
 
-    var that=this;
+   get_info:function(){
+    var that=this
+    console.log("record"+this.data.remind)
+    console.log("record"+that.data.remind)
     for(var i in that.data.remind){
-    　　if(that.data.remind[i].Event_Type!='M'){
+      that.for_data(i)
+    }
+   },
+
+   for_data:function(e){
+      var t=e
+      var that=this
+    　　if(that.data.remind[t].Event_Type!='M'){
         wx.request({
           url: app.globalData.IP_address+'/userinfo', 
           header: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8' },
           data: {
-              U_ID: that.data.remind[i].info2,
+              U_ID: that.data.remind[t].info2,
               identity: 'P',
           },
           method: 'POST',
           success: function (res) {
                 console.log("sub_userinfo发送成功");
                 that.setData({ 
-                  ['remind['+i+'].Name']:res.data.Name, 
-                  ['remind['+i+'].Age']: res.data.Age,
-                  ['remind['+i+'].Gender']: res.data.Gender,
-                  ['remind['+i+'].Phone']: res.data.Phone
+                  ['remind['+t+'].P_Name']:res.data.U_Name, 
+                  ['remind['+t+'].Age']: res.data.Age,
+                  ['remind['+t+'].Phone']: res.data.Phone
                 });
+                if(res.data.Gender=='M'){
+                  that.setData({
+                    ['remind['+t+'].Gender']:'男'
+                  })
+                }
+                else if(res.data.Gender=='F'){
+                  that.setData({
+                    ['remind['+t+'].Gender']:'女'
+                  })
+                }
+                else{
+                  {
+                    that.setData({
+                      ['remind['+t+'].Gender']:'其他'
+                    })
+                  }
+                }
+                console.log(i)
+                console.log(t+res.data)
           },
           fail:function(res){
             console.log("sub_user发送失败");
           }
         })
     }
-    }
    },
-
-
    pull_menu:function(){
      console.log("pull")
    },
@@ -293,21 +263,19 @@ Page({
 
   finishBtn:function (e) {
     var that = this
-    let index = e.currentTarget.dataset.index
-    console.log(index)
+    let index = e.currentTarget.dataset.index 
     let currect = "remind["+index+"].Complete"
-    if (that.data.remind[index].Complete === true) {
+    console.log(this.data.remind[0])
+    if (this.data.remind[index].Complete == 'Y') {
       that.setData({
-        [currect]: false
+        [currect]: 'N'
       })
     } else{
       that.setData({
-        [currect]: true
+        [currect]: 'Y'
       })
     }
   },
-
-
 
      // 点击图标事件
       tap_ch: function(e) {
@@ -368,7 +336,7 @@ Page({
       },
       tap_friend: function(e){
         wx.navigateTo({
-          url: ''
+          url: '/pages/AddressbookD/AddressbookD'
         })
       },
 
@@ -380,13 +348,34 @@ Page({
         })
       },
 
-      click_record:function (e) {
+      click:function (e) {
         var that = this
         let index = e.currentTarget.dataset.index
-        console.log(index)
+        console.log("success")
         console.log(this.data.remind[index].Name)
         wx.navigateTo({
           url: '/pages/add_record/record?patient_id='+this.data.remind[index].info2+'&Name='+this.data.remind[index].Name+'&Gender='+this.data.remind[index].Gender+'&Age='+this.data.remind[index].Age
         })
       },
+
+      add_patient:function(e){
+        let index = e.currentTarget.dataset.index
+        wx.request({
+          //等待填充
+          url: app.globalData.IP_address+'/addcontact', 
+          header: { "ContentType": "application/json;charset=utf-8", },
+          data: {
+              uid:app.globalData.U_ID,
+              contact_id: this.data.remind[index].info2
+           },
+           method: 'POST',
+           success: function (res) {
+                console.log("addfriend发送成功");
+                if(res.data.code=='0') console.log("加入通讯录成功");
+           },
+           fail:function(res){
+            console.log("add_friend发送失败");
+          }
+        })
+      }
 })

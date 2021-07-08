@@ -99,7 +99,12 @@ class Users:
         code = DB.AddContact(self.U_ID,contact_id)
         DB.close()
         return code
-    
+    def deleteContact(self,contact_id:str)->int:
+        DB = DataBase.DataBase()
+        code = DB.DeleteContact(self.U_ID,contact_id)
+        DB.close()
+        return code
+
     def getContacts(self)->List[str]:
         DB = DataBase.DataBase()
         contacts = DB.GetContacts(self.U_ID)
@@ -243,6 +248,7 @@ class Appointment:
         Doctor_id,
         Ap_Time,
         Description,
+        Type,
         Location=''
     ):
         self.Patient_id = Patient_id
@@ -250,6 +256,7 @@ class Appointment:
         self.Ap_Time = Ap_Time
         self.Description = Description
         self.Location = Location
+        self.Type = Type
 
     def addAppointment(self)->int:
         DB = DataBase.DataBase()
@@ -270,10 +277,18 @@ class Appointment:
         Notes += '&'
         DB.AddEvent(
             U_ID=self.Patient_id,
-            Event_Type='A',
+            Event_Type=self.Type,
             Event_Time=self.Ap_Time,
             Note=Notes
         )
+        #print('here')
+        DB.AddEvent(
+            U_ID=self.Doctor_id,
+            Event_Type=self.Type,
+            Event_Time=self.Ap_Time,
+            Note=Notes
+        )
+        #print('here2')
         DB.close()
         return code
 

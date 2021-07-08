@@ -303,6 +303,20 @@ class DataBase():
         except Exception as e:
             self.conn.rollback()
             return -1
+    def DeleteContact(self,U_ID:str,Contact_ID:str)->int:
+        sql = 'SELECT Contacts FROM Users WHERE U_ID='+U_ID
+        self.cursor.execute(sql)
+        contacts:str = self.cursor.fetchone()['Contacts']
+        contacts=contacts.replace(str(int(Contact_ID))+'&','')
+        #print(contacts)
+        sql = 'UPDATE Users SET Contacts=\''+contacts+'\' WHERE U_ID='+U_ID
+        try:
+            self.cursor.execute(sql)
+            self.conn.commit()
+            return 0
+        except Exception as e:
+            self.conn.rollback()
+            return -1
 
     def GetContacts(self,U_ID:str):
         sql = 'SELECT Contacts FROM Users WHERE U_ID=\''+U_ID+'\''

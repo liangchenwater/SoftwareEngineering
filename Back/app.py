@@ -69,7 +69,7 @@ def ModInfo():
         Age=new_age,
         Title=new_title,
         Department=new_department,
-        hospital=new_hospital
+        Hospital=new_hospital
     )
     user.modInfo()
     return json.dumps({'code':200,},indent=2,ensure_ascii=False)
@@ -203,6 +203,7 @@ def AddAppointment():
     date = datetime.strptime(data['date'],"%Y-%m-%d").replace(hour=8,minute=0,second=0)
     time:int = data['time']
     description = data['description']
+    type = data['type']
 
     if time<=8:
         date += timedelta(minutes=30*time)
@@ -211,7 +212,7 @@ def AddAppointment():
     
     ap_time = date.strftime("%Y-%m-%d %H:%M:%S")
 
-    appointment = Appointment(patient_id,doctor_id,ap_time,description)
+    appointment = Appointment(patient_id,doctor_id,ap_time,description,type)
 
     code = appointment.addAppointment()
     if code == -1:
@@ -257,6 +258,7 @@ def DisplayCalender():
     u_id = data['u_id']
     begin=data['begin']
     end = data['end']
+    print(u_id,begin,end)
     event_list = Calen.Display(u_id,begin,end)
     for event in event_list:
         notes = event['Note'].split('&')
@@ -301,6 +303,14 @@ def AddContact():
     contact_id = data['contact_id']
     user = Users(msg=uid,msgid=True)
     code = user.addContact(contact_id)
+    return json.dumps({'code':code},indent=2,ensure_ascii=False)
+@app.route('/deletecontact',methods=['Post'])
+def DeleteContact():
+    data = request.get_json()
+    uid=data['uid']
+    contact_id = data['contact_id']
+    user = Users(msg=uid,msgid=True)
+    code = user.deleteContact(contact_id)
     return json.dumps({'code':code},indent=2,ensure_ascii=False)
 
 @app.route('/getcontacts',methods=['GET'])

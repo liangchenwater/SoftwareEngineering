@@ -16,8 +16,8 @@ App({
 },
 
   globalData: {
-    U_ID:"00",
-    identity:"D",
+    U_ID:"",
+    identity:"",
     IP_address:"http://172.20.10.2:5000"
   }
 

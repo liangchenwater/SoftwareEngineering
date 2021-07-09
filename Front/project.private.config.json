@@ -95,6 +95,12 @@
           "pathName": "pages/appointment/appointment",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/AddressbookP/AddressbookP",
+          "pathName": "pages/AddressbookP/AddressbookP",
+          "query": "",
+          "scene": null
         }
       ]
     }

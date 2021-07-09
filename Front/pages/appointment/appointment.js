@@ -7,7 +7,7 @@ Page({
    */
   data: {
       date:'',
-      doctor_name:'请选择',
+      doctor_name:'',
       doctor_id:'',
       start_time:0, //预约起始时间
       end_time:0,   //预约结束时间
@@ -49,11 +49,10 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    console.log(options)
     that.setData({
-      //doctor_id:options.data.key1,
-      //doctor_name:options.data.key2 
-      doctor_id:'0000000003',
-      doctor_name:'医生名'
+      doctor_id:options.key1,
+      doctor_name:options.key2 
     })
   },
 
@@ -168,12 +167,13 @@ Page({
         this.setData({symptoms:this.data.symptoms+'（备注：'+this.data.notes+'）'})
       }
       console.log(this.data.type+' '+this.data.date+' '+this.data.start_index);
+      console.log(this.data)
       wx.request({
       url: app.globalData.IP_address+'/addappointment', 
       header: { "ContentType": "application/json;charset=utf-8" },
 
       data: {
-          patient_id: "0000000001",
+          patient_id: app.globalData.U_ID,
           doctor_id: this.data.doctor_id, //应该连接到通讯录那边去选择？
           date: this.data.date,
           time: this.data.start_index,

@@ -17,15 +17,15 @@ Page({
   onLoad: function (option) {
     var that = this;
     that.setData({
-      patient_id: option.data.patient_id
+      patient_id: option.key1
     })
-
+    console.log(this.data.patient_id+app.globalData.U_ID)
     wx.request({
       //等待填充
       url: app.globalData.IP_address+'/displaymrlist', 
       header: { "ContentType": "application/json;charset=utf-8" },
       data: {
-          patient_id:this.data.patient_id,
+          patient_id:that.data.patient_id,
           doctor_id:app.globalData.U_ID,
        },
        method: 'POST',

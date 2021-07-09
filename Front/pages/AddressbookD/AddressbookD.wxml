@@ -1,0 +1,32 @@
+<!--pages/address_book/address_book.wxml-->
+<view style="background-color: WhiteSmoke">
+<button  bindtap="click_menu" style="position:relative ;width:80rpx;height: 80rpx">
+<icon class="iconfont icon-xiajiantou" style="position:relative;left:-30rpx"></icon>
+</button>
+<text>\n\n</text>
+<view wx:for="{{patientInfo}}" wx:for-item="patient" style="background-color: white" >
+<view class="contact_rect">
+<button class="set_top" bindtap="click_set_top" data-index="{{index}}" style="position:relative;width: 30rpx; height: 60rpx;left:-300rpx; top: 50rpx;background-color: rgba(106,194,126,1)" >
+<icon class="iconfont icon-zhiding" style="position:relative; left:-30rpx;top: -20rpx"> </icon>
+</button>
+<text>\n\n\n</text>
+<image src="{{patient.avatarURL}}" style="position: relative;width: 200rpx;height: 200rpx;left:50rpx; top: -50rpx" mode="aspectFill"></image>
+<text class="text_big">{{patient.name}} </text>
+<text class="const_value_big"> 患者\n </text>
+<text class="text_small_grey">{{patient.gender}} | </text>
+<text class="text_small_grey">{{patient.age}}\n</text>
+<text class="const_value_small">手机号码:</text>
+<text class="text_small"> {{patient.phone}}\n\n</text>
+<button class="record_button" bindtap="click_record" style="position:relative ;width:80rpx;height: 80rpx; left:150rpx; top: -225rpx;background-color: rgba(106,194,126,1)" data-index="{{index}}">
+<icon class="iconfont icon-duihuaxinxi" style="position:relative; left:-30rpx;top: -20rpx"></icon>
+</button>
+<button class= "delete_button" bindtap="click_delete" style="position:relative ;width:80rpx;height: 80rpx; left:300rpx;top:-303rpx ;background-color: rgba(106,194,126,1)" data-index="{{index}}">
+<icon class="iconfont icon-shanchu" style="position:relative; left:-30rpx;top: -20rpx">
+</icon>
+</button>
+<view style="background-color: WhiteSmoke">
+<text>\n\n\n</text>
+</view>
+</view>
+</view>
+</view>

@@ -13,7 +13,9 @@
     "pages/add_record/record",
     "pages/changeinfo_doctor/userinfo",
     "pages/changeinfo_patient/userinfo",
-    "pages/appointment/appointment"
+    "pages/appointment/appointment",
+    "pages/AddressbookP/AddressbookP",
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -22,5 +24,9 @@
     "navigationBarTextStyle": "black"
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "useExtendedLib": {
+    "kbone": true,
+    "weui": true
+  }
 }

@@ -62,7 +62,6 @@ Page({
         console.log("userinfo发送失败");
       }
     })
-
   },
 
   /**

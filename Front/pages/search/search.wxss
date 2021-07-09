@@ -1,0 +1,7 @@
+/* pages/search/search.wxss */
+.page__title{
+  position: relative;
+  font-size:12pt;
+  color: white;
+  background-color: rgba(106,194,126,1);
+}
